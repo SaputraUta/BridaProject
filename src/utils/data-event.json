@@ -1,0 +1,47 @@
+[
+    {
+        "event_id":1,
+        "judul": "olahraga",
+        "sop_perizinan": "begini dan begitu",
+        "alur_perizinan": "kesini dan kesitu",
+        "template_surat": "ada nih",
+        "kondisional":"tiket ato ngga tiket"
+      
+    },
+    {
+      "event_id":2,
+        "judul": "Konser",
+        "sop_perizinan": "begini dan begitu",
+        "alur_perizinan": "kesini dan kesitu",
+        "template_surat": "ada nih",
+        "kondisional":"tiket ato ngga tiket"
+      
+    },
+    {
+      "event_id":3,
+        "judul": "Konser",
+        "sop_perizinan": "begini dan begitu",
+        "alur_perizinan": "kesini dan kesitu",
+        "template_surat": "ada nih",
+        "kondisional":"tiket ato ngga tiket"
+      
+    },
+    {
+      "event_id":4,
+        "judul": "Konser",
+        "sop_perizinan": "begini dan begitu",
+        "alur_perizinan": "kesini dan kesitu",
+        "template_surat": "ada nih",
+        "kondisional":"tiket ato ngga tiket"
+      
+    },
+    {
+      "event_id":5,
+        "judul": "Konser",
+        "sop_perizinan": "begini dan begitu",
+        "alur_perizinan": "kesini dan kesitu",
+        "template_surat": "ada nih",
+        "kondisional":"tiket ato ngga tiket"
+      }
+    
+  ]
