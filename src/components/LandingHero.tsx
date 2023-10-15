@@ -5,7 +5,7 @@ import Link from "next/link";
 const LandingHero = () => {
   return (
     <div className="flex xl:flex-row flex-col gap-5 relative z-0 max-w-[1440px] ml-[100px] mr-[72px] pb-[48px] border-b border-black shadow-[0_2px_0px_0px_rgba(0,0,0,0.1)]">
-      <div className="flex-1 pt-36 padding-x">
+      <div className="flex-1 mt-36 padding-x">
         <h1 className="text-[96px] font-bold text-red-700 mb-2">EdoRoli</h1>
         <h2 className="text-[48px] font-bold">
           Solusi reservasi venue terlengkap se-Pulau Lombok

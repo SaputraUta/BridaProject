@@ -1,5 +1,3 @@
-import React from "react";
-// import venueDataJSON from "@/utils/data-venue.json";
 import Venue from "./Venue";
 import axios from "axios";
 import { useEffect, useState } from "react";
