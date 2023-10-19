@@ -1,7 +1,5 @@
 import Venue from "./Venue";
-import axios from "axios";
 import { useEffect, useState } from "react";
-import { GetServerSideProps } from "next";
 
 type KotaType = {
   id: number;
@@ -20,15 +18,15 @@ export default function VenueCart() {
   const [isLoading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch("https://mocki.io/v1/3476fae4-25a3-4ca1-a0be-99bd3f26d038")
+    fetch("https://mocki.io/v1/98dd4af9-41ae-446f-8801-d8332014bc7f")
       .then((res) => res.json())
       .then((data) => {
         setData(data);
         setLoading(false);
       });
   }, []);
-  if (isLoading) return <p>Loading...</p>;
-  if (!data) return <p>No profile data</p>;
+  if (isLoading) return <p className="text-center">Loading...</p>;
+  if (!data) return <p className="text-center">No profile data</p>;
 
   const venueMataram = data.find((item) => item.id === 1);
   const venueLoteng = data.find((item) => item.id === 2);
