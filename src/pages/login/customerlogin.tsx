@@ -16,7 +16,7 @@ export default function customerlogin() {
         <input type="text" placeholder="Email" className="w-5/6 border-b overflow-hidden mb-5" />
         <input type="text" placeholder="Password" className="w-5/6 border-b overflow-hidden mb-5" />
         <Link href="/customer" className="bg-red-600 p-3 text-white w-5/6 hover:bg-red-700 text-center rounded-xl m-2">Login</Link>
-        <Link href="/login/sign-up/customerSignUp" className="bg-red-600 p-3 text-white w-5/6 hover:bg-red-700 text-center rounded-xl mb-2">Sign up</Link>
+        <Link href="/auth/sign-up/customerSignUp" className="bg-red-600 p-3 text-white w-5/6 hover:bg-red-700 text-center rounded-xl mb-2">Sign up</Link>
       </div>
     </div>
   );

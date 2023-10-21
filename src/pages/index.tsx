@@ -1,5 +1,5 @@
-import LandingHero from "@/components/LandingHero";
-import VenueCart from "@/components/VenueCart";
+import LandingHero from "@/components/component-dashboard/LandingHero";
+import VenueCart from "@/components/component-dashboard/VenueCart";
 import Layout from "@/layout/layout";
 import axios from "axios";
 import Link from "next/link";
