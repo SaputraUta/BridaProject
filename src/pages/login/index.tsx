@@ -9,18 +9,18 @@ export default function ChooseYourRole() {
       <div>
         <h1 className="text-4xl font-bold text-center">Choose Your Role</h1>
       </div>
-      <div className="flex max-w-[1240px] max-h-[247px] justify-stretch gap-2 border border-gray-400 rounded-md">
+      <div className="flex max-h-56 justify-stretch gap-2 border-4 border-blue-950 rounded-md">
         <div className="p-3">
           <Image
             src="/user-illustration.svg"
             alt="user"
-            width={314}
-            height={227}
+            width={250}
+            height={250}
             className="m-2"
           />
         </div>
-        <div className="flex flex-col max-w-[847px] h-[209px] max-h-[209px] p-3 justify-between m-3">
-          <p>
+        <div className="flex flex-col max-w-[847px] h-52 p-3 justify-between m-3">
+          <p className="text-sm">
             It is a long established fact that a reader will be distracted by
             the readable content of a page when looking at its layout. The point
             of using Lorem Ipsum is that it has a more-or-less normal
@@ -32,23 +32,23 @@ export default function ChooseYourRole() {
           <Link href="/login/customerlogin" className="self-end">
             <CustomButton
               title="I am Customer"
-              containerStyles="bg-red-600 text-white rounded-full px-6 py-[10px] text-[18px] hover:bg-red-700"
+              containerStyles="bg-blue-950 text-white rounded-full px-5 py-2 text-sm hover:bg-blue-900"
             />
           </Link>
         </div>
       </div>
-      <div className="flex max-w-[1240px] max-h-[247px] justify-stretch gap-2 border border-gray-400 rounded-md">
+      <div className="flex max-w-[1240px] max-h-[247px] justify-stretch gap-2 border-4 border-bo rounded-md">
         <div className="p-3">
           <Image
             src="/provider-illustration.svg"
             alt="provider"
-            width={314}
-            height={227}
+            width={250}
+            height={250}
             className="m-2"
           />
         </div>
-        <div className="flex flex-col max-w-[847px] h-[209px] max-h-[209px] p-3 justify-between m-3">
-          <p>
+        <div className="flex flex-col max-w-[847px] h-52 p-3 justify-between m-3">
+          <p className="text-sm">
             It is a long established fact that a reader will be distracted by
             the readable content of a page when looking at its layout. The point
             of using Lorem Ipsum is that it has a more-or-less normal
@@ -60,7 +60,7 @@ export default function ChooseYourRole() {
           <Link href="/login/providerlogin" className="self-end">
             <CustomButton
               title="I am Provider"
-              containerStyles="bg-red-600 text-white rounded-full px-6 py-[10px] text-[18px] hover:bg-red-700"
+              containerStyles="bg-blue-950 text-white rounded-full px-5 py-2 text-sm hover:bg-blue-900"
             />
           </Link>
         </div>
