@@ -31,7 +31,7 @@ const EventList = () => {
     <div className="w-full">
       <div className="mx-[100px] mt-12 max-w-[1440px]">
         <div className="w-full">
-          <h1 className="text-red-600 text-5xl font-bold">Kategori Event</h1>
+          <h1 className="text-blue-950 text-5xl font-bold">Kategori Event</h1>
         </div>
         <div className="mt-12 grid gap-16">
           {data.map((item) => (

@@ -9,13 +9,13 @@ const config: Config = {
   theme: {
     extend: {
       backgroundImage: {
-        "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
-        "gradient-conic":
-          "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
+        signin: "url('/signinbackground.png')",
       },
       backgroundColor: {
         co: "#F2884B",
         cr: "#59220E",
+        monza: "#FEF2F3",
+        krim: "#F3F1F1",
       },
       textColor: {
         to: "#F2884B",
@@ -24,7 +24,7 @@ const config: Config = {
       borderColor: {
         bo: "#F2884B",
         br: "#59220E",
-      }
+      },
     },
   },
   plugins: [],

@@ -1,5 +1,5 @@
 import bcrypt from "bcryptjs";
-import prisma from "@/pages/lib/prisma";
+import prisma from "@/lib/prisma";
 
 export const signUp = async (email: string, password: string) => {
   const users = await prisma.user.findUnique({

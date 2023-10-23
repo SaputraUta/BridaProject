@@ -42,7 +42,7 @@ const VenueList = () => {
   if (!data) return <p className="text-center">No profile data</p>;
 
   return (
-    <div className="w-[1140px]">
+    <div className="w-[1080px]">
       <div className="mx-[100px] mt-12 w-full">
         <div className="mt-12 grid gap-16">
           {data.map((item) =>

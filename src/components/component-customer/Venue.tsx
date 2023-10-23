@@ -12,11 +12,11 @@ type Props = {
 
 const Venue = ({ id, venue_id, imageUrl, nama, nama_room, harga }: Props) => {
   return (
-    <div className="rounded-2xl border-2 border-red-600">
+    <div className="rounded-2xl border-2 border-blue-700">
       <div className="flex gap-4 w-full m-3">
         <Image src={imageUrl} alt={nama} width={343} height={276} />
         <div className="flex flex-col gap-4 w-full">
-          <h3 className="font-semibold text-4xl text-red-600">{nama}</h3>
+          <h3 className="font-semibold text-4xl text-blue-950">{nama}</h3>
           <div className="flex gap-2">
             <Image src="/stars.svg" alt="star" width={30} height={30} />
             <Image src="/stars.svg" alt="star" width={30} height={30} />
@@ -29,9 +29,9 @@ const Venue = ({ id, venue_id, imageUrl, nama, nama_room, harga }: Props) => {
             <p>Rooms: {nama_room}</p>
             <Link
               href={"/customer/venue/" + id + "/" + venue_id}
-              className="hover:bg-red-700 text-white p-3 rounded-2xl self-end bg-red-600 mr-10"
+              className="hover:scale-105 text-white py-3 px-10 rounded-2xl self-end bg-blue-950 mr-10"
             >
-              Lihat Detail
+              View Detail
             </Link>
           </div>
         </div>

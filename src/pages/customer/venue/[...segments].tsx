@@ -64,7 +64,7 @@ const VenueDetails = () => {
     <LayoutCustomer>
       <div className="mx-[100px] max-w-[1240px] mt-12 flex flex-col gap-y-5">
         <div className="flex gap-4 max-h-[253px] items-center">
-          <div className="w-[799px] h-[253px] flex justify-center border border-black rounded-xl">
+          <div className="w-[799px] h-[253px] flex justify-center border-2 border-blue-700 rounded-xl">
             {venueData?.gambar ? (
               <Image
                 src={venueData?.gambar}
@@ -76,7 +76,7 @@ const VenueDetails = () => {
             ) : (
               <p>Gambar tidak ditemukan</p>
             )}
-            <h2 className="font-bold text-5xl absolute top-[360px] left-[200px]">
+            <h2 className="font-bold text-blue-950 text-5xl absolute top-[270px] left-[200px]">
               Gelanggang Pemuda
             </h2>
           </div>
@@ -90,7 +90,7 @@ const VenueDetails = () => {
             />
           </div>
         </div>
-        <div className="flex gap-4 border border-black rounded-lg h-[605px] items-center bg-gray-50">
+        <div className="flex gap-4 border border-blue-700 rounded-lg h-[605px] items-center bg-gray-50">
           <div className="w-[799px] p-3 pt-1 flex flex-col gap-y-7">
             <h3 className="text-center">Details</h3>
             <div className="flex gap-3 bg-gray-200 overflow-hidden">
@@ -117,9 +117,9 @@ const VenueDetails = () => {
             <h4 className="font-medium text-xl">About event venue</h4>
 
             <div className="flex gap-16">
-              <div className="w-52 h-[272px] border border-black rounded lg"></div>
-              <div className="w-52 h-[272px] border border-black rounded lg"></div>
-              <div className="w-52 h-[272px] border border-black rounded lg"></div>
+              <div className="w-52 h-[272px] border border-blue-700 rounded lg"></div>
+              <div className="w-52 h-[272px] border border-blue-700 rounded lg"></div>
+              <div className="w-52 h-[272px] border border-blue-700 rounded lg"></div>
             </div>
           </div>
           <div className="w-[405px] h-[557px] bg-gray-200 m-2 rounded-lg flex flex-col justify-between content-center">
@@ -152,7 +152,7 @@ const VenueDetails = () => {
           </div>
         </div>
         <div className="flex gap-4 max-h-[253px]">
-          <div className="w-[799px] h-full border flex flex-col gap-5 border-black rounded-xl bg-gray-50">
+          <div className="w-[799px] h-full border flex flex-col gap-5 border-blue-700 rounded-xl bg-gray-50">
             <h3 className="font-medium text-2xl m-4 mb-0">Detail Informasi</h3>
             <p className="m-4 mt-0">
               Lorem Ipsum is simply dummy text of the printing and typesetting
@@ -167,13 +167,13 @@ const VenueDetails = () => {
               Lorem Ipsum.
             </p>
           </div>
-          <div className="w-[421px] h-[275px] flex items-center justify-center border border-black bg-gray-50 rounded-lg">
+          <div className="w-[421px] h-[275px] flex items-center justify-center border border-blue-700 bg-gray-50 rounded-lg">
             <div className="">
               <h1 className="font-bold text-xl">INI KALENDER</h1>
             </div>
           </div>
         </div>
-        <div className="w-full flex flex-col mt-8 border border-black rounded-lg bg-gray-50">
+        <div className="w-full flex flex-col mt-8 border border-blue-700 rounded-lg bg-gray-50">
           <h4 className="font-medium text-xl p-3">Rooms</h4>
           <div className="grid grid-cols-4 gap-24 p-3">
           {venueData?.room.map((item)=>(

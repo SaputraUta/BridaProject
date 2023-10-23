@@ -9,7 +9,7 @@ interface Props {
 
 const PopularVenue = ({ kota, nama, gambar }: Props) => {
   return (
-    <div className="flex flex-col justify-between border border-gray-300 p-3 rounded-md h-full">
+    <div className="flex flex-col justify-between border border-gray-300 p-3 rounded-md h-full hover:scale-105 hover:cursor-pointer">
       <div>
         <Image
           src={gambar}
