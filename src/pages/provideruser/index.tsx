@@ -1,13 +1,15 @@
-import Link from 'next/link'
-import React from 'react'
+import LayoutProvider from "@/layout/layout-provider";
+import Link from "next/link";
+import NavProvider from "@/components/component-admin/NavProvider";
+import VenueHero from "@/components/component-admin/VenueHero";
+import VenueList from "@/components/component-admin/VenueList";
 
 export default function index() {
   return (
-    <div>
-        <h1>LOGIN BERHASIL</h1>
-        <Link href='/provideruser/bookingConfirmation'>Booking Confirmation</Link>
-        <Link href='/provideruser/myVenue'>My Venue</Link>
-        <Link href='/provideruser/venueRegister'>Venue Register</Link>
-    </div>
-  )
+    <LayoutProvider>
+      <NavProvider/>
+      <VenueHero/>
+      <VenueList/>
+    </LayoutProvider>
+  );
 }
