@@ -1,0 +1,73 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url  	= env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+model User_Cust {
+  id String @id @default(cuid())
+
+  email        String @unique
+  passwordHash String
+}
+
+model User_Prov {
+  id String @id @default(cuid())
+
+  email        String @unique
+  passwordHash String
+}
+
+model User_Admin {
+  id String @id @default(cuid())
+
+  email        String @unique
+  passwordHash String
+}
+
+model Venue {
+  id String @id @default(cuid())
+  nama_venue String
+  //relation
+  Event EventonVenue[]
+}
+
+model Event {
+  id String @id @default(cuid())
+  category_event String
+  //relation
+  Venue EventonVenue[]
+}
+
+model EventonVenue{
+  event_id String
+  venue_id String
+  //relation
+  Event Event @relation(fields: [event_id], references: [id])
+  Venue Venue @relation(fields: [venue_id], references: [id])
+
+  @@id([venue_id, event_id])
+}
+
+model city {
+  id String @id @default(cuid())
+  nama_venue String
+  //relation
+  
+}
+
+model room {
+  id String @id @default(cuid())
+  nama_venue String
+  //relation
+}
+model news {
+  id String @id @default(cuid())
+  nama_venue String
+  //relation
+  
+}
