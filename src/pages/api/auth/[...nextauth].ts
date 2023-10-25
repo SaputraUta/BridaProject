@@ -17,6 +17,10 @@ export const authOptions: AuthOptions = {
           type: "text",
           placeholder: "example@gmail.com",
         },
+        username:{
+          label: "Username",
+          type: "text",
+        },
         password: {
           label: "password",
           type: "password",
@@ -27,7 +31,7 @@ export const authOptions: AuthOptions = {
           return null;
         }
 
-        const { email, password } = credentials;
+        const { email, username, password } = credentials;
 
         const user = await prisma.user_Cust.findUnique({
           where: {
