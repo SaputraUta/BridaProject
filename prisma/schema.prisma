@@ -12,6 +12,7 @@ model User_Cust {
   id String @id @default(cuid())
 
   email        String @unique
+  username String 
   passwordHash String
 }
 
@@ -19,6 +20,7 @@ model User_Prov {
   id String @id @default(cuid())
 
   email        String @unique
+  nama_perusahaan String 
   passwordHash String
 }
 
@@ -27,18 +29,33 @@ model User_Admin {
 
   email        String @unique
   passwordHash String
+  //relation
+  newsonadmin News[]
 }
 
 model Venue {
   id String @id @default(cuid())
   nama_venue String
+  gambar_venue String
+  alamat_venue String
+  link_maps String
+  penanggung_jawab String
+  city_Id String
+  city_R   City @relation(fields: [city_Id], references: [id])
   //relation
   Event EventonVenue[]
+  roomonvenue Room[]
 }
 
 model Event {
   id String @id @default(cuid())
   category_event String
+  gambar_event String
+  desc_event String
+  sop String
+  alur_perizinan String
+  kondisional String
+  template_surat String
   //relation
   Venue EventonVenue[]
 }
@@ -53,21 +70,31 @@ model EventonVenue{
   @@id([venue_id, event_id])
 }
 
-model city {
+model City {
   id String @id @default(cuid())
-  nama_venue String
+  nama_city String
   //relation
-  
+  venueoncity Venue[]
 }
 
-model room {
+model Room {
   id String @id @default(cuid())
-  nama_venue String
+  nama_room String
+  gambar_room String
+  harga_room Int
+  kapasitas String
+  desc_room String
+  venue_Id String
+  venue_R   Venue @relation(fields: [venue_Id], references: [id])
   //relation
 }
-model news {
+
+model News {
   id String @id @default(cuid())
-  nama_venue String
+  judul_news String
+  isi_berita String
+  tgl_berita String
+  admin_Id String
+  admin_R   User_Admin @relation(fields: [admin_Id], references: [id])
   //relation
-  
 }
