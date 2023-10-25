@@ -57,6 +57,7 @@ model Event {
   kondisional String
   template_surat String
   //relation
+  newsonevent News[]
   Venue EventonVenue[]
 }
 
@@ -92,9 +93,13 @@ model Room {
 model News {
   id String @id @default(cuid())
   judul_news String
+  gambar_news String
   isi_berita String
   tgl_berita String
   admin_Id String
   admin_R   User_Admin @relation(fields: [admin_Id], references: [id])
+  event_Id String
+  event_R   Event @relation(fields: [event_Id], references: [id])
   //relation
+  
 }
