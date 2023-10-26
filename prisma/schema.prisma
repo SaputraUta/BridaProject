@@ -84,10 +84,12 @@ model Room {
   gambar_room String
   harga_room Int
   kapasitas String
+  status Boolean @default(false)
   desc_room String
   venue_Id String
   venue_R   Venue @relation(fields: [venue_Id], references: [id])
   //relation
+  transkasionroom Transaksi[]
 }
 
 model News {
@@ -95,11 +97,33 @@ model News {
   judul_news String
   gambar_news String
   isi_berita String
-  tgl_berita String
+  tgl_berita DateTime @default(now())
   admin_Id String
   admin_R   User_Admin @relation(fields: [admin_Id], references: [id])
   event_Id String
   event_R   Event @relation(fields: [event_Id], references: [id])
   //relation
   
+}
+
+model Transaksi{
+   id String @id @default(cuid())
+   status Boolean @default(false)
+   tgl_transaksi DateTime @default(now())
+   metode Metode
+   total Int
+   room_Id String
+   room_R   Room @relation(fields: [room_Id], references: [id])
+}
+
+enum Metode{
+  Bank1
+  Bank2
+  Bank3
+}
+
+model Kalender{
+   id String @id @default(cuid())
+   tgl_berita DateTime
+   deskripsi_tanggal String
 }
