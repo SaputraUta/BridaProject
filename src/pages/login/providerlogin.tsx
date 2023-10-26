@@ -29,7 +29,7 @@ export default function customerlogin() {
           </Link>
 
           <Link
-            href="/auth/sign-up/customerSignUp"
+            href="/auth/sign-up/providerSignUp"
             className="bg-krim p-3 text-black w-5/6 hover:scale-105 text-center rounded-xl mb-2 hover:cursor-pointer border-black border-2 m-2"
           >
             Sign up
