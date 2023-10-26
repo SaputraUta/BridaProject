@@ -109,6 +109,7 @@ model News {
 model Transaksi{
    id String @id @default(cuid())
    status Boolean @default(false)
+   tgl_transaksi DateTime @default(now())
    metode Metode
    total Int
    room_Id String
@@ -119,4 +120,10 @@ enum Metode{
   Bank1
   Bank2
   Bank3
+}
+
+model Kalender{
+   id String @id @default(cuid())
+   tgl_berita DateTime
+   deskripsi_tanggal String
 }
