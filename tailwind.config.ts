@@ -12,13 +12,14 @@ const config: Config = {
         signin: "url('/signinbackground.png')",
       },
       backgroundColor: {
-        co: "#F2884B",
+        co: "#BF4F26",
+        co2: "#F2884B",
         cr: "#59220E",
         monza: "#FEF2F3",
         krim: "#F3F1F1",
       },
       textColor: {
-        to: "#F2884B",
+        to: "#DC6B33",
         tr: "#59220E",
       },
       borderColor: {

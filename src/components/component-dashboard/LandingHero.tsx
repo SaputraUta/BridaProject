@@ -4,7 +4,7 @@ import Link from "next/link";
 
 const LandingHero = () => {
   return (
-    <div className="flex xl:flex-row flex-col gap-5 relative z-0 max-w-[1440px] ml-[100px] mr-[72px] pb-[48px] border-b border-black shadow-[0_2px_0px_0px_rgba(0,0,0,0.1)]">
+    <div className="flex xl:flex-row flex-col gap-5 relative z-0 max-w-[1440px] ml-[100px] mr-[72px]">
       <div className="flex-1 mt-48">
         <h1 className="text-[96px] font-bold text-blue-950">EdoRoli</h1>
         <h2 className="text-3xl font-bold">
@@ -17,7 +17,7 @@ const LandingHero = () => {
         <Link href='/login'>
           <CustomButton
             title="Get Started"
-            containerStyles="bg-blue-950 text-white rounded-full px-6 py-[10px] mt-8 text-[18px] hover:underline"
+            containerStyles="bg-co text-white rounded-xl px-6 py-[10px] mt-8 text-[18px] hover:underline"
           />
         </Link>
       </div>
@@ -25,7 +25,7 @@ const LandingHero = () => {
         <Image
           src="/landingpage-illustration.svg"
           alt="landingpage"
-          width="480"
+          width="450"
           height="411"
         />
       </div>

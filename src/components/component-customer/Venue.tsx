@@ -12,7 +12,7 @@ type Props = {
 
 const Venue = ({ id, venue_id, imageUrl, nama, nama_room, harga }: Props) => {
   return (
-    <div className="rounded-2xl border-2 border-blue-700">
+    <div className="rounded-2xl border-2 border-black">
       <div className="flex gap-4 w-full m-3">
         <Image src={imageUrl} alt={nama} width={343} height={276} />
         <div className="flex flex-col gap-4 w-full">

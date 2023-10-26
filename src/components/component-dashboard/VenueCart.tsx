@@ -32,7 +32,8 @@ export default function VenueCart() {
   const venueLoteng = data.find((item) => item.id === 2);
 
   return (
-    <div className="z-0 max-w-[1440px] ml-[100px] mr-[72px] border-b border-black shadow-[0_2px_0px_0px_rgba(0,0,0,0.1)] pb-[48px]">
+    <div className="z-0 max-w-[1440px] ml-[100px] mr-[72px]">
+      <h2 className="font-bold text-5xl">Popular venue</h2>
       <div className="grid grid-cols-3 gap-x-28 gap-y-14 mt-12">
         {venueMataram?.Venue.map((item) => (
           <Venue

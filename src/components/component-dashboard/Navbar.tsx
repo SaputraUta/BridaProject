@@ -8,9 +8,9 @@ const Navbar = () => {
       <nav className="max-w-[1440px] ml-[80px] mr-[72px] flex justify-between items-center px-6 py-4 max-h-[182px]">
         <div className="flex items-center gap-9">
           <Link href="/" className="flex justify-center items-center">
-            <Image src="/logo.svg" alt="edoroli" width={75} height={75} />
+            <Image src="/logo.svg" alt="edoroli" width={28} height={45} />
           </Link>
-          <h2 className="text-white font-bold text-5xl">EdoRoli</h2>
+          <h2 className="text-white font-bold text-2xl">EdoRoli</h2>
         </div>
         <div className="flex items-center gap-12">
           <Link href="/" className="text-white hover:text-to">
@@ -25,7 +25,7 @@ const Navbar = () => {
           <Link href='/login'>
             <CustomButton
               title="Get Started"
-              containerStyles="bg-co text-white rounded-full px-6 py-[10px] text-[18px] hover:underline"
+              containerStyles="bg-co text-white rounded-xl px-6 py-[10px] text-[18px] hover:underline"
             />
           </Link>
         </div>

@@ -5,48 +5,62 @@ import { useState } from "react";
 export default function userSignUp() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [username, setUsername] = useState("");
   const [message, setMessage] = useState("");
 
-  const handleSubmit = async () => {
-    setMessage("Signing Up...");
+  // const handleSubmit = async () => {
+  //   setMessage("Signing Up...");
 
-    if (password && email) {
-      const data = {
-        email: email,
-        password: password,
-      };
+  //   if (password && email && username) {
+  //     const data = {
+  //       email,
+  //       password,
+  //       username,
+  //     };
 
-      const response = await fetch("/api/signUp", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
-      });
+  //     const response = await fetch("/api/signUp", {
+  //       method: "POST",
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //       },
+  //       body: JSON.stringify(data),
+  //     });
 
-      if (response.ok) {
-        const result = await response.json();
-        setMessage(result.message);
-      } else {
-        setMessage("Error while signing up.");
-      }
-      setEmail("");
-      setPassword("");
-    } else {
-      setMessage("Seluruh form harus terisi!");
-    }
-  };
+  //     if (response.ok) {
+  //       const result = await response.json();
+  //       setMessage(result.message);
+  //     } else {
+  //       setMessage("Error while signing up.");
+  //     }
+  //     setEmail("");
+  //     setPassword("");
+  //   } else {
+  //     setMessage("Seluruh form harus terisi!");
+  //   }
+  // };
 
   return (
     <div className="h-screen w-screen flex items-center justify-center bg-signin">
       <div className="flex w-11/12 items-center justify-center bg-monza">
         <div className="h-[540px] w-[430px] flex flex-col items-center justify-center p-5">
-        <Link href='/login/customerlogin' className="underline self-start ml-3">Login</Link>
+          <Link
+            href="/login/customerlogin"
+            className="underline self-start ml-3"
+          >
+            Login
+          </Link>
           <h1 className="font-bold text-4xl m-4">Sign Up</h1>
           <p className="text-center mb-4">
             Silahkan daftarkan akun anda terlebih dahulu sebelum menggunakan
             fitur-fitur kami.
           </p>
+          <input
+            type="text"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+            placeholder="Username"
+            className="w-5/6 border-b overflow-hidden mb-5 bg-transparent focus:outline-none"
+          />
           <input
             type="email"
             value={email}
@@ -63,7 +77,7 @@ export default function userSignUp() {
           />
           <button
             className="bg-black p-3 text-white w-5/6 text-center rounded-xl m-2 hover:scale-105 hover:cursor-pointer"
-            onClick={handleSubmit}
+            // onClick={handleSubmit}
           >
             Daftar
           </button>

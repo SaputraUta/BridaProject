@@ -19,7 +19,7 @@ const PopularSearch = () => {
   const [isLoading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch("https://mocki.io/v1/3476fae4-25a3-4ca1-a0be-99bd3f26d038")
+    fetch("https://mocki.io/v1/98dd4af9-41ae-446f-8801-d8332014bc7f")
       .then((res) => res.json())
       .then((data) => {
         setData(data);
@@ -37,8 +37,8 @@ const PopularSearch = () => {
   return (
     <div className="w-[1140px] mx-[100px]">
       <div className="w-full">
-        <h1 className="font-bold text-5xl mt-3">Popular Searches</h1>
-        <div className="grid grid-cols-5 mt-10 gap-5 max-w-[1440px] w-[1080px]">
+        <h1 className="font-bold text-5xl mt-5">Popular Venue</h1>
+        <div className="grid grid-cols-5 mt-4 gap-5 max-w-[1440px] w-[1080px]">
           {venueMataram ? (
             <PopularVenue
               kota={venueMataram?.kota}
