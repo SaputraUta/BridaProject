@@ -43,70 +43,36 @@ const EventDetail = () => {
   return (
     <LayoutCustomer>
       <div className="w-full">
-        <div className="max-w-[1440px] flex flex-col mx-[100px] items-center">
+        <div className="max-w-[1440px] mx-[100px]">
           {eventData?.imageUrl ? (
             <Image
               src={eventData.imageUrl}
               alt={eventData.judul}
               width={400}
               height={400}
-              className="m-4"
+              className="my-4 mx-auto"
             />
           ) : (
-            <p className="text-center">Image Not Found</p>
+            <p className="text-center mx-auto">Image Not Found</p>
           )}
 
-          <h1 className="font-bold text-5xl p-2">{eventData?.judul}</h1>
+          <h1 className="font-bold text-5xl">{eventData?.judul}</h1>
 
-          <div className="flex flex-wrap gap-5 items-center justify-center m-3">
-            <div className="w-2/5">
-              Lorem Ipsum is simply dummy text of the printing and typesetting
-              industry. Lorem Ipsum has been the industry's standard dummy text
-              ever since the 1500s, when an unknown printer took a galley of
-              type and scrambled it to make a type specimen book. It has
-              survived not only five centuries, but also the leap into
-              electronic typesetting, remaining essentially unchanged. It was
-              popularised in the 1960s with the release of Letraset sheets
-              containing Lorem Ipsum passages, and more recently with desktop
-              publishing software like Aldus PageMaker including versions of
-              Lorem Ipsum.
-            </div>
-            <div className="w-2/5">
-              Lorem Ipsum is simply dummy text of the printing and typesetting
-              industry. Lorem Ipsum has been the industry's standard dummy text
-              ever since the 1500s, when an unknown printer took a galley of
-              type and scrambled it to make a type specimen book. It has
-              survived not only five centuries, but also the leap into
-              electronic typesetting, remaining essentially unchanged. It was
-              popularised in the 1960s with the release of Letraset sheets
-              containing Lorem Ipsum passages, and more recently with desktop
-              publishing software like Aldus PageMaker including versions of
-              Lorem Ipsum.
-            </div>
-            <div className="w-2/5">
-              Lorem Ipsum is simply dummy text of the printing and typesetting
-              industry. Lorem Ipsum has been the industry's standard dummy text
-              ever since the 1500s, when an unknown printer took a galley of
-              type and scrambled it to make a type specimen book. It has
-              survived not only five centuries, but also the leap into
-              electronic typesetting, remaining essentially unchanged. It was
-              popularised in the 1960s with the release of Letraset sheets
-              containing Lorem Ipsum passages, and more recently with desktop
-              publishing software like Aldus PageMaker including versions of
-              Lorem Ipsum.
-            </div>
-            <div className="w-2/5">
-              Lorem Ipsum is simply dummy text of the printing and typesetting
-              industry. Lorem Ipsum has been the industry's standard dummy text
-              ever since the 1500s, when an unknown printer took a galley of
-              type and scrambled it to make a type specimen book. It has
-              survived not only five centuries, but also the leap into
-              electronic typesetting, remaining essentially unchanged. It was
-              popularised in the 1960s with the release of Letraset sheets
-              containing Lorem Ipsum passages, and more recently with desktop
-              publishing software like Aldus PageMaker including versions of
-              Lorem Ipsum.
-            </div>
+          <div className="mt-12 shadow-md p-4 rounded-xl">
+            <h3 className="font-bold text-2xl">Deskripsi</h3>
+            <p>Lorem ipsum dolor sit amet consectetur. Aliquam in consequat sed tempus elementum. Fringilla massa vulputate quis mauris proin ullamcorper ultricies sem. Sagittis rutrum tellus risus eu erat. Orci quis ut ullamcorper et morbi vestibulum leo cursus vel. Lorem et est augue ut montes congue urna tortor. Mauris ut neque tortor semper egestas aliquet viverra quis. Vel consectetur quis non odio leo sit pellentesque adipiscing. Adipiscing malesuada non nibh quam. Egestas ornare consectetur habitant faucibus egestas vitae. Viverra nascetur vel vestibulum sit malesuada tempor orci. Ut vel sit enim urna urna posuere arcu. Nec fermentum lacus gravida ut. Adipiscing nulla porta feugiat augue pharetra ac proin interdum dignissim.</p>
+          </div>
+          <div className="mt-12 shadow-md p-4 rounded-xl">
+            <h3 className="font-bold text-2xl">SOP (Standar Operasi Prosedur)</h3>
+            <p>Lorem ipsum dolor sit amet consectetur. Aliquam in consequat sed tempus elementum. Fringilla massa vulputate quis mauris proin ullamcorper ultricies sem. Sagittis rutrum tellus risus eu erat. Orci quis ut ullamcorper et morbi vestibulum leo cursus vel. Lorem et est augue ut montes congue urna tortor. Mauris ut neque tortor semper egestas aliquet viverra quis. Vel consectetur quis non odio leo sit pellentesque adipiscing. Adipiscing malesuada non nibh quam. Egestas ornare consectetur habitant faucibus egestas vitae. Viverra nascetur vel vestibulum sit malesuada tempor orci. Ut vel sit enim urna urna posuere arcu. Nec fermentum lacus gravida ut. Adipiscing nulla porta feugiat augue pharetra ac proin interdum dignissim.</p>
+          </div>
+          <div className="mt-12 shadow-md p-4 rounded-xl">
+            <h3 className="font-bold text-2xl">Alur Perizinan</h3>
+            <p>Lorem ipsum dolor sit amet consectetur. Aliquam in consequat sed tempus elementum. Fringilla massa vulputate quis mauris proin ullamcorper ultricies sem. Sagittis rutrum tellus risus eu erat. Orci quis ut ullamcorper et morbi vestibulum leo cursus vel. Lorem et est augue ut montes congue urna tortor. Mauris ut neque tortor semper egestas aliquet viverra quis. Vel consectetur quis non odio leo sit pellentesque adipiscing. Adipiscing malesuada non nibh quam. Egestas ornare consectetur habitant faucibus egestas vitae. Viverra nascetur vel vestibulum sit malesuada tempor orci. Ut vel sit enim urna urna posuere arcu. Nec fermentum lacus gravida ut. Adipiscing nulla porta feugiat augue pharetra ac proin interdum dignissim.</p>
+          </div>
+          <div className="mt-12 shadow-md p-4 rounded-xl">
+            <h3 className="font-bold text-2xl">Template Surat</h3>
+            {eventData?.template_surat}
           </div>
         </div>
       </div>

@@ -4,8 +4,8 @@ import Link from "next/link";
 
 const LandingHero = () => {
   return (
-    <div className="flex xl:flex-row flex-col gap-5 relative z-0 max-w-[1440px] ml-[100px] mr-[72px]">
-      <div className="flex-1 mt-48">
+    <div className="flex xl:flex-row flex-col gap-5 relative z-0 max-w-[1440px] ml-[100px] mr-[72px] mt-20">
+      <div className="flex-1">
         <h1 className="text-[96px] font-bold text-blue-950">EdoRoli</h1>
         <h2 className="text-3xl font-bold">
           Solusi reservasi venue terlengkap se-Pulau Lombok
@@ -21,7 +21,7 @@ const LandingHero = () => {
           />
         </Link>
       </div>
-      <div className="pt-36 padding-x justify-center">
+      <div className="justify-center">
         <Image
           src="/landingpage-illustration.svg"
           alt="landingpage"

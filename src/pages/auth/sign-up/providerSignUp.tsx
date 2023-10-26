@@ -7,7 +7,7 @@ export default function providerSignUp() {
       <div className="flex flex-col items-center justify-center border-red-600 rounded-xl border-2">
         <h1 className="text-red-600 font-bold text-5xl m-5">Provider Sign Up</h1>
         <Image
-            src="/provider-illustration.svg"
+            src="/providersignin-illustration.svg"
             alt="user"
             width={314}
             height={227}

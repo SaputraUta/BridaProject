@@ -33,7 +33,6 @@ type KotaType = {
 const VenueDetails = () => {
   const router = useRouter();
   const [venueData, setVenueData] = useState<VenueType>();
-  const [kotaData, setKotaData] = useState<KotaType>();
   const [data, setData] = useState<KotaType[]>();
   const [isLoading, setLoading] = useState(true);
 
@@ -52,7 +51,6 @@ const VenueDetails = () => {
       const getVenueId = getId?.Venue.find(
         (item) => item.venue_id === parseInt(venue_id)
       );
-      setKotaData(getId);
       setVenueData(getVenueId);
     }
   }, [router, data]);
@@ -64,20 +62,18 @@ const VenueDetails = () => {
     <LayoutCustomer>
       <div className="mx-[100px] max-w-[1240px] mt-12 flex flex-col gap-y-5">
         <div className="flex gap-4 max-h-[253px] items-center">
-          <div className="w-[799px] h-[253px] flex justify-center border-2 border-blue-700 rounded-xl">
+          <div className="w-[799px] h-[253px] flex justify-center border-2 rounded-xl relative">
             {venueData?.gambar ? (
-              <Image
+              <img
                 src={venueData?.gambar}
                 alt={venueData?.nama}
-                width={300}
-                height={253}
-                className="opacity-50 p-2"
+                className="opacity-50 w-full h-full"
               />
             ) : (
               <p>Gambar tidak ditemukan</p>
             )}
-            <h2 className="font-bold text-blue-950 text-5xl absolute top-[270px] left-[200px]">
-              Gelanggang Pemuda
+            <h2 className="font-bold text-5xl absolute top-48 left-20">
+              {venueData?.nama}
             </h2>
           </div>
           <div className="w-[421px] h-[253px] flex items-center justify-center">
@@ -90,7 +86,7 @@ const VenueDetails = () => {
             />
           </div>
         </div>
-        <div className="flex gap-4 border border-blue-700 rounded-lg h-[605px] items-center bg-gray-50">
+        <div className="flex gap-4 border-2 rounded-lg h-fititems-center bg-gray-50">
           <div className="w-[799px] p-3 pt-1 flex flex-col gap-y-7">
             <h3 className="text-center">Details</h3>
             <div className="flex gap-3 bg-gray-200 overflow-hidden">
@@ -116,24 +112,34 @@ const VenueDetails = () => {
 
             <h4 className="font-medium text-xl">About event venue</h4>
 
-            <div className="flex gap-16">
-              <div className="w-52 h-[272px] border border-blue-700 rounded lg"></div>
-              <div className="w-52 h-[272px] border border-blue-700 rounded lg"></div>
-              <div className="w-52 h-[272px] border border-blue-700 rounded lg"></div>
+            <div className="grid grid-cols-3 gap-16">
+              <Image
+                src="/abouteventvenue.svg"
+                alt="category1"
+                width={200}
+                height={220}
+                className="border-2 rounded-xl"
+              />
+              <Image
+                src="/abouteventvenue2.svg"
+                alt="category1"
+                width={200}
+                height={220}
+                className="border-2 rounded-xl"
+              />
+              <Image
+                src="/abouteventvenue3.svg"
+                alt="category1"
+                width={200}
+                height={220}
+                className="border-2 rounded-xl"
+              />
             </div>
           </div>
           <div className="w-[405px] h-[557px] bg-gray-200 m-2 rounded-lg flex flex-col justify-between content-center">
             <div className="mt-16 flex flex-col gap-10 items-center">
-              <input
-                type="text"
-                placeholder="Date"
-                className="rounded-lg p-1"
-              />
-              <input
-                type="text"
-                placeholder="Rooms"
-                className="rounded-lg p-1"
-              />
+              <input type="text" placeholder="Date" className="p-1 w-3/4" />
+              <input type="text" placeholder="Rooms" className="p-1 w-3/4" />
             </div>
             <div className="mb-16 flex flex-col gap-10 items-center">
               <button className="bg-blue-900 w-3/4 rounded-lg">
@@ -152,7 +158,7 @@ const VenueDetails = () => {
           </div>
         </div>
         <div className="flex gap-4 max-h-[253px]">
-          <div className="w-[799px] h-full border flex flex-col gap-5 border-blue-700 rounded-xl bg-gray-50">
+          <div className="w-[799px] h-full border-2 flex flex-col gap-5 rounded-xl bg-gray-50">
             <h3 className="font-medium text-2xl m-4 mb-0">Detail Informasi</h3>
             <p className="m-4 mt-0">
               Lorem Ipsum is simply dummy text of the printing and typesetting
@@ -167,19 +173,22 @@ const VenueDetails = () => {
               Lorem Ipsum.
             </p>
           </div>
-          <div className="w-[421px] h-[275px] flex items-center justify-center border border-blue-700 bg-gray-50 rounded-lg">
-            <div className="">
-              <h1 className="font-bold text-xl">INI KALENDER</h1>
-            </div>
-          </div>
+          <img src="/calendar.jpg" alt="calendar" width={421} height={265} />
         </div>
-        <div className="w-full flex flex-col mt-8 border border-blue-700 rounded-lg bg-gray-50">
+        <div className="w-full flex flex-col mt-8 border-2 rounded-lg bg-gray-50">
           <h4 className="font-medium text-xl p-3">Rooms</h4>
           <div className="grid grid-cols-4 gap-24 p-3">
-          {venueData?.room.map((item)=>(
-            <Image src={item.gambar} alt={item.nama_room} width={240} height={240} />
-          )
-          )}
+            {venueData?.room.map((item) => (
+              <div>
+                <Image
+                  src={item.gambar}
+                  alt={item.nama_room}
+                  width={240}
+                  height={240}
+                />
+                <h4 className="text-xl text-center mt-2">{item.nama_room}</h4>
+              </div>
+            ))}
           </div>
         </div>
       </div>

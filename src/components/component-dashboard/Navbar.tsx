@@ -4,7 +4,7 @@ import Image from "next/image";
 
 const Navbar = () => {
   return (
-    <header className="w-full absolute z-10 bg-blue-950">
+    <header className="w-full bg-blue-950">
       <nav className="max-w-[1440px] ml-[80px] mr-[72px] flex justify-between items-center px-6 py-4 max-h-[182px]">
         <div className="flex items-center gap-9">
           <Link href="/" className="flex justify-center items-center">
@@ -16,10 +16,10 @@ const Navbar = () => {
           <Link href="/" className="text-white hover:text-to">
             Home
           </Link>
-          <Link href="/about-us" className="text-white hover:text-to">
+          <Link href="/AboutUs" className="text-white hover:text-to">
             About Us
           </Link>
-          <Link href="/contact-us" className="text-white hover:text-to">
+          <Link href="/ContactUs" className="text-white hover:text-to">
             Contact Us
           </Link>
           <Link href='/login'>

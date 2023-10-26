@@ -84,7 +84,7 @@ export default function userSignUp() {
 
           <p className="text-center">{message}</p>
         </div>
-        <Image src="/usersign.svg" alt="signin" width={740} height={600} />
+        <Image src="/usersignin-illustration.svg" alt="signin" width={730} height={600} />
       </div>
     </div>
   );

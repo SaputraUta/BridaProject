@@ -35,7 +35,7 @@ export default function customerlogin() {
             Sign up
           </Link>
         </div>
-        <Image src="/usersign.svg" alt="signin" width={740} height={600} />
+        <Image src="/usersignin-illustration.svg" alt="signin" width={730} height={600} />
       </div>
     </div>
   );
