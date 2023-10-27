@@ -2,8 +2,7 @@ import LayoutCustomer from "@/layout/layout-customer";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
-import NavUser from "@/components/component-customer/NavUser";
-import SearchBar from "@/components/component-customer/SearchBar";
+import RoomModal from "@/components/component-customer/ModalRooms";
 
 type VenueType = {
   venue_id: number;
@@ -15,7 +14,7 @@ type VenueType = {
   room: RoomType[];
 };
 
-type RoomType = {
+export type RoomType = {
   room_id: number;
   nama_room: string;
   gambar: string;
@@ -35,6 +34,8 @@ const VenueDetails = () => {
   const [venueData, setVenueData] = useState<VenueType>();
   const [data, setData] = useState<KotaType[]>();
   const [isLoading, setLoading] = useState(true);
+  const [selectedRoom, setSelectedRoom] = useState<RoomType>();
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const id = router.query.segments?.[0] as string;
   const venue_id = router.query.segments?.[1] as string;
@@ -58,6 +59,15 @@ const VenueDetails = () => {
   if (isLoading) return <p className="text-center">Loading...</p>;
   if (!data) return <p className="text-center">No profile data</p>;
 
+  const handleRoomClick = (room: RoomType) => {
+    setSelectedRoom(room);
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    // setSelectedRoom(null);
+    setIsModalOpen(false);
+  };
   return (
     <LayoutCustomer>
       <div className="mx-[100px] max-w-[1240px] mt-12 flex flex-col gap-y-5">
@@ -77,13 +87,7 @@ const VenueDetails = () => {
             </h2>
           </div>
           <div className="w-[421px] h-[253px] flex items-center justify-center">
-            <Image
-              src="/placeholderlocation.jpg"
-              alt="location"
-              width={300}
-              height={300}
-              className="w-full h-full"
-            />
+            <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d15780.624019204048!2d116.088064!3d-8.580995!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dcdc07d856569bf%3A0xda2c83c75a587419!2sGelanggang%20Pemuda%20Mataram!5e0!3m2!1sid!2sid!4v1698386010077!5m2!1sid!2sid" className="w-full h-full"/>
           </div>
         </div>
         <div className="flex gap-4 border-2 rounded-lg h-fititems-center bg-gray-50">
@@ -179,7 +183,11 @@ const VenueDetails = () => {
           <h4 className="font-medium text-xl p-3">Rooms</h4>
           <div className="grid grid-cols-4 gap-24 p-3">
             {venueData?.room.map((item) => (
-              <div>
+              <div
+                className="hover:scale-105 hover:cursor-pointer"
+                key={item.room_id}
+                onClick={() => handleRoomClick(item)}
+              >
                 <Image
                   src={item.gambar}
                   alt={item.nama_room}
@@ -190,6 +198,11 @@ const VenueDetails = () => {
               </div>
             ))}
           </div>
+          <RoomModal
+            roomData={selectedRoom}
+            isOpen={isModalOpen}
+            onClose={closeModal}
+          />
         </div>
       </div>
     </LayoutCustomer>
