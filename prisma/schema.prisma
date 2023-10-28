@@ -115,6 +115,8 @@ model Transaksi{
    total Int
    room_Id String
    room_R   Room @relation(fields: [room_Id], references: [id])
+   notif_Id String @unique
+   notif_R   Notification @relation(fields: [notif_Id], references: [id])
 }
 
 enum Metode{
@@ -130,4 +132,13 @@ model Kalender{
    venue_Id String @unique
    venue_R   Venue @relation(fields: [venue_Id], references: [id])
    //relation
+}
+
+model Notification{
+   id String @id @default(cuid())
+   tgl_notif DateTime
+   judul_notif String
+   isi_notif String
+   //relation
+   transaksionnotif Transaksi?
 }
