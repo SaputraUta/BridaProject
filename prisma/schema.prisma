@@ -45,6 +45,7 @@ model Venue {
   //relation
   Event EventonVenue[]
   roomonvenue Room[]
+  kalenderonvenue Kalender?
 }
 
 model Event {
@@ -126,4 +127,7 @@ model Kalender{
    id String @id @default(cuid())
    tgl_berita DateTime
    deskripsi_tanggal String
+   venue_Id String @unique
+   venue_R   Venue @relation(fields: [venue_Id], references: [id])
+   //relation
 }
