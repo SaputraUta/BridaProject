@@ -1,15 +1,18 @@
 import Image from "next/image";
+import Link from "next/link";
 import React from "react";
 
 interface Props {
   kota: string;
   nama: string;
   gambar: string;
+  venue_id: number;
+  id: number;
 }
 
-const PopularVenue = ({ kota, nama, gambar }: Props) => {
+const PopularVenue = ({ kota, nama, gambar, venue_id, id}: Props) => {
   return (
-    <div className="flex flex-col justify-between border border-gray-300 p-3 rounded-md h-full hover:scale-105 hover:cursor-pointer">
+    <Link href={`/customer/venue/${id}/${venue_id}`} className="flex flex-col justify-between border border-gray-300 p-3 rounded-md h-full hover:scale-105 hover:cursor-pointer">
       <div>
         <Image
           src={gambar}
@@ -24,7 +27,7 @@ const PopularVenue = ({ kota, nama, gambar }: Props) => {
         <Image src="/location.svg" alt="location" width={20} height={20} />
         <p>{kota}</p>
       </div>
-    </div>
+    </Link>
   );
 };
 

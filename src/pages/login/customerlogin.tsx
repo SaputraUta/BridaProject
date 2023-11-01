@@ -4,7 +4,7 @@ import Image from "next/image";
 export default function customerlogin() {
   return (
     <div className="h-screen w-screen flex items-center justify-center bg-signin">
-      <div className="flex w-11/12 items-center justify-center bg-monza">
+      <div className="flex w-11/12 items-center justify-center bg-white">
         <div className="h-[540px] w-[430px] flex flex-col items-center justify-center p-5">
           <h1 className="font-bold text-4xl m-4">Hallo, User</h1>
           <p className="text-center mb-4">

@@ -8,40 +8,9 @@ export default function userSignUp() {
   const [username, setUsername] = useState("");
   const [message, setMessage] = useState("");
 
-  // const handleSubmit = async () => {
-  //   setMessage("Signing Up...");
-
-  //   if (password && email && username) {
-  //     const data = {
-  //       email,
-  //       password,
-  //       username,
-  //     };
-
-  //     const response = await fetch("/api/signUp", {
-  //       method: "POST",
-  //       headers: {
-  //         "Content-Type": "application/json",
-  //       },
-  //       body: JSON.stringify(data),
-  //     });
-
-  //     if (response.ok) {
-  //       const result = await response.json();
-  //       setMessage(result.message);
-  //     } else {
-  //       setMessage("Error while signing up.");
-  //     }
-  //     setEmail("");
-  //     setPassword("");
-  //   } else {
-  //     setMessage("Seluruh form harus terisi!");
-  //   }
-  // };
-
   return (
     <div className="h-screen w-screen flex items-center justify-center bg-signin">
-      <div className="flex w-11/12 items-center justify-center bg-monza">
+      <div className="flex w-11/12 items-center justify-center bg-white">
         <div className="h-[540px] w-[430px] flex flex-col items-center justify-center p-5">
           <Link
             href="/login/customerlogin"
@@ -75,16 +44,18 @@ export default function userSignUp() {
             placeholder="Password"
             className="w-5/6 border-b overflow-hidden mb-5 bg-transparent focus:outline-none"
           />
-          <button
-            className="bg-black p-3 text-white w-5/6 text-center rounded-xl m-2 hover:scale-105 hover:cursor-pointer"
-            // onClick={handleSubmit}
-          >
+          <button className="bg-black p-3 text-white w-5/6 text-center rounded-xl m-2 hover:scale-105 hover:cursor-pointer">
             Daftar
           </button>
 
           <p className="text-center">{message}</p>
         </div>
-        <Image src="/usersignin-illustration.svg" alt="signin" width={730} height={600} />
+        <Image
+          src="/usersignup-illustration.svg"
+          alt="signin"
+          width={730}
+          height={600}
+        />
       </div>
     </div>
   );

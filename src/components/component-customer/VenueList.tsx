@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import Venue from "./Venue";
+import { useRouter } from "next/router";
 
 type KotaType = {
   id: number;
@@ -27,6 +28,9 @@ type RoomType = {
 };
 
 const VenueList = () => {
+  const router = useRouter();
+  const { search } = router.query;
+  const searchQuery = (search as string) || "";
   const [data, setData] = useState<KotaType[]>();
   const [isLoading, setLoading] = useState(true);
 
@@ -38,22 +42,31 @@ const VenueList = () => {
         setLoading(false);
       });
   }, []);
+
   if (isLoading) return <p className="text-center">Loading...</p>;
   if (!data) return <p className="text-center">No profile data</p>;
+
+  const updatedFilteredData = data.map((kota) => {
+    const updatedKota = { ...kota };
+    updatedKota.Venue = updatedKota.Venue.filter((venue) =>
+      venue.nama.toLowerCase().includes(searchQuery.toLowerCase())
+    );
+    return updatedKota;
+  });
 
   return (
     <div className="w-[1080px]">
       <div className="mx-[100px] mt-12 w-full">
-        <div className="mt-12 grid gap-16">
-          {data.map((item) =>
-            item.Venue.map((venue) => (
+        <div className="mt-12 grid grid-cols-4 gap-5">
+          {updatedFilteredData?.map((kota) =>
+            kota.Venue.map((venue) => (
               <Venue
-                id={item.id}
+                key={venue.venue_id}
+                id={kota.id}
                 venue_id={venue.venue_id}
                 imageUrl={venue.gambar}
                 nama={venue.nama}
-                nama_room={venue.room.map((room) => room.nama_room).join(", ")}
-                harga={venue.room[0].harga}
+                kota={kota.kota}
               />
             ))
           )}

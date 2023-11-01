@@ -6,37 +6,38 @@ type Props = {
   venue_id: number;
   imageUrl: string;
   nama: string;
-  nama_room: string;
-  harga: number;
+  kota: string;
 };
 
-const Venue = ({ id, venue_id, imageUrl, nama, nama_room, harga }: Props) => {
+const Venue = ({ id, venue_id, imageUrl, nama, kota }: Props) => {
   return (
-    <div className="rounded-2xl border-2 border-black">
-      <div className="flex gap-4 w-full m-3">
-        <img src={imageUrl} alt={nama} width={343} height={276} />
-        <div className="flex flex-col gap-4 w-full">
-          <h3 className="font-semibold text-4xl text-blue-950">{nama}</h3>
-          <div className="flex gap-2">
-            <Image src="/stars.svg" alt="star" width={30} height={30} />
-            <Image src="/stars.svg" alt="star" width={30} height={30} />
-            <Image src="/stars.svg" alt="star" width={30} height={30} />
-            <Image src="/stars.svg" alt="star" width={30} height={30} />
-            <Image src="/stars.svg" alt="star" width={30} height={30} />
-          </div>
-          <div className="flex flex-col gap-3 justify-between h-full">
-            <h3 className="font-bold text-2xl">Start From {harga}</h3>
-            <p>Rooms: {nama_room}</p>
-            <Link
-              href={"/customer/venue/" + id + "/" + venue_id}
-              className="hover:scale-105 text-white py-3 px-10 rounded-2xl self-end bg-blue-950 mr-10"
-            >
-              View Detail
-            </Link>
-          </div>
+    <Link
+      href={"/customer/venue/" + id + "/" + venue_id}
+      className="p-3 rounded-md hover:cursor-pointer hover:scale-105 border-2"
+    >
+      <div className="flex flex-col justify-center items-center">
+        <Image src={imageUrl} alt="venue" width={301} height={284} />
+      </div>
+      <div className="mt-3">
+        <div className="flex">
+          <Image src="/stars.svg" alt="star" width={20} height={20} />
+          <Image src="/stars.svg" alt="star" width={20} height={20} />
+          <Image src="/stars.svg" alt="star" width={20} height={20} />
+          <Image src="/stars.svg" alt="star" width={20} height={20} />
+          <Image src="/stars.svg" alt="star" width={20} height={20} />
+        </div>
+        <h3 className="font-bold text-xl">{nama}</h3>
+        <div className="flex gap-1">
+          <Image
+            src="/location.svg"
+            alt="location"
+            width={20}
+            height={20}
+          ></Image>
+          <p>{kota}</p>
         </div>
       </div>
-    </div>
+    </Link>
   );
 };
 

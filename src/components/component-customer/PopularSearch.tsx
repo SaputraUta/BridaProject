@@ -41,6 +41,8 @@ const PopularSearch = () => {
         <div className="grid grid-cols-5 mt-4 gap-5 max-w-[1440px] w-[1080px]">
           {venueMataram ? (
             <PopularVenue
+              id={venueMataram.id}
+              venue_id={venueMataram.Venue[0].venue_id}
               kota={venueMataram?.kota}
               gambar={venueMataram.Venue[0].gambar}
               nama={venueMataram.Venue[0].nama}
@@ -51,6 +53,8 @@ const PopularSearch = () => {
 
           {venueLoteng ? (
             <PopularVenue
+              id={venueLoteng.id}
+              venue_id={venueLoteng.Venue[1].venue_id}
               kota={venueLoteng?.kota}
               gambar={venueLoteng.Venue[1].gambar}
               nama={venueLoteng.Venue[1].nama}
@@ -61,9 +65,11 @@ const PopularSearch = () => {
 
           {venueLobar ? (
             <PopularVenue
+              id={venueLobar.id}
+              venue_id={venueLobar.Venue[1].venue_id}
               kota={venueLobar?.kota}
-              gambar={venueLobar.Venue[2].gambar}
-              nama={venueLobar.Venue[0].nama}
+              gambar={venueLobar.Venue[1].gambar}
+              nama={venueLobar.Venue[1].nama}
             />
           ) : (
             <p>Venue not Found</p>
@@ -71,9 +77,11 @@ const PopularSearch = () => {
 
           {venueLotim ? (
             <PopularVenue
+              id={venueLotim.id}
+              venue_id={venueLotim.Venue[2].venue_id}
               kota={venueLotim?.kota}
-              gambar={venueLotim.Venue[0].gambar}
-              nama={venueLotim.Venue[0].nama}
+              gambar={venueLotim.Venue[2].gambar}
+              nama={venueLotim.Venue[2].nama}
             />
           ) : (
             <p>Venue not Found</p>
@@ -81,6 +89,8 @@ const PopularSearch = () => {
 
           {venueKLU ? (
             <PopularVenue
+              id={venueKLU.id}
+              venue_id={venueKLU.Venue[1].venue_id}
               kota={venueKLU?.kota}
               gambar={venueKLU.Venue[1].gambar}
               nama={venueKLU.Venue[1].nama}

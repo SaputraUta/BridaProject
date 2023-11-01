@@ -1,8 +1,9 @@
 import LayoutCustomer from "@/layout/layout-customer";
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { FormEvent, useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import RoomModal from "@/components/component-customer/ModalRooms";
+import PaymentModal from "@/components/component-customer/PaymentModal";
 
 type VenueType = {
   venue_id: number;
@@ -36,6 +37,7 @@ const VenueDetails = () => {
   const [isLoading, setLoading] = useState(true);
   const [selectedRoom, setSelectedRoom] = useState<RoomType>();
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isPaymentOpen, setIsPaymentOpen] = useState(false);
 
   const id = router.query.segments?.[0] as string;
   const venue_id = router.query.segments?.[1] as string;
@@ -61,13 +63,22 @@ const VenueDetails = () => {
 
   const handleRoomClick = (room: RoomType) => {
     setSelectedRoom(room);
-    setIsModalOpen(true);
+    setIsModalOpen(!isModalOpen);
+  };
+
+  const handlePaymentClick = (e: FormEvent) => {
+    e.preventDefault();
+    selectedRoom ? setIsPaymentOpen(!isPaymentOpen) : null;
   };
 
   const closeModal = () => {
-    // setSelectedRoom(null);
-    setIsModalOpen(false);
+    setIsModalOpen(!isModalOpen);
   };
+
+  const closePayment = () => {
+    setIsPaymentOpen(!isPaymentOpen);
+  };
+
   return (
     <LayoutCustomer>
       <div className="mx-[100px] max-w-[1240px] mt-12 flex flex-col gap-y-5">
@@ -87,7 +98,10 @@ const VenueDetails = () => {
             </h2>
           </div>
           <div className="w-[421px] h-[253px] flex items-center justify-center">
-            <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d15780.624019204048!2d116.088064!3d-8.580995!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dcdc07d856569bf%3A0xda2c83c75a587419!2sGelanggang%20Pemuda%20Mataram!5e0!3m2!1sid!2sid!4v1698386010077!5m2!1sid!2sid" className="w-full h-full"/>
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d15780.624019204048!2d116.088064!3d-8.580995!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dcdc07d856569bf%3A0xda2c83c75a587419!2sGelanggang%20Pemuda%20Mataram!5e0!3m2!1sid!2sid!4v1698386010077!5m2!1sid!2sid"
+              className="w-full h-full"
+            />
           </div>
         </div>
         <div className="flex gap-4 border-2 rounded-lg h-fititems-center bg-gray-50">
@@ -141,15 +155,43 @@ const VenueDetails = () => {
             </div>
           </div>
           <div className="w-[405px] h-[557px] bg-gray-200 m-2 rounded-lg flex flex-col justify-between content-center">
-            <div className="mt-16 flex flex-col gap-10 items-center">
-              <input type="text" placeholder="Date" className="p-1 w-3/4" />
-              <input type="text" placeholder="Rooms" className="p-1 w-3/4" />
-            </div>
-            <div className="mb-16 flex flex-col gap-10 items-center">
-              <button className="bg-blue-900 w-3/4 rounded-lg">
+            <form
+              className="mt-16 flex flex-col gap-10 items-center"
+              onSubmit={handlePaymentClick}
+            >
+              <input type="date" placeholder="Date" className="p-1 w-3/4" />
+              <select
+                name="room"
+                className="p-1 w-3/4"
+                onChange={(e) => {
+                  const selectedRoomId = parseInt(e.target.value);
+                  const room = venueData?.room.find(
+                    (room) => room.room_id === selectedRoomId
+                  );
+                  setSelectedRoom(room);
+                }}
+              >
+                <option value="">Choose a room</option>
+                {venueData?.room.map((room) => (
+                  <option value={room.room_id} key={room.room_id}>
+                    {room.nama_room}
+                  </option>
+                ))}
+              </select>
+              <button
+                type="submit"
+                className="bg-blue-900 w-3/4 rounded-lg hover:scale-105 mt-4"
+              >
                 <h4 className="p-2 font-medium text-xl text-white">Book</h4>
               </button>
-              <button className="bg-blue-900 w-3/4 rounded-lg flex items-center justify-center">
+            </form>
+            <PaymentModal
+              onClose={closePayment}
+              isOpen={isPaymentOpen}
+              roomData={selectedRoom}
+            />
+            <div className="mb-16 flex flex-col gap-10 items-center">
+              <button className="bg-blue-900 w-3/4 rounded-lg flex items-center justify-center hover:scale-105">
                 <Image
                   src="/whatsapp.svg"
                   alt="whatsapp"
