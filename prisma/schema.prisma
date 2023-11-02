@@ -8,40 +8,41 @@ datasource db {
   directUrl = env("DIRECT_URL")
 }
 
-model User_Cust {
+model User {
   id String @id @default(cuid())
 
   email        String @unique
   username String 
   passwordHash String
-}
-
-model User_Prov {
-  id String @id @default(cuid())
-
-  email        String @unique
-  nama_perusahaan String 
-  passwordHash String
-}
-
-model User_Admin {
-  id String @id @default(cuid())
-
-  email        String @unique
-  passwordHash String
-  //relation
+  role Role
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  //Relation
   newsonadmin News[]
+  transactiononcust Transaksi[]
+  venueonprov Venue[]
 }
+
+enum Role{
+  Customer
+  Provider
+  Admin
+}
+
 
 model Venue {
-  id String @id @default(cuid())
+  venue_id Int @id  @default(autoincrement())
   nama_venue String
   gambar_venue String
   alamat_venue String
   link_maps String
   penanggung_jawab String
-  city_Id String
-  city_R   City @relation(fields: [city_Id], references: [id])
+  city_Id Int
+  city_R   City @relation(fields: [city_Id], references: [city_id])
+  prov_Id String
+  prov_R   User @relation(fields: [prov_Id], references: [id])
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
   //relation
   Event EventonVenue[]
   roomonvenue Room[]
@@ -49,7 +50,7 @@ model Venue {
 }
 
 model Event {
-  id String @id @default(cuid())
+  event_id Int @id @default(autoincrement())
   category_event String
   gambar_event String
   desc_event String
@@ -57,38 +58,44 @@ model Event {
   alur_perizinan String
   kondisional String
   template_surat String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
   //relation
   newsonevent News[]
   Venue EventonVenue[]
 }
 
 model EventonVenue{
-  event_id String
-  venue_id String
+  event_id Int
+  venue_id Int
   //relation
-  Event Event @relation(fields: [event_id], references: [id])
-  Venue Venue @relation(fields: [venue_id], references: [id])
+  Event Event @relation(fields: [event_id], references: [event_id])
+  Venue Venue @relation(fields: [venue_id], references: [venue_id])
 
   @@id([venue_id, event_id])
 }
 
 model City {
-  id String @id @default(cuid())
+  city_id Int @id @default(autoincrement())
   nama_city String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
   //relation
   venueoncity Venue[]
 }
 
 model Room {
-  id String @id @default(cuid())
+  room_id Int @id @default(autoincrement())
   nama_room String
   gambar_room String
   harga_room Int
   kapasitas String
   status Boolean @default(false)
   desc_room String
-  venue_Id String
-  venue_R   Venue @relation(fields: [venue_Id], references: [id])
+  venue_Id Int
+  venue_R   Venue @relation(fields: [venue_Id], references: [venue_id])
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
   //relation
   transkasionroom Transaksi[]
 }
@@ -100,9 +107,11 @@ model News {
   isi_berita String
   tgl_berita DateTime @default(now())
   admin_Id String
-  admin_R   User_Admin @relation(fields: [admin_Id], references: [id])
-  event_Id String
-  event_R   Event @relation(fields: [event_Id], references: [id])
+  admin_R   User @relation(fields: [admin_Id], references: [id])
+  event_Id Int
+  event_R   Event @relation(fields: [event_Id], references: [event_id])
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
   //relation
   
 }
@@ -113,10 +122,14 @@ model Transaksi{
    tgl_transaksi DateTime @default(now())
    metode Metode
    total Int
-   room_Id String
-   room_R   Room @relation(fields: [room_Id], references: [id])
+   room_Id Int
+   room_R   Room @relation(fields: [room_Id], references: [room_id])
    notif_Id String @unique
    notif_R   Notification @relation(fields: [notif_Id], references: [id])
+   cust_Id String @unique
+   cust_R   User @relation(fields: [cust_Id], references: [id])
+   createdAt DateTime @default(now())
+   updatedAt DateTime @updatedAt
 }
 
 enum Metode{
@@ -129,8 +142,10 @@ model Kalender{
    id String @id @default(cuid())
    tgl_berita DateTime
    deskripsi_tanggal String
-   venue_Id String @unique
-   venue_R   Venue @relation(fields: [venue_Id], references: [id])
+   venue_Id  Int @unique
+   venue_R   Venue @relation(fields: [venue_Id], references: [venue_id])
+   createdAt DateTime @default(now())
+   updatedAt DateTime @updatedAt
    //relation
 }
 
@@ -139,6 +154,8 @@ model Notification{
    tgl_notif DateTime
    judul_notif String
    isi_notif String
+   createdAt DateTime @default(now())
+   updatedAt DateTime @updatedAt
    //relation
    transaksionnotif Transaksi?
 }
