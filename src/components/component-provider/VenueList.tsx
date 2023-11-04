@@ -46,13 +46,7 @@ const VenueList = () => {
   return (
     <div className="mx-[100px] max-w-[1080px]">
       <div className="relative mt-10">
-        <Image
-          src="/provider-allstay.jpg"
-          alt="venue"
-          width={1080}
-          height={315}
-        />
-        <h1 className="text-7xl font-bold absolute top-48 left-80">
+        <h1 className="text-7xl font-bold">
           Hallo, {data.Vendor}!
         </h1>
       </div>
