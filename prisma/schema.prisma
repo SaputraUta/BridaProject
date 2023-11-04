@@ -9,7 +9,7 @@ datasource db {
 }
 
 model User {
-  id String @id @default(cuid())
+  id Int @id  @default(autoincrement())
 
   email        String @unique
   username String 
@@ -39,7 +39,7 @@ model Venue {
   penanggung_jawab String
   city_Id Int
   city_R   City @relation(fields: [city_Id], references: [city_id])
-  prov_Id String
+  prov_Id Int
   prov_R   User @relation(fields: [prov_Id], references: [id])
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -101,12 +101,12 @@ model Room {
 }
 
 model News {
-  id String @id @default(cuid())
+  id Int @id  @default(autoincrement())
   judul_news String
   gambar_news String
   isi_berita String
   tgl_berita DateTime @default(now())
-  admin_Id String
+  admin_Id Int
   admin_R   User @relation(fields: [admin_Id], references: [id])
   event_Id Int
   event_R   Event @relation(fields: [event_Id], references: [event_id])
@@ -117,16 +117,16 @@ model News {
 }
 
 model Transaksi{
-   id String @id @default(cuid())
+   id Int @id  @default(autoincrement())
    status Boolean @default(false)
    tgl_transaksi DateTime @default(now())
    metode Metode
    total Int
    room_Id Int
    room_R   Room @relation(fields: [room_Id], references: [room_id])
-   notif_Id String @unique
+   notif_Id Int @unique
    notif_R   Notification @relation(fields: [notif_Id], references: [id])
-   cust_Id String @unique
+   cust_Id Int @unique
    cust_R   User @relation(fields: [cust_Id], references: [id])
    createdAt DateTime @default(now())
    updatedAt DateTime @updatedAt
@@ -139,7 +139,7 @@ enum Metode{
 }
 
 model Kalender{
-   id String @id @default(cuid())
+   id Int @id  @default(autoincrement())
    tgl_berita DateTime
    deskripsi_tanggal String
    venue_Id  Int @unique
@@ -150,7 +150,7 @@ model Kalender{
 }
 
 model Notification{
-   id String @id @default(cuid())
+   id Int @id  @default(autoincrement())
    tgl_notif DateTime
    judul_notif String
    isi_notif String
