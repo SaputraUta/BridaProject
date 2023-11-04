@@ -28,7 +28,6 @@ const EventDetail = () => {
           setData(data);
           setLoading(false);
         });
-
       const event_id = router.query.event_id as string;
       const getData = data?.find(
         (item) => item.event_id === parseInt(event_id)
@@ -60,17 +59,58 @@ const EventDetail = () => {
 
           <div className="mt-12 shadow-md p-4 rounded-xl">
             <h3 className="font-bold text-2xl">Deskripsi</h3>
-            <p>Lorem ipsum dolor sit amet consectetur. Aliquam in consequat sed tempus elementum. Fringilla massa vulputate quis mauris proin ullamcorper ultricies sem. Sagittis rutrum tellus risus eu erat. Orci quis ut ullamcorper et morbi vestibulum leo cursus vel. Lorem et est augue ut montes congue urna tortor. Mauris ut neque tortor semper egestas aliquet viverra quis. Vel consectetur quis non odio leo sit pellentesque adipiscing. Adipiscing malesuada non nibh quam. Egestas ornare consectetur habitant faucibus egestas vitae. Viverra nascetur vel vestibulum sit malesuada tempor orci. Ut vel sit enim urna urna posuere arcu. Nec fermentum lacus gravida ut. Adipiscing nulla porta feugiat augue pharetra ac proin interdum dignissim.</p>
+            <p>
+              Lorem ipsum dolor sit amet consectetur. Aliquam in consequat sed
+              tempus elementum. Fringilla massa vulputate quis mauris proin
+              ullamcorper ultricies sem. Sagittis rutrum tellus risus eu erat.
+              Orci quis ut ullamcorper et morbi vestibulum leo cursus vel. Lorem
+              et est augue ut montes congue urna tortor. Mauris ut neque tortor
+              semper egestas aliquet viverra quis. Vel consectetur quis non odio
+              leo sit pellentesque adipiscing. Adipiscing malesuada non nibh
+              quam. Egestas ornare consectetur habitant faucibus egestas vitae.
+              Viverra nascetur vel vestibulum sit malesuada tempor orci. Ut vel
+              sit enim urna urna posuere arcu. Nec fermentum lacus gravida ut.
+              Adipiscing nulla porta feugiat augue pharetra ac proin interdum
+              dignissim.
+            </p>
           </div>
           <div className="mt-12 shadow-md p-4 rounded-xl">
-            <h3 className="font-bold text-2xl">SOP (Standar Operasi Prosedur)</h3>
-            <p>Lorem ipsum dolor sit amet consectetur. Aliquam in consequat sed tempus elementum. Fringilla massa vulputate quis mauris proin ullamcorper ultricies sem. Sagittis rutrum tellus risus eu erat. Orci quis ut ullamcorper et morbi vestibulum leo cursus vel. Lorem et est augue ut montes congue urna tortor. Mauris ut neque tortor semper egestas aliquet viverra quis. Vel consectetur quis non odio leo sit pellentesque adipiscing. Adipiscing malesuada non nibh quam. Egestas ornare consectetur habitant faucibus egestas vitae. Viverra nascetur vel vestibulum sit malesuada tempor orci. Ut vel sit enim urna urna posuere arcu. Nec fermentum lacus gravida ut. Adipiscing nulla porta feugiat augue pharetra ac proin interdum dignissim.</p>
+            <h3 className="font-bold text-2xl">
+              SOP (Standar Operasi Prosedur)
+            </h3>
+            <p>
+              Lorem ipsum dolor sit amet consectetur. Aliquam in consequat sed
+              tempus elementum. Fringilla massa vulputate quis mauris proin
+              ullamcorper ultricies sem. Sagittis rutrum tellus risus eu erat.
+              Orci quis ut ullamcorper et morbi vestibulum leo cursus vel. Lorem
+              et est augue ut montes congue urna tortor. Mauris ut neque tortor
+              semper egestas aliquet viverra quis. Vel consectetur quis non odio
+              leo sit pellentesque adipiscing. Adipiscing malesuada non nibh
+              quam. Egestas ornare consectetur habitant faucibus egestas vitae.
+              Viverra nascetur vel vestibulum sit malesuada tempor orci. Ut vel
+              sit enim urna urna posuere arcu. Nec fermentum lacus gravida ut.
+              Adipiscing nulla porta feugiat augue pharetra ac proin interdum
+              dignissim.
+            </p>
           </div>
           <div className="mt-12 shadow-md p-4 rounded-xl">
             <h3 className="font-bold text-2xl">Alur Perizinan</h3>
-            <p>Lorem ipsum dolor sit amet consectetur. Aliquam in consequat sed tempus elementum. Fringilla massa vulputate quis mauris proin ullamcorper ultricies sem. Sagittis rutrum tellus risus eu erat. Orci quis ut ullamcorper et morbi vestibulum leo cursus vel. Lorem et est augue ut montes congue urna tortor. Mauris ut neque tortor semper egestas aliquet viverra quis. Vel consectetur quis non odio leo sit pellentesque adipiscing. Adipiscing malesuada non nibh quam. Egestas ornare consectetur habitant faucibus egestas vitae. Viverra nascetur vel vestibulum sit malesuada tempor orci. Ut vel sit enim urna urna posuere arcu. Nec fermentum lacus gravida ut. Adipiscing nulla porta feugiat augue pharetra ac proin interdum dignissim.</p>
+            <p>
+              Lorem ipsum dolor sit amet consectetur. Aliquam in consequat sed
+              tempus elementum. Fringilla massa vulputate quis mauris proin
+              ullamcorper ultricies sem. Sagittis rutrum tellus risus eu erat.
+              Orci quis ut ullamcorper et morbi vestibulum leo cursus vel. Lorem
+              et est augue ut montes congue urna tortor. Mauris ut neque tortor
+              semper egestas aliquet viverra quis. Vel consectetur quis non odio
+              leo sit pellentesque adipiscing. Adipiscing malesuada non nibh
+              quam. Egestas ornare consectetur habitant faucibus egestas vitae.
+              Viverra nascetur vel vestibulum sit malesuada tempor orci. Ut vel
+              sit enim urna urna posuere arcu. Nec fermentum lacus gravida ut.
+              Adipiscing nulla porta feugiat augue pharetra ac proin interdum
+              dignissim.
+            </p>
           </div>
-          <div className="mt-12 shadow-md p-4 rounded-xl">
+          <div className="mt-12 shadow-md p-4 rounded-xlw">
             <h3 className="font-bold text-2xl">Template Surat</h3>
             {eventData?.template_surat}
           </div>

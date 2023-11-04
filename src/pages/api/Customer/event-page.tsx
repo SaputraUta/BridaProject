@@ -4,7 +4,7 @@ import prisma from "@/lib/prisma";
 async function handleGetMethod(req: NextApiRequest, res: NextApiResponse) {
   try {
     const idData = Number(req.query.event_id);
-    const response = await prisma.event.findFirst({
+    const response = await prisma.event.findUnique({
     where: {
       event_id : idData,
     }});
