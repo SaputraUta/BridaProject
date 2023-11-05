@@ -22,6 +22,7 @@ async function handlePostMethod(req: NextApiRequest, res: NextApiResponse) {
         harga_room: dataFromClient.harga_room,
         kapasitas: dataFromClient.kapasitas,
         desc_room: dataFromClient.desc_room,
+        venue_Id: dataFromClient.venue_Id,
       },
     });
 

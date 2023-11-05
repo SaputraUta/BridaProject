@@ -3,7 +3,7 @@ import prisma from "@/lib/prisma";
 
 async function handleGetMethod(req: NextApiRequest, res: NextApiResponse) {
   try {
-    const response = await prisma.event.findMany();
+    const response = await prisma.news.findMany();
     res.status(200).json(response);
   } catch (err) {
     console.log(err);
@@ -15,14 +15,14 @@ async function handlePostMethod(req: NextApiRequest, res: NextApiResponse) {
   const dataFromClient = req.body;
 
   try {
-    const result = await prisma.event.create({
+    const result = await prisma.news.create({
       data: {
-        category_event: dataFromClient.category_event,
-        gambar_event: dataFromClient.gambar_event,
-        desc_event: dataFromClient.desc_event,
-        sop: dataFromClient.sop,
-        alur_perizinan: dataFromClient.alur_perizinan,
-        kondisional: dataFromClient.alur_kondisional,
+        judul_news: dataFromClient.judul_news,
+        gambar_news: dataFromClient.gambar_news,
+        isi_berita: dataFromClient.isi_berita,
+        tgl_berita: dataFromClient.tgl_berita,
+        admin_Id: dataFromClient.admin_Id,
+        event_Id: dataFromClient.event_Id,
       },
     });
 
@@ -34,11 +34,11 @@ async function handlePostMethod(req: NextApiRequest, res: NextApiResponse) {
 }
 
 async function handleDeleteMethod(req: NextApiRequest, res: NextApiResponse) {
-  const idData = Number(req.query.event_id);
+  const idData = Number(req.query.id);
   try {
-    const response = await prisma.event.delete({
+    const response = await prisma.news.delete({
       where: {
-        event_id: idData,
+        id: idData,
       },
     });
     res.status(200).json(response);
@@ -52,17 +52,14 @@ async function handlePutMethod(req: NextApiRequest, res: NextApiResponse) {
   const dataFromClient = req.body;
 
   try {
-    const result = await prisma.event.update({
+    const result = await prisma.news.update({
       data: {
-        category_event: dataFromClient.category_event,
-        gambar_event: dataFromClient.gambar_event,
-        desc_event: dataFromClient.desc_event,
-        sop: dataFromClient.sop,
-        alur_perizinan: dataFromClient.alur_perizinan,
-        kondisional: dataFromClient.alur_kondisional,
+        judul_news: dataFromClient.judul_news,
+        gambar_news: dataFromClient.gambar_news,
+        isi_berita: dataFromClient.isi_berita,
       },
       where: {
-        event_id: dataFromClient.event_id,
+        id: dataFromClient.id,
       },
     });
 

@@ -3,7 +3,7 @@ import prisma from "@/lib/prisma";
 
 async function handleGetMethod(req: NextApiRequest, res: NextApiResponse) {
   try {
-    const response = await prisma.room.findMany();
+    const response = await prisma.event.findMany();
     res.status(200).json(response);
   } catch (err) {
     console.log(err);
@@ -15,13 +15,15 @@ async function handlePostMethod(req: NextApiRequest, res: NextApiResponse) {
   const dataFromClient = req.body;
 
   try {
-    const result = await prisma.room.create({
+    const result = await prisma.event.create({
       data: {
-        nama_room: dataFromClient.nama_room,
-        gambar_room: dataFromClient.gambar_room,
-        harga_room: dataFromClient.harga_room,
-        kapasitas: dataFromClient.kapasitas,
-        desc_room: dataFromClient.desc_room,
+        category_event: dataFromClient.category_event,
+        gambar_event: dataFromClient.gambar_event,
+        desc_event: dataFromClient.desc_event,
+        sop: dataFromClient.sop,
+        alur_perizinan: dataFromClient.alur_perizinan,
+        kondisional: dataFromClient.alur_kondisional,
+        template_surat: dataFromClient.alur_kondisional,
       },
     });
 
@@ -33,11 +35,11 @@ async function handlePostMethod(req: NextApiRequest, res: NextApiResponse) {
 }
 
 async function handleDeleteMethod(req: NextApiRequest, res: NextApiResponse) {
-  const idData = Number(req.query.room_id);
+  const idData = Number(req.query.event_id);
   try {
-    const response = await prisma.room.delete({
+    const response = await prisma.event.delete({
       where: {
-        room_id: idData,
+        event_id: idData,
       },
     });
     res.status(200).json(response);
@@ -51,16 +53,17 @@ async function handlePutMethod(req: NextApiRequest, res: NextApiResponse) {
   const dataFromClient = req.body;
 
   try {
-    const result = await prisma.room.update({
+    const result = await prisma.event.update({
       data: {
-        nama_room: dataFromClient.nama_room,
-        gambar_room: dataFromClient.gambar_room,
-        harga_room: dataFromClient.harga_room,
-        kapasitas: dataFromClient.kapasitas,
-        desc_room: dataFromClient.desc_room,
+        category_event: dataFromClient.category_event,
+        gambar_event: dataFromClient.gambar_event,
+        desc_event: dataFromClient.desc_event,
+        sop: dataFromClient.sop,
+        alur_perizinan: dataFromClient.alur_perizinan,
+        kondisional: dataFromClient.alur_kondisional,
       },
       where: {
-        room_id: dataFromClient.room_id,
+        event_id: dataFromClient.event_id,
       },
     });
 

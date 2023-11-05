@@ -9,6 +9,9 @@ async function handlePostMethod(req: NextApiRequest, res: NextApiResponse) {
       data: {
         metode: dataFromClient.metode,
         total: dataFromClient.total,
+        cust_Id: dataFromClient.cust_Id,
+        room_Id: dataFromClient.room_Id,
+        notif_Id: dataFromClient.notif_Id,
       },
     });
 
