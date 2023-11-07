@@ -3,7 +3,7 @@ import prisma from "@/lib/prisma";
 
 async function handleGetMethod(req: NextApiRequest, res: NextApiResponse) {
   try {
-    const response = await prisma.venue.findMany();
+    const response = await prisma.event.findMany();
     res.status(200).json(response);
   } catch (err) {
     console.log(err);
@@ -15,13 +15,15 @@ async function handlePostMethod(req: NextApiRequest, res: NextApiResponse) {
   const dataFromClient = req.body;
 
   try {
-    const result = await prisma.venue.create({
+    const result = await prisma.event.create({
       data: {
-        nama_venue: dataFromClient.nama_venue,
-        gambar_venue: dataFromClient.gambar_venue,
-        alamat_venue: dataFromClient.alamat_venue,
-        link_maps: dataFromClient.link_maps,
-        penanggung_jawab: dataFromClient.penanggung_jawab,
+        category_event: dataFromClient.category_event,
+        gambar_event: dataFromClient.gambar_event,
+        desc_event: dataFromClient.desc_event,
+        sop: dataFromClient.sop,
+        alur_perizinan: dataFromClient.alur_perizinan,
+        kondisional: dataFromClient.alur_kondisional,
+        template_surat: dataFromClient.alur_kondisional,
       },
     });
 
@@ -33,11 +35,11 @@ async function handlePostMethod(req: NextApiRequest, res: NextApiResponse) {
 }
 
 async function handleDeleteMethod(req: NextApiRequest, res: NextApiResponse) {
-  const idData = Number(req.query.venue_id);
+  const idData = Number(req.query.event_id);
   try {
-    const response = await prisma.venue.delete({
+    const response = await prisma.event.delete({
       where: {
-        venue_id: idData,
+        event_id: idData,
       },
     });
     res.status(200).json(response);
@@ -51,16 +53,17 @@ async function handlePutMethod(req: NextApiRequest, res: NextApiResponse) {
   const dataFromClient = req.body;
 
   try {
-    const result = await prisma.venue.update({
+    const result = await prisma.event.update({
       data: {
-        nama_venue: dataFromClient.nama_venue,
-        gambar_venue: dataFromClient.gambar_venue,
-        alamat_venue: dataFromClient.alamat_venue,
-        link_maps: dataFromClient.link_maps,
-        penanggung_jawab: dataFromClient.penanggung_jawab,
+        category_event: dataFromClient.category_event,
+        gambar_event: dataFromClient.gambar_event,
+        desc_event: dataFromClient.desc_event,
+        sop: dataFromClient.sop,
+        alur_perizinan: dataFromClient.alur_perizinan,
+        kondisional: dataFromClient.alur_kondisional,
       },
       where: {
-        venue_id: dataFromClient.venue_id,
+        event_id: dataFromClient.event_id,
       },
     });
 

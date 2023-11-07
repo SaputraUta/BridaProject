@@ -22,6 +22,7 @@ async function handlePostMethod(req: NextApiRequest, res: NextApiResponse) {
         harga_room: dataFromClient.harga_room,
         kapasitas: dataFromClient.kapasitas,
         desc_room: dataFromClient.desc_room,
+        venue_Id: dataFromClient.venue_Id,
       },
     });
 
@@ -33,11 +34,11 @@ async function handlePostMethod(req: NextApiRequest, res: NextApiResponse) {
 }
 
 async function handleDeleteMethod(req: NextApiRequest, res: NextApiResponse) {
-  const idData = Number(req.query.room_id);
+  const idData = Number(req.query.venue_id);
   try {
-    const response = await prisma.room.delete({
+    const response = await prisma.venue.delete({
       where: {
-        room_id: idData,
+        venue_id: idData,
       },
     });
     res.status(200).json(response);
@@ -51,16 +52,16 @@ async function handlePutMethod(req: NextApiRequest, res: NextApiResponse) {
   const dataFromClient = req.body;
 
   try {
-    const result = await prisma.room.update({
+    const result = await prisma.venue.update({
       data: {
-        nama_room: dataFromClient.nama_room,
-        gambar_room: dataFromClient.gambar_room,
-        harga_room: dataFromClient.harga_room,
-        kapasitas: dataFromClient.kapasitas,
-        desc_room: dataFromClient.desc_room,
+        nama_venue: dataFromClient.nama_venue,
+        gambar_venue: dataFromClient.gambar_venue,
+        alamat_venue: dataFromClient.alamat_venue,
+        link_maps: dataFromClient.link_maps,
+        penanggung_jawab: dataFromClient.penanggung_jawab,
       },
       where: {
-        room_id: dataFromClient.room_id,
+        venue_id: dataFromClient.venue_id,
       },
     });
 

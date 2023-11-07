@@ -3,7 +3,7 @@ import prisma from "@/lib/prisma";
 
 async function handleGetMethod(req: NextApiRequest, res: NextApiResponse) {
   try {
-    const response = await prisma.venue.findMany();
+    const response = await prisma.room.findMany();
     res.status(200).json(response);
   } catch (err) {
     console.log(err);
@@ -15,13 +15,14 @@ async function handlePostMethod(req: NextApiRequest, res: NextApiResponse) {
   const dataFromClient = req.body;
 
   try {
-    const result = await prisma.venue.create({
+    const result = await prisma.room.create({
       data: {
-        nama_venue: dataFromClient.nama_venue,
-        gambar_venue: dataFromClient.gambar_venue,
-        alamat_venue: dataFromClient.alamat_venue,
-        link_maps: dataFromClient.link_maps,
-        penanggung_jawab: dataFromClient.penanggung_jawab,
+        nama_room: dataFromClient.nama_room,
+        gambar_room: dataFromClient.gambar_room,
+        harga_room: dataFromClient.harga_room,
+        kapasitas: dataFromClient.kapasitas,
+        desc_room: dataFromClient.desc_room,
+        venue_Id: dataFromClient.venue_Id,
       },
     });
 
@@ -33,11 +34,11 @@ async function handlePostMethod(req: NextApiRequest, res: NextApiResponse) {
 }
 
 async function handleDeleteMethod(req: NextApiRequest, res: NextApiResponse) {
-  const idData = Number(req.query.venue_id);
+  const idData = Number(req.query.room_id);
   try {
-    const response = await prisma.venue.delete({
+    const response = await prisma.room.delete({
       where: {
-        venue_id: idData,
+        room_id: idData,
       },
     });
     res.status(200).json(response);
@@ -51,16 +52,16 @@ async function handlePutMethod(req: NextApiRequest, res: NextApiResponse) {
   const dataFromClient = req.body;
 
   try {
-    const result = await prisma.venue.update({
+    const result = await prisma.room.update({
       data: {
-        nama_venue: dataFromClient.nama_venue,
-        gambar_venue: dataFromClient.gambar_venue,
-        alamat_venue: dataFromClient.alamat_venue,
-        link_maps: dataFromClient.link_maps,
-        penanggung_jawab: dataFromClient.penanggung_jawab,
+        nama_room: dataFromClient.nama_room,
+        gambar_room: dataFromClient.gambar_room,
+        harga_room: dataFromClient.harga_room,
+        kapasitas: dataFromClient.kapasitas,
+        desc_room: dataFromClient.desc_room,
       },
       where: {
-        venue_id: dataFromClient.venue_id,
+        room_id: dataFromClient.room_id,
       },
     });
 
