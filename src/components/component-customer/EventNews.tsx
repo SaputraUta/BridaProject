@@ -34,24 +34,24 @@ const newsData: NewsItem[] = [
 
 const EventNews = () => {
   return (
-    <div className="mx-[100px] mt-12 max-w-6xl w-[1080]">
-      <h2 className="font-bold text-5xl">Event News</h2>
-      <div className="relative">
-        <div className="mt-5 w-full grid grid-cols-3 gap-8">
-          {newsData.map((item, index) => (
-            <div key={item.id} className="border-2 rounded-xl hover:cursor-pointer hover:scale-105">
-              <div className="p-2">
-                <img src={item.imageUrl} alt={item.title} />
-                <h2 className="text-2xl font-bold">{item.title}</h2>
-                <p>
-                  {item.content.length > 200
-                    ? item.content.slice(0, 200) + "..."
-                    : item.content}
-                </p>
-              </div>
+    <div className="mt-5">
+      <div className="mt-5 w-full grid grid-cols-3 gap-8">
+        {newsData.map((item, index) => (
+          <div
+            key={item.id}
+            className="border-2 rounded-xl hover:cursor-pointer hover:scale-105"
+          >
+            <div className="p-2">
+              <img src={item.imageUrl} alt={item.title} />
+              <h2 className="text-2xl font-bold">{item.title}</h2>
+              <p>
+                {item.content.length > 200
+                  ? item.content.slice(0, 200) + "..."
+                  : item.content}
+              </p>
             </div>
-          ))}
-        </div>
+          </div>
+        ))}
       </div>
     </div>
   );
