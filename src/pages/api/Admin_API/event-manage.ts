@@ -1,7 +1,19 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import prisma from "@/lib/prisma";
+import jwt from "jsonwebtoken";
+import event_validation from "@/validation/event_validation";
 
 async function handleGetMethod(req: NextApiRequest, res: NextApiResponse) {
+  if (typeof req.cookies.token === "undefined") {
+    return res.status(401).json({ message: "Unauthorized" });
+  }
+
+  jwt.verify(req.cookies.token, "kinguta", (err) => {
+    if (err) {
+      return res.status(401).json({ message: "Unauthorized" });
+    }
+  });
+  
   try {
     const response = await prisma.event.findMany();
     res.status(200).json(response);
@@ -13,6 +25,10 @@ async function handleGetMethod(req: NextApiRequest, res: NextApiResponse) {
 
 async function handlePostMethod(req: NextApiRequest, res: NextApiResponse) {
   const dataFromClient = req.body;
+  const validation = event_validation.safeParse(dataFromClient);
+  if (validation.success === false) {
+    return res.status(403).json(validation.error.flatten().fieldErrors);
+  }
 
   try {
     const result = await prisma.event.create({
