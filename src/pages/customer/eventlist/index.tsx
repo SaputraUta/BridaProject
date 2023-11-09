@@ -5,8 +5,10 @@ import EventList from "@/components/component-customer/EventList";
 const index = () => {
   return (
     <LayoutCustomer>
-      <NavUser />
-      <EventList />   
+      <div className="mx-24 mt-32">
+        <NavUser />
+        <EventList />
+      </div>
     </LayoutCustomer>
   );
 };

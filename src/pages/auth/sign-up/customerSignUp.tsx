@@ -6,12 +6,11 @@ export default function userSignUp() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [username, setUsername] = useState("");
-  const [message, setMessage] = useState("");
 
   return (
     <div className="h-screen w-screen flex items-center justify-center bg-signin">
-      <div className="flex w-11/12 items-center justify-center bg-white">
-        <div className="h-[540px] w-[430px] flex flex-col items-center justify-center p-5">
+      <div className="w-11/12 bg-white flex justify-between">
+        <div className="flex flex-col items-center justify-center p-5 w-[35%]">
           <Link
             href="/login/customerlogin"
             className="underline self-start ml-3"
@@ -19,7 +18,7 @@ export default function userSignUp() {
             Login
           </Link>
           <h1 className="font-bold text-4xl m-4">Sign Up</h1>
-          <p className="text-center mb-4">
+          <p className="mb-4 text-center px-8">
             Silahkan daftarkan akun anda terlebih dahulu sebelum menggunakan
             fitur-fitur kami.
           </p>
@@ -47,15 +46,15 @@ export default function userSignUp() {
           <button className="bg-black p-3 text-white w-5/6 text-center rounded-xl m-2 hover:scale-105 hover:cursor-pointer">
             Daftar
           </button>
-
-          <p className="text-center">{message}</p>
         </div>
-        <Image
-          src="/usersignup-illustration.svg"
-          alt="signin"
-          width={730}
-          height={600}
-        />
+        <div className="w-[65%] flex justify-center">
+          <Image
+            src="/usersignup-illustration.svg"
+            alt="signin"
+            width={500}
+            height={500}
+          />
+        </div>
       </div>
     </div>
   );

@@ -28,22 +28,18 @@ const EventList = () => {
   if (!data) return <p className="text-center">No profile data</p>;
 
   return (
-    <div className="w-full">
-      <div className="mx-[100px] mt-12 max-w-[1440px]">
-        <div className="w-full">
-          <h1 className="text-blue-950 text-5xl font-bold">Kategori Event</h1>
-        </div>
-        <div className="mt-12 grid gap-16">
-          {data.map((item) => (
-            <EventCart
-              key={item.event_id}
-              event_id={item.event_id}
-              imageUrl={item.imageUrl}
-              judul={item.judul}
-              deskripsi={item.deskripsi}
-            />
-          ))}
-        </div>
+    <div className="mt-12">
+      <h1 className="text-blue-950 text-5xl font-bold">Kategori Event</h1>
+      <div className="mt-12 grid gap-16">
+        {data.map((item) => (
+          <EventCart
+            key={item.event_id}
+            event_id={item.event_id}
+            imageUrl={item.imageUrl}
+            judul={item.judul}
+            deskripsi={item.deskripsi}
+          />
+        ))}
       </div>
     </div>
   );

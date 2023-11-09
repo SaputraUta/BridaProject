@@ -41,25 +41,25 @@ const EventDetail = () => {
 
   return (
     <LayoutCustomer>
-      <div className="w-full">
-        <div className="max-w-[1440px] mx-[100px]">
+      <div className="mt-36 mx-24">
+        <div className="flex gap-3">
           {eventData?.imageUrl ? (
-            <Image
-              src={eventData.imageUrl}
-              alt={eventData.judul}
-              width={400}
-              height={400}
-              className="my-4 mx-auto"
-            />
+            <div className="w-[40%]">
+              <Image
+                src={eventData.imageUrl}
+                alt={eventData.judul}
+                width={400}
+                height={400}
+                className="my-4 mx-auto"
+              />
+            </div>
           ) : (
             <p className="text-center mx-auto">Image Not Found</p>
           )}
 
-          <h1 className="font-bold text-5xl">{eventData?.judul}</h1>
-
-          <div className="mt-12 shadow-md p-4 rounded-xl">
-            <h3 className="font-bold text-2xl">Deskripsi</h3>
-            <p>
+          <div className="shadow-md p-4 rounded-xl w-[60%]">
+            <h1 className="font-bold text-5xl">{eventData?.judul}</h1>
+            <p className="mt-10">
               Lorem ipsum dolor sit amet consectetur. Aliquam in consequat sed
               tempus elementum. Fringilla massa vulputate quis mauris proin
               ullamcorper ultricies sem. Sagittis rutrum tellus risus eu erat.
@@ -74,46 +74,42 @@ const EventDetail = () => {
               dignissim.
             </p>
           </div>
-          <div className="mt-12 shadow-md p-4 rounded-xl">
-            <h3 className="font-bold text-2xl">
-              SOP (Standar Operasi Prosedur)
-            </h3>
-            <p>
-              Lorem ipsum dolor sit amet consectetur. Aliquam in consequat sed
-              tempus elementum. Fringilla massa vulputate quis mauris proin
-              ullamcorper ultricies sem. Sagittis rutrum tellus risus eu erat.
-              Orci quis ut ullamcorper et morbi vestibulum leo cursus vel. Lorem
-              et est augue ut montes congue urna tortor. Mauris ut neque tortor
-              semper egestas aliquet viverra quis. Vel consectetur quis non odio
-              leo sit pellentesque adipiscing. Adipiscing malesuada non nibh
-              quam. Egestas ornare consectetur habitant faucibus egestas vitae.
-              Viverra nascetur vel vestibulum sit malesuada tempor orci. Ut vel
-              sit enim urna urna posuere arcu. Nec fermentum lacus gravida ut.
-              Adipiscing nulla porta feugiat augue pharetra ac proin interdum
-              dignissim.
-            </p>
-          </div>
-          <div className="mt-12 shadow-md p-4 rounded-xl">
-            <h3 className="font-bold text-2xl">Alur Perizinan</h3>
-            <p>
-              Lorem ipsum dolor sit amet consectetur. Aliquam in consequat sed
-              tempus elementum. Fringilla massa vulputate quis mauris proin
-              ullamcorper ultricies sem. Sagittis rutrum tellus risus eu erat.
-              Orci quis ut ullamcorper et morbi vestibulum leo cursus vel. Lorem
-              et est augue ut montes congue urna tortor. Mauris ut neque tortor
-              semper egestas aliquet viverra quis. Vel consectetur quis non odio
-              leo sit pellentesque adipiscing. Adipiscing malesuada non nibh
-              quam. Egestas ornare consectetur habitant faucibus egestas vitae.
-              Viverra nascetur vel vestibulum sit malesuada tempor orci. Ut vel
-              sit enim urna urna posuere arcu. Nec fermentum lacus gravida ut.
-              Adipiscing nulla porta feugiat augue pharetra ac proin interdum
-              dignissim.
-            </p>
-          </div>
-          <div className="mt-12 shadow-md p-4 rounded-xlw">
-            <h3 className="font-bold text-2xl">Template Surat</h3>
-            {eventData?.template_surat}
-          </div>
+        </div>
+        <div className="mt-5 shadow-md p-4 rounded-xl">
+          <h3 className="font-bold text-2xl">SOP (Standar Operasi Prosedur)</h3>
+          <p>
+            Lorem ipsum dolor sit amet consectetur. Aliquam in consequat sed
+            tempus elementum. Fringilla massa vulputate quis mauris proin
+            ullamcorper ultricies sem. Sagittis rutrum tellus risus eu erat.
+            Orci quis ut ullamcorper et morbi vestibulum leo cursus vel. Lorem
+            et est augue ut montes congue urna tortor. Mauris ut neque tortor
+            semper egestas aliquet viverra quis. Vel consectetur quis non odio
+            leo sit pellentesque adipiscing. Adipiscing malesuada non nibh quam.
+            Egestas ornare consectetur habitant faucibus egestas vitae. Viverra
+            nascetur vel vestibulum sit malesuada tempor orci. Ut vel sit enim
+            urna urna posuere arcu. Nec fermentum lacus gravida ut. Adipiscing
+            nulla porta feugiat augue pharetra ac proin interdum dignissim.
+          </p>
+        </div>
+        <div className="mt-10 shadow-md p-4 rounded-xl">
+          <h3 className="font-bold text-2xl">Alur Perizinan</h3>
+          <p>
+            Lorem ipsum dolor sit amet consectetur. Aliquam in consequat sed
+            tempus elementum. Fringilla massa vulputate quis mauris proin
+            ullamcorper ultricies sem. Sagittis rutrum tellus risus eu erat.
+            Orci quis ut ullamcorper et morbi vestibulum leo cursus vel. Lorem
+            et est augue ut montes congue urna tortor. Mauris ut neque tortor
+            semper egestas aliquet viverra quis. Vel consectetur quis non odio
+            leo sit pellentesque adipiscing. Adipiscing malesuada non nibh quam.
+            Egestas ornare consectetur habitant faucibus egestas vitae. Viverra
+            nascetur vel vestibulum sit malesuada tempor orci. Ut vel sit enim
+            urna urna posuere arcu. Nec fermentum lacus gravida ut. Adipiscing
+            nulla porta feugiat augue pharetra ac proin interdum dignissim.
+          </p>
+        </div>
+        <div className="mt-10 shadow-md p-4 rounded-xlw">
+          <h3 className="font-bold text-2xl">Template Surat</h3>
+          {eventData?.template_surat}
         </div>
       </div>
     </LayoutCustomer>

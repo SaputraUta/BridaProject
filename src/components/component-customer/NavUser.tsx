@@ -3,8 +3,8 @@ import React from "react";
 
 const NavUser = () => {
   return (
-    <div className="w-full">
-      <nav className="mx-[100px] flex gap-8 mt-12 max-w-[1440px]">
+    <div className="border-b-2 pb-5">
+      <nav className="flex gap-8 mt-12">
         <Link href="/customer">
           <p className="text-xl hover:text-blue-950 text-to hover:underline">All Stay</p>
         </Link>

@@ -6,8 +6,10 @@ import VenueList from "@/components/component-provider/VenueList";
 export default function index() {
   return (
     <LayoutProvider>
-      <NavProvider/>
-      <VenueList/>
+      <div className="mx-24 mt-36">
+        <NavProvider />
+        <VenueList />
+      </div>
     </LayoutProvider>
   );
 }

@@ -81,23 +81,23 @@ const VenueDetails = () => {
 
   return (
     <LayoutCustomer>
-      <div className="mx-[100px] max-w-[1240px] mt-12 flex flex-col gap-y-5">
+      <div className="mx-24 mt-32 flex flex-col gap-y-5">
         <div className="flex gap-4 max-h-[253px] items-center">
-          <div className="w-[799px] h-[253px] flex justify-center border-2 rounded-xl relative">
+          <div className="w-[40%] h-[253px] flex justify-center border-2 rounded-xl relative">
             {venueData?.gambar ? (
               <img
                 src={venueData?.gambar}
                 alt={venueData?.nama}
-                className="opacity-50 w-full h-full"
+                className="opacity-75 w-full h-full"
               />
             ) : (
               <p>Gambar tidak ditemukan</p>
             )}
-            <h2 className="font-bold text-5xl absolute top-48 left-20">
+            <h2 className="font-bold text-5xl absolute top-48 left-10">
               {venueData?.nama}
             </h2>
           </div>
-          <div className="w-[421px] h-[253px] flex items-center justify-center">
+          <div className="w-[60%] h-[253px] flex items-center justify-center">
             <iframe
               src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d15780.624019204048!2d116.088064!3d-8.580995!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dcdc07d856569bf%3A0xda2c83c75a587419!2sGelanggang%20Pemuda%20Mataram!5e0!3m2!1sid!2sid!4v1698386010077!5m2!1sid!2sid"
               className="w-full h-full"

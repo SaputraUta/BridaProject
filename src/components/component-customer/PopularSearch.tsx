@@ -35,7 +35,7 @@ const PopularSearch = () => {
   const venueLotim = data.find((item) => item.id === 4);
   const venueKLU = data.find((item) => item.id === 5);
   return (
-    <div className="w-[1140px] mx-[100px]">
+    <div>
       <div className="w-full">
         <h1 className="font-bold text-5xl mt-5">Popular Venue</h1>
         <div className="grid grid-cols-5 mt-4 gap-5 max-w-[1440px] w-[1080px]">

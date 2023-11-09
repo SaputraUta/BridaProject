@@ -34,8 +34,9 @@ const newsData: NewsItem[] = [
 
 const EventNews = () => {
   return (
-    <div className="mt-5">
-      <div className="mt-5 w-full grid grid-cols-3 gap-8">
+    <div className="mt-16 w-full">
+      <h1 className='text-5xl font-bold'>Event News</h1>
+      <div className="mt-5 grid grid-cols-3 gap-8">
         {newsData.map((item, index) => (
           <div
             key={item.id}

@@ -6,9 +6,9 @@ export default function VenueRegister() {
   return (
     <LayoutProvider>
       <NavProvider />
-      <div className="mx-[100px] max-width-[1080px] mt-10">
+      <div className="mx-24 mt-20">
         <h2 className="font-bold text-3xl">Venue Register</h2>
-        <RegisterVenue/>
+        <RegisterVenue />
       </div>
     </LayoutProvider>
   );

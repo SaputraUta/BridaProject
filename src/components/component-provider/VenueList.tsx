@@ -44,7 +44,7 @@ const VenueList = () => {
   if (!data) return <p className="text-center">Data not found...</p>;
 
   return (
-    <div className="mx-[100px] max-w-[1080px]">
+    <>
       <div className="relative mt-10">
         <h1 className="text-7xl font-bold">
           Hallo, {data.Vendor}!
@@ -61,7 +61,7 @@ const VenueList = () => {
           />
         ))}
       </div>
-    </div>
+    </>
   );
 };
 

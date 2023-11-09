@@ -4,8 +4,8 @@ import Image from "next/image";
 
 const Navbar = () => {
   return (
-    <header className="w-full bg-blue-950">
-      <nav className="max-w-[1440px] ml-[80px] mr-[72px] flex justify-between items-center px-6 py-4 max-h-[182px]">
+    <header className="fixed top-0 w-full bg-blue-950 z-10 max-w-7xl">
+      <nav className="ml-[80px] mr-[72px] flex justify-between items-center px-6 py-4">
         <div className="flex items-center gap-9">
           <Link href="/" className="flex justify-center items-center">
             <Image src="/logo.svg" alt="edoroli" width={28} height={45} />
@@ -25,7 +25,7 @@ const Navbar = () => {
           <Link href='/login'>
             <CustomButton
               title="Get Started"
-              containerStyles="bg-co text-white rounded-xl px-6 py-[10px] text-[18px] hover:underline"
+              containerStyles="bg-co text-white rounded-xl px-6 py-[10px] text-[18px] hover:bg-co2"
             />
           </Link>
         </div>

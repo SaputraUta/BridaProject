@@ -6,7 +6,7 @@ export default function BookingConfirmation() {
   return (
     <LayoutProvider>
       <NavProvider />
-      <div className="mx-[100px] max-width-[1080px] mt-10">
+      <div className="mx-24 mt-20">
         <h2 className="font-bold text-4xl">Order List and Detail Order</h2>
         <OrderList/>
         <OrderList/>

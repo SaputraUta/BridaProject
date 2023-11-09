@@ -8,7 +8,7 @@ const SearchBar = () => {
 
   const handleSearch = (search: string) => {
     const currentPath = router.asPath;
-    
+
     let pathname = "/customer/venue";
 
     if (currentPath.includes("/customer/venue")) {
@@ -22,7 +22,7 @@ const SearchBar = () => {
   };
   return (
     <div>
-      <div className="mx-[100px] max-w-[1440px] w-[1080px]">
+      <div>
         <form
           onSubmit={(e) => {
             e.preventDefault();
@@ -97,7 +97,6 @@ const SearchBar = () => {
           </button>
         </form>
       </div>
-      <div className="mt-5 border-b border w-[1080px] mx-[100px] border-gray-200" />
     </div>
   );
 };

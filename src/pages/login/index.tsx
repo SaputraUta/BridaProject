@@ -5,7 +5,7 @@ import React from "react";
 
 export default function ChooseYourRole() {
   return (
-    <div className="flex flex-col mt-3 items-center max-w-[1440px] gap-[20px] mb-3">
+    <div className="flex flex-col mt-3 items-center gap-5 mb-3">
       <div>
         <h1 className="text-4xl font-bold text-center">Choose Your Role</h1>
       </div>
