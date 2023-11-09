@@ -1,6 +1,7 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import prisma from "@/lib/prisma";
 import jwt from "jsonwebtoken";
+import news_validation from "@/validation/news_validation";
 
 async function handleGetMethod(req: NextApiRequest, res: NextApiResponse) {
   if (typeof req.cookies.token === "undefined") {
@@ -23,6 +24,10 @@ async function handleGetMethod(req: NextApiRequest, res: NextApiResponse) {
 
 async function handlePostMethod(req: NextApiRequest, res: NextApiResponse) {
   const dataFromClient = req.body;
+  const validation = news_validation.safeParse(dataFromClient);
+  if (validation.success === false) {
+    return res.status(403).json(validation.error.flatten().fieldErrors);
+  }
 
   try {
     const result = await prisma.news.create({

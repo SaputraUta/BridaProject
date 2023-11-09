@@ -1,6 +1,7 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import prisma from "@/lib/prisma";
 import jwt from "jsonwebtoken";
+import room_validation from "@/validation/room_validation";
 
 async function handleGetMethod(req: NextApiRequest, res: NextApiResponse) {
   if (typeof req.cookies.token === "undefined") {
@@ -23,6 +24,10 @@ async function handleGetMethod(req: NextApiRequest, res: NextApiResponse) {
 
 async function handlePostMethod(req: NextApiRequest, res: NextApiResponse) {
   const dataFromClient = req.body;
+  const validation = room_validation.safeParse(dataFromClient);
+  if (validation.success === false) {
+    return res.status(403).json(validation.error.flatten().fieldErrors);
+  }
 
   try {
     const result = await prisma.room.create({
@@ -44,11 +49,11 @@ async function handlePostMethod(req: NextApiRequest, res: NextApiResponse) {
 }
 
 async function handleDeleteMethod(req: NextApiRequest, res: NextApiResponse) {
-  const idData = Number(req.query.venue_id);
+  const idData = Number(req.query.room_id);
   try {
-    const response = await prisma.venue.delete({
+    const response = await prisma.room.delete({
       where: {
-        venue_id: idData,
+        room_id: idData,
       },
     });
     res.status(200).json(response);
@@ -62,16 +67,16 @@ async function handlePutMethod(req: NextApiRequest, res: NextApiResponse) {
   const dataFromClient = req.body;
 
   try {
-    const result = await prisma.venue.update({
+    const result = await prisma.room.update({
       data: {
-        nama_venue: dataFromClient.nama_venue,
-        gambar_venue: dataFromClient.gambar_venue,
-        alamat_venue: dataFromClient.alamat_venue,
-        link_maps: dataFromClient.link_maps,
-        penanggung_jawab: dataFromClient.penanggung_jawab,
+        nama_room: dataFromClient.nama_room,
+        gambar_room: dataFromClient.gambar_room,
+        harga_room: dataFromClient.harga_room,
+        kapasitas: dataFromClient.kapasitas,
+        desc_room: dataFromClient.desc_room,
       },
       where: {
-        venue_id: dataFromClient.venue_id,
+        room_id: dataFromClient.room_id,
       },
     });
 

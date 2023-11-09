@@ -1,6 +1,7 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import prisma from "@/lib/prisma";
 import jwt from "jsonwebtoken";
+import room_validation from "@/validation/room_validation";
 
 async function handleGetMethod(req: NextApiRequest, res: NextApiResponse) {
   if (typeof req.cookies.token === "undefined") {
@@ -23,6 +24,10 @@ async function handleGetMethod(req: NextApiRequest, res: NextApiResponse) {
 
 async function handlePostMethod(req: NextApiRequest, res: NextApiResponse) {
   const dataFromClient = req.body;
+  const validation = room_validation.safeParse(dataFromClient);
+  if (validation.success === false) {
+    return res.status(403).json(validation.error.flatten().fieldErrors);
+  }
 
   try {
     const result = await prisma.room.create({
