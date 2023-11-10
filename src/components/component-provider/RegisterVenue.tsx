@@ -1,7 +1,7 @@
-import { useState } from "react";
+import { FormEvent, useState } from "react";
 
 const RegisterVenue = () => {
-  const [numberOfRooms, setNumberOfRooms] = useState<number | string>();
+  const [numberOfRooms, setNumberOfRooms] = useState<number | string>(1);
   const [rooms, setRooms] = useState<JSX.Element[]>([]);
 
   const addRoomInputs = () => {
@@ -68,10 +68,18 @@ const RegisterVenue = () => {
     setRooms(rooms);
   };
 
+  const onSubmitHandler = (e: FormEvent) => {
+    e.preventDefault();
+    const formElement = e.target as HTMLFormElement;
+    const formData = new FormData(formElement);
+    const formDataJSON = Object.fromEntries(formData.entries());
+    console.log(formDataJSON);
+  };
+
   return (
     <div className="w-full mt-5 bg-gray-300 border-2 border-black rounded-xl">
       <div className="p-5">
-        <form className="flex flex-col gap-5">
+        <form onSubmit={onSubmitHandler} className="flex flex-col gap-5">
           <div className="flex gap-10 w-full">
             <div className="flex flex-col gap-5 w-[50%]">
               <div className="flex flex-col gap-2">
@@ -132,13 +140,23 @@ const RegisterVenue = () => {
                 <label htmlFor="jumlahRoom" className="font-bold">
                   Number of rooms in venue:
                 </label>
-                <select name="jumlahRoom" onChange={(e)=>setNumberOfRooms(e.target.value)} className="p-1 rounded-lg">
+                <select
+                  name="jumlahRoom"
+                  onChange={(e) => setNumberOfRooms(e.target.value)}
+                  className="p-1 rounded-lg"
+                >
                   <option value="1">1</option>
                   <option value="2">2</option>
                   <option value="3">3</option>
                 </select>
               </div>
-              <button type="button" className="self-center py-3 px-10 bg-blue-950 text-white hover:scale-105 rounded-xl" onClick={addRoomInputs} >Add Rooms</button>
+              <button
+                type="button"
+                className="self-center py-3 px-10 bg-blue-950 text-white hover:scale-105 rounded-xl"
+                onClick={addRoomInputs}
+              >
+                Add Rooms
+              </button>
             </div>
             <div className="w-[50%] flex flex-col gap-5">
               {rooms.map((input, index) => (
@@ -146,7 +164,12 @@ const RegisterVenue = () => {
               ))}
             </div>
           </div>
-          <button type="button" className="py-3 px-10 text-white bg-co rounded-xl w-3/4 self-center hover:scale-105">Submit</button>
+          <button
+            type="submit"
+            className="py-3 px-10 text-white bg-co rounded-xl w-3/4 self-center hover:scale-105"
+          >
+            Submit
+          </button>
         </form>
       </div>
     </div>

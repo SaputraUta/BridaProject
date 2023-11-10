@@ -7,14 +7,13 @@ const manageNews = () => {
   return (
     <div className="max-width-[1180px]">
       <Sidebar />
-      <div className="ml-60 mr-24 mt-3">
+      <div className="ml-60 mr-24">
         <div className="flex justify-between">
-          <HeaderPages title="Manage News" />
+          <EventNews />
           <button type="button" className="hover:scale-110">
             <Image src="/add-icon.svg" alt="add" width={30} height={30} />
           </button>
         </div>
-        <EventNews />
       </div>
     </div>
   );

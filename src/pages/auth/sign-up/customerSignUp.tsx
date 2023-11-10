@@ -1,16 +1,28 @@
 import Link from "next/link";
 import Image from "next/image";
-import { useState } from "react";
+import InputLogin from "@/components/component-customer/InputLogin";
+import { FormEvent } from "react";
+import { useRouter } from "next/router";
 
 export default function userSignUp() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [username, setUsername] = useState("");
+  const router = useRouter();
+
+  const handleSubmit = (e: FormEvent) => {
+    e.preventDefault();
+    const formElement = e.target as HTMLFormElement;
+    const formData = new FormData(formElement);
+    const formDataJSON = Object.fromEntries(formData.entries());
+    console.log(formDataJSON);
+    router.push("/login/customerlogin");
+  };
 
   return (
     <div className="h-screen w-screen flex items-center justify-center bg-signin">
       <div className="w-11/12 bg-white flex justify-between">
-        <div className="flex flex-col items-center justify-center p-5 w-[35%]">
+        <form
+          onSubmit={handleSubmit}
+          className="flex flex-col items-center justify-center p-5 w-[35%]"
+        >
           <Link
             href="/login/customerlogin"
             className="underline self-start ml-3"
@@ -22,37 +34,19 @@ export default function userSignUp() {
             Silahkan daftarkan akun anda terlebih dahulu sebelum menggunakan
             fitur-fitur kami.
           </p>
-          <input
-            type="text"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-            placeholder="Username"
-            className="w-5/6 border-b overflow-hidden mb-5 bg-transparent focus:outline-none"
-          />
-          <input
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            placeholder="Email"
-            className="w-5/6 border-b overflow-hidden mb-5 bg-transparent focus:outline-none"
-          />
-          <input
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            placeholder="Password"
-            className="w-5/6 border-b overflow-hidden mb-5 bg-transparent focus:outline-none"
-          />
+          <InputLogin type="text" name="username" placeholder="Username" />
+          <InputLogin type="email" name="email" placeholder="Email" />
+          <InputLogin type="password" name="password" placeholder="Password" />
           <button className="bg-black p-3 text-white w-5/6 text-center rounded-xl m-2 hover:scale-105 hover:cursor-pointer">
             Daftar
           </button>
-        </div>
+        </form>
         <div className="w-[65%] flex justify-center">
           <Image
             src="/usersignup-illustration.svg"
             alt="signin"
-            width={500}
-            height={500}
+            width={490}
+            height={490}
           />
         </div>
       </div>

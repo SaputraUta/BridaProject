@@ -1,6 +1,3 @@
-import { useState, useEffect } from "react";
-import Image from "next/image";
-
 interface NewsItem {
   id: number;
   title: string;
@@ -34,7 +31,7 @@ const newsData: NewsItem[] = [
 
 const EventNews = () => {
   return (
-    <div className="mt-16 w-full">
+    <div className="mt-10 w-full">
       <h1 className='text-5xl font-bold'>Event News</h1>
       <div className="mt-5 grid grid-cols-3 gap-8">
         {newsData.map((item, index) => (

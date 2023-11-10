@@ -46,14 +46,13 @@ const VenueList = () => {
   return (
     <>
       <div className="relative mt-10">
-        <h1 className="text-7xl font-bold">
-          Hallo, {data.Vendor}!
-        </h1>
+        <h1 className="text-7xl font-bold">Hallo, {data.Vendor}!</h1>
       </div>
       <h2 className="text-4xl font-bold mt-10">Your venue</h2>
       <div className="grid grid-cols-4 gap-x-5 gap-y-16 mt-5">
         {data.Venue.map((venue) => (
           <VenueCart
+            key={venue.venue_id}
             venue_id={venue.venue_id}
             nama={venue.nama}
             gambar={venue.gambar}
