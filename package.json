@@ -11,18 +11,14 @@
   "dependencies": {
     "@mantine/hooks": "^7.2.1",
     "@prisma/client": "^5.4.2",
-    "@tanstack/react-query": "^5.8.1",
     "argon2": "^0.31.1",
     "axios": "^1.6.0",
-    "bcryptjs": "^2.4.3",
     "intersection-observer": "^0.12.2",
     "jsonwebtoken": "^9.0.2",
     "lodash": "^4.17.21",
     "next": "^13.5.4",
-    "next-auth": "^4.24.3",
     "react": "latest",
     "react-dom": "latest",
-    "swr": "^2.2.4",
     "zod": "^3.22.4"
   },
   "devDependencies": {
