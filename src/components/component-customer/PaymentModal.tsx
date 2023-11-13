@@ -1,5 +1,5 @@
 import { RoomType } from "@/pages/customer/venue/[...segments]";
-import React, { FormEvent, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 
 interface ModalProps {

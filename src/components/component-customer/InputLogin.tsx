@@ -10,7 +10,7 @@ export default function InputLogin({ type, placeholder, name }: inputProps) {
       type={type}
       name={name}
       placeholder={placeholder}
-      className="w-5/6 border-b overflow-hidden mb-5 bg-transparent focus:outline-none"
+      className="w-3/4 border-b overflow-hidden mb-5 bg-transparent focus:outline-none"
     />
   );
 }
