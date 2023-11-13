@@ -1,11 +1,25 @@
 import Link from "next/link";
 import Image from "next/image";
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import LogoutModal from "./LogoutModal";
 
 const HeaderCustomer = () => {
+  const menuRef = useRef<HTMLDivElement>(null);
   const [menu, setMenu] = useState(false);
   const [logout, setLogout] = useState(false);
+
+  useEffect(() => {
+    let handler = (e: MouseEvent) => {
+      if (!menuRef.current?.contains(e.target as Node)) {
+        setMenu(false);
+      }
+    };
+    document.addEventListener("mousedown", handler);
+    return () => {
+      document.removeEventListener("click", handler);
+    };
+  });
+
   return (
     <div>
       <header className="fixed top-0 w-full max-w-7xl z-10 bg-blue-950">
@@ -16,7 +30,7 @@ const HeaderCustomer = () => {
             </Link>
             <h2 className="text-white font-bold text-2xl">EdoRoli</h2>
           </div>
-          <div className="flex items-center gap-12 relative">
+          <div className="flex items-center gap-12 relative" ref={menuRef}>
             <div className="bg-white w-16 h-16 flex items-center justify-center rounded-full">
               <img
                 onClick={() => setMenu(!menu)}
@@ -31,18 +45,18 @@ const HeaderCustomer = () => {
               <div className="absolute flex flex-col gap-2 top-16 -left-20 bg-co2 rounded w-52">
                 <Link
                   href="/customer/profiles"
-                  className="p-3 text-white hover:bg-co"
+                  className="p-3 text-white hover:bg-co border-b"
                 >
                   Profiles
                 </Link>
                 <Link
                   href="/customer/profiles/riwayat"
-                  className="p-3 text-white hover:bg-co"
+                  className="p-3 text-white hover:bg-co border-b"
                 >
                   Riwayat Reservasi
                 </Link>
                 <p
-                  onClick={()=>setLogout(true)}
+                  onClick={() => setLogout(true)}
                   className="p-3 text-white hover:bg-co"
                 >
                   Logout
