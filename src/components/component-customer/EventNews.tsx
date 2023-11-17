@@ -1,3 +1,7 @@
+import { useState, useEffect } from "react";
+import { useRouter } from "next/router";
+import Link from "next/link";
+
 interface NewsItem {
   id: number;
   title: string;
@@ -5,51 +9,70 @@ interface NewsItem {
   imageUrl: string;
 }
 
-const newsData: NewsItem[] = [
-  {
-    id: 1,
-    title: "Berita 1",
-    content:
-      "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).",
-    imageUrl: "/placeholderallstay.jpg",
-  },
-  {
-    id: 2,
-    title: "Berita 2",
-    content:
-      "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).",
-    imageUrl: "/placeholderallstay2.jpg",
-  },
-  {
-    id: 3,
-    title: "Berita 3",
-    content:
-      "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).",
-    imageUrl: "/placeholderallstay3.jpg",
-  },
-];
-
 const EventNews = () => {
+  const [newsData, setNewsData] = useState<NewsItem[]>();
+  const [isLoading, setIsLoading] = useState(true);
+  const router = useRouter();
+  const currentPath = router.asPath;
+  useEffect(() => {
+    fetch("https://mocki.io/v1/1a27da3b-7d9c-4af1-9873-a5e529d88775")
+      .then((res) => res.json())
+      .then((data) => {
+        setNewsData(data);
+        setIsLoading(false);
+      });
+  }, []);
+  if (!newsData)
+    return (
+      <div className="flex justify-center items-center">
+        <p className="font-bold text-lg">No data found</p>
+      </div>
+    );
+  if (isLoading)
+    return (
+      <div className="flex justify-center items-center">
+        <p className="font-bold text-lg">Loading</p>
+      </div>
+    );
   return (
     <div className="mt-10 w-full">
-      <h1 className='text-5xl font-bold'>Event News</h1>
+      <h1 className="text-5xl font-bold">Event News</h1>
       <div className="mt-5 grid grid-cols-3 gap-8">
-        {newsData.map((item, index) => (
-          <div
-            key={item.id}
-            className="border-2 rounded-xl hover:cursor-pointer hover:scale-105"
-          >
-            <div className="p-2">
-              <img src={item.imageUrl} alt={item.title} />
-              <h2 className="text-2xl font-bold">{item.title}</h2>
-              <p>
-                {item.content.length > 200
-                  ? item.content.slice(0, 200) + "..."
-                  : item.content}
-              </p>
-            </div>
-          </div>
-        ))}
+        {newsData.map((item) =>
+          currentPath.includes("/customer") ? (
+            <Link
+              href={`/customer/news/${item.id}`}
+              key={item.id}
+              className="border-2 rounded-xl hover:cursor-pointer hover:scale-105"
+            >
+              <div className="p-2">
+                <img src={item.imageUrl} alt={item.title} />
+                <h2 className="text-2xl font-bold">{item.title}</h2>
+                <p>
+                  {item.content.length > 200
+                    ? item.content.slice(0, 200) + "..."
+                    : item.content}
+                </p>
+              </div>
+            </Link>
+          ) : (
+            <Link
+              href="/login"
+              key={item.id}
+              className="border-2 rounded-xl hover:cursor-pointer hover:scale-105"
+            >
+              <div className="p-2">
+                <img src={item.imageUrl} alt={item.title} />
+                <h2 className="text-2xl font-bold">{item.title}</h2>
+                <p>
+                  {item.content.length > 200
+                    ? item.content.slice(0, 200) + "..."
+                    : item.content}
+                </p>
+              </div>
+            </Link>
+          )
+        )}
       </div>
     </div>
   );
