@@ -1,6 +1,5 @@
 import Venue from "./Venue";
 import { useEffect, useState, useRef } from "react";
-import Link from "next/link";
 
 type KotaType = {
   id: number;
@@ -34,8 +33,8 @@ export default function VenueCart() {
 
   return (
     <div>
-      <h2 className="font-bold text-5xl">Popular venue</h2>
-      <Link href='/login' className="grid grid-cols-3 gap-x-28 gap-y-14 mt-5">
+      <h2 className="text-lg sm:text-xl md:text-2xl mt-10 font-bold lg:text-5xl">Popular venue</h2>
+      <div className="grid grid-cols-2 gap-4 sm:gap-8 md:grid-cols-3 md:gap-4 lg:gap-8 mt-2 sm:mt-4"> 
         {venueMataram?.Venue.map((item) => (
           <Venue
             key={item.venue_id}
@@ -52,7 +51,7 @@ export default function VenueCart() {
             gambar={item.gambar}
           />
         ))}
-      </Link>
+      </div>
     </div>
   );
 }

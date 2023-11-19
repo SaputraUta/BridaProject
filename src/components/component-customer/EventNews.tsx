@@ -36,8 +36,8 @@ const EventNews = () => {
     );
   return (
     <div className="mt-10 w-full">
-      <h1 className="text-5xl font-bold">Event News</h1>
-      <div className="mt-5 grid grid-cols-3 gap-8">
+      <h1 className="text-lg sm:text-xl md:text-2xl mt-10 font-bold lg:text-5xl">Event News</h1>
+      <div className="grid grid-cols-2 gap-4 sm:gap-8 md:grid-cols-3 md:gap-4 lg:gap-8 mt-2 sm:mt-4">
         {newsData.map((item) =>
           currentPath.includes("/customer") ? (
             <Link
@@ -63,11 +63,9 @@ const EventNews = () => {
             >
               <div className="p-2">
                 <img src={item.imageUrl} alt={item.title} />
-                <h2 className="text-2xl font-bold">{item.title}</h2>
-                <p>
-                  {item.content.length > 200
-                    ? item.content.slice(0, 200) + "..."
-                    : item.content}
+                <h2 className="font-bold text-sm sm:text-base md:text-lg lg:text-xl truncate">{item.title}</h2>
+                <p className="truncate max-h-32">
+                  {item.content}
                 </p>
               </div>
             </Link>

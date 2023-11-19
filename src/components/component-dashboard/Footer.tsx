@@ -4,52 +4,79 @@ import Link from "next/link";
 
 const Footer = () => {
   return (
-    <footer className="w-full flex text-white mt-[90px] bg-blue-950 max-w-7xl">
-      <div className="flex flex-wrap justify-between gap-28 my-16 mx-24">
-        <Image
-          src="/footer-logo.svg"
-          alt="footer-logo"
-          width={193}
-          height={161}
-        />
-        <div className="flex justify-between flex-col w-[220px] h-[180px]">
-          <h3 className="text-[24px] font-bold">EdoRoli</h3>
-          <p>EdoRoli adalah website resevasi terbaik di pulau Lombok.</p>
-          <div className="flex justify-between">
-            <Image src="/Facebook.svg" alt="facebook" width={29} height={20} />
-            <Image src="/Twitter.svg" alt="twitter" width={29} height={20} />
-            <Image src="/TikTok.svg" alt="TikTok" width={29} height={20} />
-            <Image src="/Viber.svg" alt="viber" width={29} height={20} />
+    <footer className="flex text-white justify-center mt-20 bg-blue-950 max-w-2xl sm:max-w-3xl md:max-w-5xl lg:max-w-7xl">
+      <div className="flex flex-col sm:flex-row justify-around gap-6 sm:gap-8 md:gap-10 lg:gap-28 mx-8 p-5 w-full">
+        <div className="flex flex-col">
+          <div className="flex flex-col gap-2">
+            <h3 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold">
+              EdoRoli
+            </h3>
+            <p className="text-xs sm:text-sm md:text-base tracking-wider leading-5">
+              EdoRoli adalah website resevasi terbaik di pulau Lombok.
+            </p>
           </div>
         </div>
-        <div className="flex justify-between flex-col w-[200px] h-[171px]">
-          <h3 className="text-[24px] font-bold">Contact Info</h3>
-          <p>
-            Address : Jl. Bypass No 28, Desa Kuranji Dalang, Lombok Barat, NTB
-          </p>
-          <p>Phone : +62 823-4012-6503</p>
-          <p>Email : edoroli@gmail.com</p>
+        <div className="flex flex-col gap-2">
+          <h3 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold">
+            Contact Info
+          </h3>
+          <div>
+            <p className="text-xs sm:text-sm md:text-base">
+              Address : Jl. Bypass No 28, Desa Kuranji Dalang, Lombok Barat, NTB
+            </p>
+            <p className="text-xs sm:text-sm md:text-base">
+              Phone : +62 823-4012-6503
+            </p>
+            <p className="text-xs sm:text-sm md:text-base">
+              Email : edoroli@gmail.com
+            </p>
+          </div>
         </div>
-        <div className="flex justify-between flex-col w-[10px] h-[196px]">
-          <h3 className="text-[24px] font-bold">Navigation</h3>
-          <Link href="/" className="hover:text-gray-300">
-            Home
-          </Link>
-          <Link href="/" className="hover:text-gray-300">
-            Venue
-          </Link>
-          <Link href="/" className="hover:text-gray-300">
-            Event
-          </Link>
-          <Link href="/" className="hover:text-gray-300">
-            Services
-          </Link>
-          <Link href="/" className="hover:text-gray-300">
-            About
-          </Link>
-          <Link href="/" className="hover:text-gray-300">
-            Contact
-          </Link>
+        <div className="w-full flex flex-col gap-2">
+          <h3 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold">
+            Navigation
+          </h3>
+          <div className="flex items-center">
+            <div className="flex flex-col w-full">
+              <Link
+                href="/"
+                className="hover:text-gray-300 text-xs sm:text-sm md:text-base"
+              >
+                Home
+              </Link>
+              <Link
+                href="/"
+                className="hover:text-gray-300 text-xs sm:text-sm md:text-base"
+              >
+                Venue
+              </Link>
+              <Link
+                href="/"
+                className="hover:text-gray-300 text-xs sm:text-sm md:text-base"
+              >
+                Event
+              </Link>
+              <Link
+                href="/"
+                className="hover:text-gray-300 text-xs text-xs sm:text-sm md:text-base"
+              >
+                Services
+              </Link>
+              <Link
+                href="/"
+                className="hover:text-gray-300 text-xs sm:text-sm md:text-base"
+              >
+                About
+              </Link>
+              <Link
+                href="/"
+                className="hover:text-gray-300 text-xs sm:text-sm md:text-base"
+              >
+                Contact
+              </Link>
+            </div>
+            <img src="/footer-logo.svg" alt="footer-logo" className="w-24" />
+          </div>
         </div>
       </div>
     </footer>
