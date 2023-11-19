@@ -58,7 +58,7 @@ const Footer = () => {
               </Link>
               <Link
                 href="/"
-                className="hover:text-gray-300 text-xs text-xs sm:text-sm md:text-base"
+                className="hover:text-gray-300 text-xs sm:text-sm md:text-base"
               >
                 Services
               </Link>
