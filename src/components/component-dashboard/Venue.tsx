@@ -10,11 +10,11 @@ interface Props {
 
 const Venue = ({ kota, nama, gambar }: Props) => {
   return (
-    <Link href='/login' className="p-3 rounded-md hover:cursor-pointer hover:scale-105 border-2">
-      <div className="flex flex-col justify-center items-center">
+    <Link href='/login' className="rounded-md hover:cursor-pointer hover:scale-105 border-2">
+      <div className="flex flex-col justify-center items-center p-1">
         <img src={gambar} alt="venue" className="w-full" />
       </div>
-      <div className="flex flex-col">
+      <div className="flex flex-col px-2 pb-2">
         <h3 className="font-bold text-sm sm:text-base md:text-lg lg:text-xl overflow-hidden text-ellipsis whitespace-nowrap">{nama}</h3>
         <div className="flex gap-1 items-center">
           <img

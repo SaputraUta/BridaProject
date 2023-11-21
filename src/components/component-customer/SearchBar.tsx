@@ -22,81 +22,71 @@ const SearchBar = () => {
   };
   return (
     <div>
-      <div>
-        <form
-          onSubmit={(e) => {
-            e.preventDefault();
-            handleSearch(inputValue);
-          }}
-          className="flex justify-around mt-5 gap-14 w-full border-2 border-solid rounded-md border-blue-950"
-        >
-          <div className="flex gap-1 bg-gray-200 w-[180px] h-[50px] ml-2 my-2 relative">
-            <Image
-              src="/search.svg"
-              alt="search"
-              width={24}
-              height={24}
-              className="absolute top-3 ml-1"
-            />
-            <input
-              type="text"
-              value={inputValue}
-              onChange={(e) => setInputValue(e.target.value)}
-              placeholder="Search/Name"
-              className="bg-gray-200 text-gray-400 pl-8"
-            />
-          </div>
-          <div className="flex gap-1 bg-gray-200 w-[180px] h-[50px] my-2 relative">
-            <Image
-              src="/location.svg"
-              alt="location"
-              width={24}
-              height={24}
-              className="absolute top-3 ml-1"
-            />
-            <input
-              type="text"
-              placeholder="Location"
-              className="bg-gray-200 text-gray-400 pl-8"
-            />
-          </div>
-          <div className="flex gap-1 bg-gray-200 w-[180px] h-[50px] my-2 relative">
-            <Image
-              src="/category.svg"
-              alt="category"
-              width={24}
-              height={24}
-              className="absolute top-3 ml-1"
-            />
-            <input
-              type="text"
-              placeholder="Category"
-              className="bg-gray-200 text-gray-400 pl-8"
-            />
-          </div>
-          <div className="flex gap-1 bg-gray-200 w-[180px] h-[50px] my-2 relative">
-            <Image
-              src="/capacity.svg"
-              alt="capacity"
-              width={24}
-              height={24}
-              className="absolute top-3 ml-1"
-            />
-            <input
-              type="text"
-              placeholder="Capacity"
-              className="bg-gray-200 text-gray-400 pl-8"
-            />
-          </div>
+      <form
+        onSubmit={(e) => {
+          e.preventDefault();
+          handleSearch(inputValue);
+        }}
+        className="flex justify-center flex-wrap mt-5 border-2 border-solid rounded-md border-blue-950"
+      >
+        <div className="flex gap-1 h-8 w-11/12 bg-gray-200 rounded-lg relative m-2">
+          <img
+            src="/search.svg"
+            alt="search"
+            className="absolute top-[6px] ml-3 w-5"
+          />
+          <input
+            type="text"
+            value={inputValue}
+            onChange={(e) => setInputValue(e.target.value)}
+            placeholder="Search/Name"
+            className="bg-gray-200 text-gray-400 pl-10 rounded-lg text-xs sm:text-sm md:text-base"
+          />
+        </div>
+        <div className="flex gap-1 h-8 w-11/12 bg-gray-200 rounded-lg relative mb-2">
+          <img
+            src="/location.svg"
+            alt="location"
+            className="absolute top-[6px] ml-3 w-5"
+          />
+          <input
+            type="text"
+            placeholder="Location"
+            className="bg-gray-200 text-gray-400 pl-10 rounded-lg text-xs sm:text-sm md:text-base"
+          />
+        </div>
+        <div className="flex gap-1 h-8 w-11/12 bg-gray-200 rounded-lg relative mb-2">
+          <img
+            src="/category.svg"
+            alt="category"
+            className="absolute top-[6px] ml-3 w-5"
+          />
+          <input
+            type="text"
+            placeholder="Category"
+            className="bg-gray-200 text-gray-400 pl-10 rounded-lg text-xs sm:text-sm md:text-base"
+          />
+        </div>
+        <div className="flex gap-1 h-8 w-11/12 bg-gray-200 rounded-lg relative mb-2">
+          <img
+            src="/capacity.svg"
+            alt="capacity"
+            className="absolute top-[6px] ml-3 w-5"
+          />
+          <input
+            type="text"
+            placeholder="Capacity"
+            className="bg-gray-200 text-gray-400 pl-10 rounded-lg text-xs sm:text-sm md:text-base"
+          />
+        </div>
 
-          <button
-            type="submit"
-            className="bg-blue-950 hover:scale-105 text-white text-xl font-bold p-3 my-0 w-full rounded-md"
-          >
-            Search
-          </button>
-        </form>
-      </div>
+        <button
+          type="submit"
+          className="bg-blue-950 hover:scale-105 text-white font-bold p-3 my-0 rounded-md col-span-full mb-2 mx-2 w-11/12 text-xs sm:text-sm md:text-base lg:text-xl"
+        >
+          Search
+        </button>
+      </form>
     </div>
   );
 };

@@ -17,6 +17,7 @@ export default function index() {
       <div className="mt-24 mx-5 sm:mt-32 md:mt-36 lg:mt-40 sm:mx-10 md:mx-16 lg:mx-24">
         <LandingHero />
         <DynamicVenueCart />
+        <div className="mt-10"></div>
         <EventNews />
       </div>
     </Layout>

@@ -35,10 +35,9 @@ const PopularSearch = () => {
   const venueLotim = data.find((item) => item.id === 4);
   const venueKLU = data.find((item) => item.id === 5);
   return (
-    <div>
-      <div className="w-full">
-        <h1 className="font-bold text-5xl mt-5">Popular Venue</h1>
-        <div className="grid grid-cols-5 mt-4 gap-5 max-w-[1440px] w-[1080px]">
+    <>
+        <h1 className="text-lg sm:text-xl md:text-2xl mt-5 font-bold lg:text-5xl">Popular Venue</h1>
+        <div className="grid grid-cols-2 gap-4 sm:gap-8 md:grid-cols-3 md:gap-4 lg:gap-8 mt-2 sm:mt-4">
           {venueMataram ? (
             <PopularVenue
               id={venueMataram.id}
@@ -99,8 +98,7 @@ const PopularSearch = () => {
             <p>Venue not Found</p>
           )}
         </div>
-      </div>
-    </div>
+      </>
   );
 };
 
