@@ -15,14 +15,14 @@ export default function providerSignUp() {
     router.push("/login/providerlogin");
   };
   return (
-    <div className="h-screen w-screen flex items-center justify-center bg-signin">
-      <div className="bg-white w-1/3 rounded-2xl">
+    <div className="h-screen flex justify-center sm:bg-signin">
+      <div className="bg-white w-full max-w-md sm:rounded-2xl">
         <form
           onSubmit={handleSubmit}
-          className="flex flex-col gap-3 items-center w-full justify-center"
+          className="flex flex-col items-center w-full justify-center"
         >
           <div className="flex flex-col items-center justify-center">
-            <h1 className="font-bold text-2xl m-4">Your Profile</h1>
+            <h1 className="font-bold text-2xl my-1">Your Profile</h1>
             <Image src="/userlogo.svg" alt="user" width={60} height={60} />
           </div>
           <div className="flex flex-col w-full items-center justify-center">
@@ -40,33 +40,38 @@ export default function providerSignUp() {
               placeholder="Venue detail"
             />
             <InputLogin type="text" name="gmapslink" placeholder="Gmaps Link" />
-            <label htmlFor="photo" className="self-start w-3/4 ml-14 mb-2">
-              Your venue picture
-            </label>
-            <div className="relative w-3/4 mb-5">
-              <input
-                type="file"
-                name="photo"
-                className="w-full h-full opacity-0 absolute"
-              />
-              <div className="bg-blue-500 hover:bg-blue-700 text-white py-2 px-4 rounded">
-                Choose File
+            <div className="flex items-center justify-between w-11/12 max-w-xs sm:max-w-xl md:w-5/6">
+              <label
+                htmlFor="photo"
+                className="w-11/12 max-w-xs sm:max-w-xl md:w-5/6 text-xs sm:text-sm md:text-base lg:text-lg"
+              >
+                Your venue picture
+              </label>
+              <div className="relative w-11/12 max-w-xs sm:max-w-xl md:w-5/6 mb-2">
+                <input
+                  type="file"
+                  name="photo"
+                  className="w-full h-full opacity-0 absolute"
+                />
+                <div className="bg-blue-500 hover:bg-blue-700 text-white py-1 px-1 rounded text-xs text-center sm:text-sm md:text-base lg:text-lg">
+                  Choose File
+                </div>
               </div>
             </div>
-            <div className="flex justify-between w-3/4">
+            <div className="flex items-center justify-between w-11/12 max-w-xs sm:max-w-xl md:w-5/6 m-2">
               <label
                 htmlFor="checked-checkbox"
-                className="text-sm font-medium text-gray-900"
+                className="font-medium text-gray-900 text-xs sm:text-sm md:text-base lg:text-lg"
               >
                 Menyetujui ketentuan layanan EdoRoli
               </label>
               <input
                 type="checkbox"
-                className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600 text-xs sm:text-sm md:text-base lg:text-lg"
               />
             </div>
           </div>
-          <button className="bg-black p-3 text-white w-5/6 text-center rounded-xl hover:scale-105 hover:cursor-pointer mb-1">
+          <button className="bg-black p-3 text-white w-11/12 max-w-xs sm:max-w-xl md:w-5/6 text-center rounded-xl hover:scale-105 hover:cursor-pointer mb-1 text-xs sm:text-sm md:text-base lg:text-lg">
             Daftar
           </button>
         </form>

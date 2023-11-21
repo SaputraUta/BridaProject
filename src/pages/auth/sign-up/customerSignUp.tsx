@@ -16,22 +16,22 @@ export default function userSignUp() {
   };
 
   return (
-    <div className="h-screen w-screen flex items-center justify-center bg-signin">
-      <div className="bg-white w-1/3 rounded-2xl">
+    <div className="h-screen flex justify-center sm:bg-signin">
+      <div className="bg-white w-full max-w-md sm:rounded-2xl">
         <form
           onSubmit={handleSubmit}
-          className="p-5 flex flex-col gap-4 items-center w-full justify-center"
+          className="p-4 flex flex-col gap-4 sm:gap-2 items-center w-full justify-center"
         >
           <div className="flex flex-col items-center justify-center">
-            <h1 className="font-bold text-2xl m-4">Your Profile</h1>
-            <Image src="/userlogo.svg" alt="user" width={60} height={60} />
+            <h1 className="font-bold text-2xl sm:text-3xl m-3">Your Profile</h1>
+            <img src="/userlogo.svg" alt="user" className="w-1/3" />
           </div>
           <div className="flex flex-col gap-1 w-full items-center justify-center">
             <InputLogin type="text" name="username" placeholder="Username" />
             <InputLogin type="email" name="email" placeholder="Email" />
             <InputLogin
               type="number"
-              name="number"
+              name="number" 
               placeholder="Phone number"
             />
             <InputLogin
@@ -44,10 +44,10 @@ export default function userSignUp() {
               name="passwordConfirmation"
               placeholder="Password confirmation"
             />
-            <div className="flex justify-between w-3/4">
+            <div className="flex justify-between items-center w-11/12 max-w-xs sm:max-w-xl md:w-5/6">
               <label
                 htmlFor="checked-checkbox"
-                className="text-sm font-medium text-gray-900"
+                className="font-medium text-gray-900 text-xs sm:text-sm md:text-base lg:text-lg"
               >
                 Menyetujui ketentuan layanan EdoRoli
               </label>
