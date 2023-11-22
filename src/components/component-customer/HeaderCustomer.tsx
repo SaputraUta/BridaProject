@@ -31,18 +31,16 @@ const HeaderCustomer = () => {
             <h2 className="text-white font-bold text-2xl">EdoRoli</h2>
           </div>
           <div className="flex items-center gap-12 relative" ref={menuRef}>
-            <div className="bg-white w-16 h-16 flex items-center justify-center rounded-full">
+            <div className="bg-white w-12 sm:w-16 h-12 sm:h-16 flex items-center justify-center rounded-full">
               <img
                 onClick={() => setMenu(!menu)}
                 src="/userlogo.svg"
                 alt="user"
-                width="60px"
-                height="60px"
-                className="rounded-full hover:cursor-pointer"
+                className="rounded-full hover:cursor-pointer w-12 h-12 sm:w-16 sm:h-16"
               />
             </div>
             {menu && (
-              <div className="absolute flex flex-col gap-2 top-16 -left-20 bg-co2 rounded w-52">
+              <div className="absolute flex flex-col gap-2 top-16 -left-28 bg-co2 rounded w-52">
                 <Link
                   href="/customer/profiles"
                   className="p-3 text-white hover:bg-co border-b"

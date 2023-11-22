@@ -28,9 +28,9 @@ const EventList = () => {
   if (!data) return <p className="text-center">No profile data</p>;
 
   return (
-    <div className="mt-12">
-      <h1 className="text-blue-950 text-5xl font-bold">Kategori Event</h1>
-      <div className="mt-12 grid gap-16">
+    <div className="mt-5">
+      <h1 className="font-bold mt-5 text-slate-800 text-lg sm:text-xl md:text-2xl lg:text-3xl">Kategori Event</h1>
+      <div className="mt-4 grid gap-4">
         {data.map((item) => (
           <EventCart
             key={item.event_id}

@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Link from "next/link";
 
 type Props = {
@@ -10,14 +9,14 @@ type Props = {
 
 const EventCart = ({ imageUrl, judul, deskripsi, event_id }: Props) => {
   return (
-    <div className="rounded-lg border-2 border-black">
-      <div className="flex gap-4 w-full m-3">
-        <Image src={imageUrl} alt={judul} width={260} height={260} />
-        <div className="flex flex-col gap-5">
-          <h3 className="font-bold text-2xl">{judul}</h3>
-          <div className="flex flex-col gap-3 justify-between bg-gray-100 rounded-lg p-2 mr-10 h-full">
-            <p className="">{deskripsi}</p>
-            <Link href={"/customer/eventlist/" + event_id} className="hover:scale-105 text-white py-3 px-10 rounded-2xl self-end bg-blue-950 mr-1">Lihat Detail</Link>
+    <div className="rounded-lg border-2 border-black w-11/12">
+      <div className="flex gap-2 m-3 w-full">
+        <img src={imageUrl} alt={judul} className="w-2/5" />
+        <div className="flex flex-col gap-1">
+          <h3 className="font-bold text-sm sm:text-base md:text-lg lg:text-xl py-1 px-2">{judul}</h3>
+          <div className="flex flex-col justify-between bg-gray-100 rounded-lg h-full mr-4">
+            <p className="text-xs sm:text-sm md:text-base lg:text-lg px-2 py-1">{deskripsi}</p>
+            <Link href={"/customer/eventlist/" + event_id} className="hover:scale-105 text-white text-xs sm:text-sm md:text-base lg:text-lg py-1 px-2 sm:py-2 sm:px-4 rounded-lg self-end bg-blue-950 mr-1">Lihat Detail</Link>
           </div>
         </div>
       </div>
