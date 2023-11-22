@@ -49,8 +49,14 @@ const EventNews = () => {
             >
               <div className="p-1">
                 <img src={item.imageUrl} alt={item.title} />
-                <h2 className="font-bold text-sm sm:text-base md:text-lg lg:text-xl truncate">{item.title}</h2>
-                <p className="truncate max-h-32 text-xs sm:text-sm md:text-base lg:text-lg">{item.content}</p>
+                <div className="p-1">
+                  <h2 className="font-bold text-sm sm:text-base md:text-lg lg:text-xl truncate">
+                    {item.title}
+                  </h2>
+                  <p className="truncate max-h-32 text-xs sm:text-sm md:text-base lg:text-lg">
+                    {item.content}
+                  </p>
+                </div>
               </div>
             </Link>
           ) : (
@@ -59,12 +65,16 @@ const EventNews = () => {
               key={item.id}
               className="border-2 rounded-xl hover:cursor-pointer hover:scale-105"
             >
-              <div className="p-2">
+              <div className="p-1">
                 <img src={item.imageUrl} alt={item.title} />
-                <h2 className="font-bold text-sm sm:text-base md:text-lg lg:text-xl truncate">
-                  {item.title}
-                </h2>
-                <p className="truncate max-h-32 text-xs sm:text-sm md:text-base lg:text-lg">{item.content}</p>
+                <div className="p-1">
+                  <h2 className="font-bold text-sm sm:text-base md:text-lg lg:text-xl truncate">
+                    {item.title}
+                  </h2>
+                  <p className="truncate max-h-32 text-xs sm:text-sm md:text-base lg:text-lg">
+                    {item.content}
+                  </p>
+                </div>
               </div>
             </Link>
           )

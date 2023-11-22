@@ -9,9 +9,9 @@ import Image from "next/image";
 export default function index() {
   return (
     <LayoutCustomer>
-      <div className="mt-28 mx-5 sm:mt-32 md:mt-36 lg:mt-40 sm:mx-10 md:mx-16 lg:mx-24">
+      <div className="mt-28 mx-5 sm:mt-32 md:mt-36 sm:mx-10 md:mx-16 lg:mx-24">
         <h1 className="font-bold text-slate-800 text-lg sm:text-xl md:text-2xl lg:text-3xl">
-          Temukan venue terbaik untuk event anda
+          Find best venue for your event
         </h1>
         <NavUser />
         <SearchBar />

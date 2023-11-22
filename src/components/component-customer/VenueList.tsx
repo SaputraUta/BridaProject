@@ -59,9 +59,8 @@ const VenueList = () => {
   });
 
   return (
-    <div>
-      <div className="mt-12">
-        <div className="mt-12 grid grid-cols-4 gap-5">
+    <>
+        <div className="mt-5 grid grid-cols-2 md:grid-cols-4 gap-5">
           {updatedFilteredData?.map((kota) =>
             kota.Venue.map((venue) => (
               <Venue
@@ -75,8 +74,7 @@ const VenueList = () => {
             ))
           )}
         </div>
-      </div>
-    </div>
+    </>
   );
 };
 
