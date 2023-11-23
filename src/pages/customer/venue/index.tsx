@@ -1,10 +1,15 @@
 import LayoutCustomer from "@/layout/layout-customer";
 import NavUser from "@/components/component-customer/NavUser";
 import SearchBar from "@/components/component-customer/SearchBar";
-import { useRouter } from "next/router";
-import { useEffect } from "react";
-import VenueList from "@/components/component-customer/VenueList";
-import { useSearchParams } from "next/navigation";
+import dynamic from "next/dynamic";
+
+const DynamicVenueList = dynamic(
+  () => import("@/components/component-customer/VenueList"),
+  {
+    loading: () => <p className="text-xl font-bold text-center">Loading...</p>,
+    ssr: false,
+  }
+);
 
 const index = () => {
   return (
@@ -15,7 +20,7 @@ const index = () => {
         <h1 className="font-bold mt-5 text-slate-800 text-lg sm:text-xl md:text-2xl lg:text-3xl">
           Choose your venue
         </h1>
-        <VenueList />
+        <DynamicVenueList />
       </div>
     </LayoutCustomer>
   );

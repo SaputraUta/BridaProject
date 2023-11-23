@@ -83,7 +83,7 @@ const SearchBar = () => {
 
           <button
             type="submit"
-            className="bg-blue-950 hover:scale-105 text-white font-bold p-3 rounded-md mt-2 w-11/12 text-xs sm:text-sm md:text-base lg:text-xl cols sm:w-full"
+            className="bg-blue-950 hover:bg-blue-800 text-white font-bold p-3 rounded-md mt-2 w-11/12 text-xs sm:text-sm md:text-base lg:text-xl cols sm:w-full"
           >
             Search
           </button>

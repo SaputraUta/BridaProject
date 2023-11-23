@@ -26,7 +26,7 @@ const PopularSearch = () => {
         setLoading(false);
       });
   }, []);
-  if (isLoading) return <p className="text-center">Loading...</p>;
+  if (isLoading) return <p className="text-center text-3xl mt-5">Loading venue data...</p>;
   if (!data) return <p className="text-center">No profile data</p>;
 
   const venueMataram = data.find((item) => item.id === 1);
