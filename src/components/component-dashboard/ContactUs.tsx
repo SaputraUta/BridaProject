@@ -2,39 +2,39 @@ import React from "react";
 
 export default function ContactUs() {
   return (
-    <div className="mx-[100px] mt-12 w-[1080px]" id="contactus">
-      <h2 className="text-5xl font-bold">Contact Us</h2>
-      <h3 className="text-2xl font-medium mt-2">
+    <div className="sm:max-w-xl md:max-w-4xl lg:max-w-7xl">
+      <h2 className="font-bold text-2xl sm:text-3xl md:text-4xl lg:text-5xl">Contact Us</h2>
+      <h3 className="text-xl sm:text-2xl md:text-3xl font-medium mt-2 opacity-75">
         Questions, concerns, feedback?
       </h3>
-      <div className="flex gap-12 w-full mt-8">
-        <div className="w-[60%] flex flex-col gap-4">
-          <div className="flex justify-between">
-            <p>Fill in the form below</p>
-            <p>info@Edoroli.com</p>
+      <div className="flex flex-col gap-5 md:flex-row md:gap-12 w-full mt-8">
+        <div className="md:w-[60%] flex flex-col gap-4">
+          <div className="flex flex-col md:flex-row justify-between">
+            <p className="text-xs sm:text-sm md:text-base">Fill in the form below</p>
+            <p className="text-xs sm:text-sm md:text-base">info@Edoroli.com</p>
           </div>
           <div>
-            <p>Name*</p>
+            <p className="text-xs sm:text-sm md:text-base">Name*</p>
             <input type="text" className="bg-gray-100 w-full" />
           </div>
           <div>
-            <p>Email*</p>
+            <p className="text-xs sm:text-sm md:text-base">Email*</p>
             <input type="email" className="bg-gray-100 w-full" />
           </div>
           <div>
-            <p>Phone Number*</p>
+            <p className="text-xs sm:text-sm md:text-base">Phone Number*</p>
             <input type="number" className="bg-gray-100 w-full" />
           </div>
           <div>
-            <p>Message*</p>
+            <p className="text-xs sm:text-sm md:text-base">Message*</p>
             <input
               type="text"
               className="bg-gray-100 w-full h-52 overflow-scroll"
             />
           </div>
         </div>
-        <div className="flex flex-col gap-8 w-[40%] items-center">
-          <h2 className="font-bold text-5xl">Our Adress</h2>
+        <div className="flex flex-col gap-2 md:gap-8 md:w-[40%] items-center">
+          <h2 className="font-bold text-2xl sm:text-3xl md:text-4xl lg:text-5xl">Our Adress</h2>
           <img src="/placeholderlocation.jpg" alt="location" />
           <p>
             Lorem ipsum dolor sit amet consectetur. Elit at non volutpat netus

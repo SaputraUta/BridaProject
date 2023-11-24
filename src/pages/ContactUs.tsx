@@ -4,7 +4,9 @@ import Layout from "@/layout/layout";
 const contactus = () => {
   return (
     <Layout>
-      <ContactUs />
+      <div className="mt-24 mx-5 sm:mt-32 md:mt-36 lg:mt-40 sm:mx-10 md:mx-16 lg:mx-24">
+        <ContactUs />
+      </div>
     </Layout>
   );
 };

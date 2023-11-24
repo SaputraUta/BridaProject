@@ -1,6 +1,5 @@
 import { RoomType } from "@/pages/customer/venue/[...segments]";
 import { useEffect, useState } from "react";
-import Image from "next/image";
 
 interface ModalProps {
   isOpen: boolean;
@@ -37,35 +36,35 @@ const PaymentModal = ({ isOpen, onClose, roomData }: ModalProps) => {
     return null;
   }
   return (
-    <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-70 z-50">
+    <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-70 z-50 max-w-2xl sm:max-w-3xl md:max-w-6xl lg:max-w-7xl">
       {isLoading ? (
         <div className="flex flex-col items-center w-3/4 h-fit bg-white rounded-xl gap-5 p-8">
           <p>Loading...</p>
         </div>
       ) : isSuccess ? (
-        <div className="flex flex-col items-center w-3/4 h-fit bg-white rounded-xl gap-5 p-8">
-          <Image src="/success.svg" alt="success" width={50} height={50} />
-          <div className="flex flex-col gap-3">
-            <h2 className="font-bold text-3xl text-green-500">
+        <div className="flex flex-col items-center w-3/4 h-fit bg-white rounded-xl gap-5 p-2 md:p-8">
+          <img src="/success.svg" alt="success" />
+          <div className="flex flex-col gap-3 items-center">
+            <h2 className="font-bold text-lg sm:text-xl md:text-2xl lg:text-3xl text-green-500">
               Payment Success
             </h2>
-            <p className="text-gray-600">Nomor Pembayaran 0012351</p>
+            <p className="text-gray-600 text-sm sm:text-base md:text-lg lg:text-xl">Nomor Pembayaran 0012351</p>
           </div>
           <div className="flex justify-between w-3/4">
-            <h3 className="text-2xl">Total pembayaran</h3>
-            <h3 className="text-2xl">{roomData.harga}</h3>
+            <h3 className="text-xs sm:text-sm md:text-base lg:text-lg font-bold">Total pembayaran</h3>
+            <h3 className="text-xs sm:text-sm md:text-base lg:text-lg">{roomData.harga}</h3>
           </div>
           <div className="flex justify-between w-3/4">
-            <h3 className="text-2xl">Metode</h3>
-            <h3 className="text-2xl">Bank</h3>
+            <h3 className="text-xs sm:text-sm md:text-base lg:text-lg font-bold">Metode</h3>
+            <h3 className="text-xs sm:text-sm md:text-base lg:text-lg">Bank</h3>
           </div>
           <div className="flex justify-between w-3/4">
-            <h3 className="text-2xl">Nama bank</h3>
-            <h3 className="text-2xl">{selectedAccount}</h3>
+            <h3 className="text-xs sm:text-sm md:text-base lg:text-lg font-bold">Nama bank</h3>
+            <h3 className="text-xs sm:text-sm md:text-base lg:text-lg">{selectedAccount}</h3>
           </div>
           <button
             type="button"
-            className="px-16 py-3 bg-red-600 text-white rounded-xl hover:scale-105 mt-5"
+            className="text-xs sm:text-sm md:text-base lg:text-lg font-bold px-5 py-2 sm:px-8 sm:py-3 md:px-12 lg:px-16 bg-red-600 text-white rounded-xl hover:scale-105 mt-5"
             onClick={() => {
               setIsSuccess(!isSuccess);
               onClose();
@@ -76,34 +75,31 @@ const PaymentModal = ({ isOpen, onClose, roomData }: ModalProps) => {
         </div>
       ) : (
         <form
-          className="flex flex-col items-center w-3/4 h-fit bg-white rounded-xl gap-5 p-8"
+          className="flex flex-col items-center h-fit bg-white rounded-xl gap-5 p-2 max-w-sm w-64 sm:max-w-xl sm:w-3/4"
           onSubmit={(e) => e.preventDefault()}
         >
-          <div className="flex justify-between w-3/4 mb-5">
-            <h3 className="text-2xl font-bold">Pilih metode transaksi</h3>
-            <Image
+          <div className="flex justify-between w-3/4 mb-5 relative">
+            <h3 className="text-base sm:text-lg md:text-xl lg:text-2xl font-bold">
+              Pilih metode transaksi
+            </h3>
+            <img
               src="/close.svg"
               alt="close"
-              width={20}
-              height={20}
-              className="hover:cursor-pointer hover:scale-105"
+              className="hover:cursor-pointer hover:scale-105 w-3 h-3 sm:w-5 sm:h-5 absolute left-full mt-2"
               onClick={onClose}
             />
           </div>
           <div className="flex justify-between w-3/4">
-            <div className="flex gap-3 items-center">
+            <div className="flex gap-3 items-center flex-wrap">
               <input
                 type="radio"
                 value="BRI"
                 checked={selectedAccount === "BRI"}
                 onChange={handleAccountChange}
               />
-              <Image src="/bri-logo.svg" alt="bri" width={40} height={40} />
-              <label htmlFor="rekening1" className="font-medium">
-                transfer ke (ATM, BRI Mobile, Internet Banking)
-              </label>
+              <img src="/bri-logo.svg" alt="bri" className="w-16 sm:w-3/4" />
             </div>
-            <p className="font-medium">Rp. 0</p>
+            <p className="font-medium text-sm sm:text-base">Rp. 0</p>
           </div>
           <div className="flex justify-between w-3/4">
             <div className="flex gap-3 items-center">
@@ -113,12 +109,9 @@ const PaymentModal = ({ isOpen, onClose, roomData }: ModalProps) => {
                 checked={selectedAccount === "BCA"}
                 onChange={handleAccountChange}
               />
-              <Image src="/bca-logo.svg" alt="bri" width={40} height={40} />
-              <label htmlFor="rekening1" className="font-medium">
-                transfer ke (ATM, BRI Mobile, Internet Banking)
-              </label>
+              <img src="/bca-logo.svg" alt="bri" className="w-16 sm:w-3/4" />
             </div>
-            <p className="font-medium">Rp. 2.500</p>
+            <p className="font-medium text-sm sm:text-base">Rp. 2.500</p>
           </div>
           <div className="flex justify-between w-3/4">
             <div className="flex gap-3 items-center">
@@ -128,12 +121,9 @@ const PaymentModal = ({ isOpen, onClose, roomData }: ModalProps) => {
                 checked={selectedAccount === "BNI"}
                 onChange={handleAccountChange}
               />
-              <Image src="/bni-logo.svg" alt="bri" width={40} height={40} />
-              <label htmlFor="rekening1" className="font-medium">
-                transfer ke (ATM, BRI Mobile, Internet Banking)
-              </label>
+              <img src="/bni-logo.svg" alt="bri" className="w-16 sm:w-3/4" />
             </div>
-            <p className="font-medium">Rp 1.000</p>
+            <p className="font-medium text-sm sm:text-base">Rp 1.000</p>
           </div>
 
           <button
