@@ -29,6 +29,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     res.status(200).json({
       username: response.username,
       email: response.email,
+      role: response.role,
       token: jwtToken,
     });
   } catch (err) {

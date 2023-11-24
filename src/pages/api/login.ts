@@ -18,6 +18,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     {
       email: userData.email,
       username: userData.username,
+      role: userData.role,
     },
     "kinguta"
   );
@@ -30,6 +31,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   res.status(200).json({
     email: userData.email,
     username: userData.username,
+    role: userData.role,
     token: jwtToken,
   });
 }
