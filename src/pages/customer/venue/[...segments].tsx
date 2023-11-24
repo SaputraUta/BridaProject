@@ -1,5 +1,4 @@
 import LayoutCustomer from "@/layout/layout-customer";
-import Image from "next/image";
 import { FormEvent, useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import RoomModal from "@/components/component-customer/ModalRooms";
@@ -81,88 +80,73 @@ const VenueDetails = () => {
 
   return (
     <LayoutCustomer>
-      <div className="mx-24 mt-32 flex flex-col gap-y-5">
-        <div className="flex gap-4 max-h-[253px] items-center">
-          <div className="w-[40%] h-[253px] flex justify-center border-2 rounded-xl relative">
+      <div className="mt-28 mx-5 sm:mt-32 md:mt-36 sm:mx-10 md:mx-16 lg:mx-24 flex flex-col gap-y-5">
+        <div className="flex gap-1 items-center">
+          <div className="object-cover flex justify-center border-2 rounded-xl">
             {venueData?.gambar ? (
               <img
                 src={venueData?.gambar}
                 alt={venueData?.nama}
-                className="opacity-75 w-full h-full"
+                className="w-full h-full"
               />
             ) : (
               <p>Gambar tidak ditemukan</p>
             )}
-            <h2 className="font-bold text-5xl absolute top-48 left-10">
-              {venueData?.nama}
-            </h2>
           </div>
-          <div className="w-[60%] h-[253px] flex items-center justify-center">
+          <div className="w-full flex items-center justify-center">
             <iframe
               src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d15780.624019204048!2d116.088064!3d-8.580995!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dcdc07d856569bf%3A0xda2c83c75a587419!2sGelanggang%20Pemuda%20Mataram!5e0!3m2!1sid!2sid!4v1698386010077!5m2!1sid!2sid"
-              className="w-full h-full"
+              className="w-full sm:h-48 md:h-52 lg:h-56"
             />
           </div>
         </div>
-        <div className="flex gap-4 border-2 rounded-lg h-fititems-center bg-gray-50">
-          <div className="w-[799px] p-3 pt-1 flex flex-col gap-y-7">
-            <h3 className="text-center">Details</h3>
-            <div className="flex gap-3 bg-gray-200 overflow-hidden">
-              <Image
+        <div className="flex flex-col sm:flex-row gap-4 border-2 rounded-lg h-fititems-center bg-gray-50">
+          <div className="p-3 pt-1 flex flex-col gap-y-5 sm:gap-y-7">
+            <h3 className="text-center font-bold text-sm sm:text-base md:text-lg lg:text-xl">{venueData?.nama}</h3>
+            <div className="flex sm:gap-3 bg-gray-200 overflow-hidden">
+              <img
                 src="/location.svg"
                 alt="location"
-                width={24}
-                height={24}
                 className="ml-2"
               />
-              <p className="p-2">{venueData?.alamat}</p>
+              <p className="p-2 text-sm sm:text-base">{venueData?.alamat}</p>
             </div>
-            <div className="flex gap-3 bg-gray-200 overflow-hidden">
-              <Image
+            <div className="flex sm:gap-3 bg-gray-200 overflow-hidden">
+              <img
                 src="/capacity.svg"
                 alt="penanggungjawab"
-                width={24}
-                height={24}
                 className="ml-2"
               />
-              <p className="p-2">{venueData?.Penanggung_jawab}</p>
+              <p className="p-2 text-sm sm:text-base">{venueData?.Penanggung_jawab}</p>
             </div>
-
-            <h4 className="font-medium text-xl">About event venue</h4>
-
-            <div className="grid grid-cols-3 gap-16">
-              <Image
+            <h4 className="font-medium text-sm sm:text-base md:text-lg">About event venue</h4>
+            <div className="grid gap-4 sm:grid-cols-2 md:grid-cols-3 items-center justify-center sm:gap-5 md:gap-6">
+              <img
                 src="/abouteventvenue.svg"
                 alt="category1"
-                width={200}
-                height={220}
                 className="border-2 rounded-xl"
               />
-              <Image
+              <img
                 src="/abouteventvenue2.svg"
                 alt="category1"
-                width={200}
-                height={220}
                 className="border-2 rounded-xl"
               />
-              <Image
+              <img
                 src="/abouteventvenue3.svg"
                 alt="category1"
-                width={200}
-                height={220}
                 className="border-2 rounded-xl"
               />
             </div>
           </div>
-          <div className="w-[405px] h-[557px] bg-gray-200 m-2 rounded-lg flex flex-col justify-between content-center">
+          <div className="bg-gray-200 sm:m-2 rounded-lg flex flex-col justify-between sm:w-full md:w-1/2">
             <form
-              className="mt-16 flex flex-col gap-10 items-center"
+              className="sm:mt-16 mt-5 flex flex-col gap-4 sm:gap-6 items-center"
               onSubmit={handlePaymentClick}
             >
-              <input type="date" placeholder="Date" className="p-1 w-3/4" />
+              <input type="date" placeholder="Date" className="p-1 w-3/4 text-sm sm:text-base md:text-lg rounded-lg" />
               <select
                 name="room"
-                className="p-1 w-3/4"
+                className="p-1 w-3/4 text-sm sm:text-base md:text-lg rounded-lg"
                 onChange={(e) => {
                   const selectedRoomId = parseInt(e.target.value);
                   const room = venueData?.room.find(
@@ -180,9 +164,9 @@ const VenueDetails = () => {
               </select>
               <button
                 type="submit"
-                className="bg-blue-900 w-3/4 rounded-lg hover:scale-105 mt-4"
+                className="bg-blue-900 w-3/4 rounded-lg hover:scale-105 mt-4 sm:mt-28 md:mt-20"
               >
-                <h4 className="p-2 font-medium text-xl text-white">Book</h4>
+                <h4 className="p-2 font-medium text-sm sm:text-base md:text-lg text-white">Book</h4>
               </button>
             </form>
             <PaymentModal
@@ -190,23 +174,17 @@ const VenueDetails = () => {
               isOpen={isPaymentOpen}
               roomData={selectedRoom}
             />
-            <div className="mb-16 flex flex-col gap-10 items-center">
-              <button className="bg-blue-900 w-3/4 rounded-lg flex items-center justify-center hover:scale-105">
-                <Image
-                  src="/whatsapp.svg"
-                  alt="whatsapp"
-                  width={24}
-                  height={24}
-                />
-                <h4 className="p-2 font-medium text-xl text-white">Whatsapp</h4>
+            <div className="mb-4 sm:mb-16 flex flex-col items-center mt-5 sm:mt-0 md:mt-4 ">
+              <button className="bg-blue-900 w-3/4 rounded-lg hover:scale-105">
+                <h4 className="p-2 font-medium text-sm sm:text-base md:text-lg text-white">Whatsapp</h4>
               </button>
             </div>
           </div>
         </div>
-        <div className="flex gap-4 max-h-[253px]">
-          <div className="w-[799px] h-full border-2 flex flex-col gap-5 rounded-xl bg-gray-50">
-            <h3 className="font-medium text-2xl m-4 mb-0">Detail Informasi</h3>
-            <p className="m-4 mt-0">
+        <div className="flex flex-col sm:flex-row gap-4">
+          <div className="border-2 flex flex-col gap-2 sm:gap-5 rounded-xl bg-gray-50">
+            <h3 className="font-medium text-sm sm:text-base md:text-lg lg:text-2xl m-4 mb-0">Detail Informasi</h3>
+            <p className="m-4 mt-0 text-xs sm:text-sm md:text-base">
               Lorem Ipsum is simply dummy text of the printing and typesetting
               industry. Lorem Ipsum has been the industry's standard dummy text
               ever since the 1500s, when an unknown printer took a galley of
@@ -219,24 +197,22 @@ const VenueDetails = () => {
               Lorem Ipsum.
             </p>
           </div>
-          <img src="/calendar.jpg" alt="calendar" width={421} height={265} />
+          <img src="/calendar.jpg" alt="calendar" className="sm:w-1/3 h-fit max-w-md max-h-56 sm:max-w-none sm:max-h-none" />
         </div>
-        <div className="w-full flex flex-col mt-8 border-2 rounded-lg bg-gray-50">
-          <h4 className="font-medium text-xl p-3">Rooms</h4>
-          <div className="grid grid-cols-4 gap-24 p-3">
+        <div className="w-full items-center flex flex-col mt-2 sm:mt-8 border-2 rounded-lg bg-gray-50">
+          <h4 className="font-medium text-sm sm:text-base md:text-lg lg:text-xl p-3">Rooms</h4>
+          <div className="grid gap-4 sm:gap-10 sm:grid-cols-4 p-3">
             {venueData?.room.map((item) => (
               <div
                 className="hover:scale-105 hover:cursor-pointer"
                 key={item.room_id}
                 onClick={() => handleRoomClick(item)}
               >
-                <Image
+                <img
                   src={item.gambar}
                   alt={item.nama_room}
-                  width={240}
-                  height={240}
                 />
-                <h4 className="text-xl text-center mt-2">{item.nama_room}</h4>
+                <h4 className="text-sm sm:text-base md:text-lg lg:text-xl text-center mt-2">{item.nama_room}</h4>
               </div>
             ))}
           </div>

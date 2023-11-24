@@ -1,6 +1,5 @@
 import { useEffect } from "react";
 import { RoomType } from "@/pages/customer/venue/[...segments]";
-import Image from "next/image";
 
 interface ModalProps {
   roomData: RoomType | undefined;
@@ -23,47 +22,42 @@ const RoomModal = ({ roomData, isOpen, onClose }: ModalProps) => {
   }
 
   return (
-    <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-70 z-50">
-      <div className="flex gap-9 bg-red-50 p-3 rounded-xl w-3/4 h-fit">
-        <div className="w-fit">
+    <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-70 z-50 max-w-7xl">
+      <div className="flex items-center justify-center flex-col md:flex-row md:gap-9 bg-red-50 p-1 rounded-xl w-3/4 h-fit relative">
+        <img
+          src="/close.svg"
+          alt="close"
+          className="hover:cursor-pointer w-3 h-3 md:w-5 md:h-5 absolute top-3 left-3 md:left-[95%]"
+          onClick={onClose}
+        />
+        <div className="w-3/4 md:w-1/3 mt-5 flex items-center justify-center">
           <img
             src={roomData.gambar}
             alt={roomData.nama_room}
-            className="h-full"
+            className="object-cover md:h-full"
           />
         </div>
-        <div className="w-[70%] flex flex-col">
-          <div className="flex justify-between">
-            <h2 className="font-bold text-4xl">{roomData.nama_room}</h2>
-            <Image
-              src="/close.svg"
-              alt="close"
-              width={20}
-              height={20}
-              className="hover:cursor-pointer"
-              onClick={onClose}
-            />
-          </div>
-          <div className="my-3">
-            <h3 className="font-bold text-xl">Deskripsi:</h3>
-            <p className="text-sm">
+        <div className="w-3/4 flex flex-col">
+          <h2 className="font-bold text-base sm:text-lg md:text-xl lg:text-2xl text-center md:text-start">{roomData.nama_room}</h2>
+          <div className="my-1 md:my-3">
+            <h3 className="font-bold text-sm sm:text-base md:text-lg lg:text-xl">Deskripsi:</h3>
+            <p className="text-xs md:text-base xl:text-xl">
               {roomData.deskripsi_room} Lorem ipsum dolor sit amet consectetur.
               Aenean magna at volutpat facilisi elementum in dui diam rhoncus.
               Enim neque ultrices velit consectetur. Morbi et tellus quis
               accumsan metus vel risus sit fermentum. Enim ultricies risus sit
-              ac id libero. Nulla pulvinar egestas diam vel. Massa blandit duis
-              tellus eu libero nec. Turpis vel semper quis elementum purus
-              venenatis. Nunc nec quis quam ornare mattis arcu vitae cum justo.
-              Pulvinar pretium odio pellentesque magna.
+              ac id libero.
             </p>
           </div>
           <div>
-            <h3 className="font-bold text-xl">
+            <h3 className="font-bold text-xs md:text-base xl:text-xl">
               Kapasitas: {roomData.kapasitas}
             </h3>
           </div>
-          <div className="bg-co2 w-fit self-end">
-            <h2 className="text-xl font-bold p-2">Harga: {roomData.harga}k/hari</h2>
+          <div className="bg-co2 w-fit self-start md:self-end">
+            <h2 className="font-bold text-xs md:text-base xl:text-xl">
+              Harga: {roomData.harga}k/hari
+            </h2>
           </div>
         </div>
       </div>
