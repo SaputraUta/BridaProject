@@ -3,7 +3,6 @@ import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import LayoutProvider from "@/layout/layout-provider";
 import NavProvider from "@/components/component-provider/NavProvider";
-import Image from "next/image";
 
 type ProviderType = {
   id: number;
@@ -64,62 +63,66 @@ const index = () => {
 
   return (
     <LayoutProvider>
-      <NavProvider />
-      <div className="mx-[100px] mt-12 max-w-[1080px]">
+      <div className="mt-24 mx-5 sm:mt-32 md:mt-36 sm:mx-10 md:mx-16 lg:mx-24">
+        <NavProvider />
         {venue ? (
-          <div className="flex flex-col gap-12">
-            <div className="w-full h-fit border-2 border-black rounded-xl">
-              <h3 className="mt-4 text-3xl font-bold text-center">
+          <div className="flex flex-col md:flex-row gap-5 mt-5">
+            <div className="border-2 border-black rounded-xl bg-gray-200 w-full md:w-1/2">
+              <h3 className="text-base sm:text-lg md:text-xl lg:text-2xl font-bold text-center text-slate-800">
                 {venue.nama}
               </h3>
-              <div className="flex justify-center m-3">
-                <Image
-                  src={venue.gambar}
-                  alt={venue.nama}
-                  width={250}
-                  height={250}
-                  className=""
-                />
-              </div>
-              <div className="p-5 flex gap-5">
-                <div className="flex flex-col gap-4 w-[70%]">
-                  <div>
-                    <h4 className="text-xl font-bold">Nama</h4>
-                    {venue.nama}
+              <div className="p-5 flex flex-col sm:flex-row gap-5 sm:gap-10">
+                <div className="flex flex-col gap-2 sm:gap-5">
+                  <div className="flex justify-center sm:block">
+                    <img src={venue.gambar} alt={venue.nama} />
                   </div>
                   <div>
-                    <h4 className="text-xl font-bold">Alamat</h4>
-                    {venue.alamat}
+                    <h4 className="text-sm sm:text-base md:text-lg lg:text-xl font-bold text-slate-800">
+                      Nama
+                    </h4>
+                    <p className="text-xs sm:text-sm md:text-base lg:text-lg text-slate-800">
+                      {venue.nama}
+                    </p>
                   </div>
                   <div>
-                    <h4 className="text-xl font-bold">Penanggung Jawab</h4>
-                    {venue.Penanggung_jawab}
+                    <h4 className="text-sm sm:text-base md:text-lg lg:text-xl font-bold text-slate-800">
+                      Alamat
+                    </h4>
+                    <p className="text-xs sm:text-sm md:text-base lg:text-lg text-slate-800">
+                      {venue.alamat}
+                    </p>
+                  </div>
+                  <div>
+                    <h4 className="text-sm sm:text-base md:text-lg lg:text-xl font-bold text-slate-800">
+                      Penanggung Jawab
+                    </h4>
+                    <p className="text-xs sm:text-sm md:text-base lg:text-lg text-slate-800">
+                      {venue.Penanggung_jawab}
+                    </p>
                   </div>
                 </div>
-                <div className="w-[25%] flex justify-center">
-                  <Image
+                <div className="flex justify-center">
+                  <img
                     src="/MyVenueCalendar.svg"
                     alt="Calendar"
-                    width={250}
-                    height={250}
                     className="self-start"
                   />
                 </div>
               </div>
               <div className="p-5">
-                <button className="py-3 px-14 bg-green-600 rounded-2xl w-full">
+                <button className="py-3 px-14 bg-green-600 rounded-xl sm:rounded-2xl font-medium text-white w-full text-xs sm:text-sm md:text-base lg:text-lg">
                   Edit
                 </button>
               </div>
             </div>
-            <div className="w-full h-fit border-2 border-black rounded-xl">
-              <div className="flex justify-center m-5">
+            <div className="border-2 border-black rounded-xl w-full md:w-1/2 bg-gray-200">
+              <div className="flex justify-center m-2">
                 <select
                   name="room"
-                  className="w-1/3 border-2 border-black text-center text-2xl font-bold"
+                  className="w-full border-2 border-black text-sm sm:text-base md:text-lg lg:text-xl font-medium text-center text-slate-800"
                   onChange={handleRoomChange}
                 >
-                  <option value="">-- --</option>
+                  <option value="">Select Room</option>
                   {venue.room.map((room) => (
                     <option value={room.room_id} key={room.room_id}>
                       {room.nama_room}
@@ -138,22 +141,38 @@ const index = () => {
                     />
                   </div>
                   <div>
-                    <h4 className="text-xl font-bold">Nama Room</h4>
-                    {room?.nama_room}
+                    <h4 className="text-sm sm:text-base md:text-lg lg:text-xl font-semibold text-slate-800">
+                      Nama Room
+                    </h4>
+                    <p className="text-xs sm:text-sm md:text-base lg:text-lg text-slate-800">
+                      {room.nama_room}
+                    </p>
                   </div>
                   <div>
-                    <h4 className="text-xl font-bold">Deskripsi</h4>
-                    {room?.deskripsi_room}
+                    <h4 className="text-sm sm:text-base md:text-lg lg:text-xl font-semibold text-slate-800">
+                      Deskripsi
+                    </h4>
+                    <p className="text-xs sm:text-sm md:text-base lg:text-lg text-slate-800">
+                      {room.deskripsi_room}
+                    </p>
                   </div>
                   <div>
-                    <h4 className="text-xl font-bold">Kapasitas</h4>
-                    {room?.kapasitas}
+                    <h4 className="text-sm sm:text-base md:text-lg lg:text-xl font-semibold text-slate-800">
+                      Kapasitas
+                    </h4>
+                    <p className="text-xs sm:text-sm md:text-base lg:text-lg text-slate-800">
+                      {room?.kapasitas}
+                    </p>
                   </div>
                   <div>
-                    <h4 className="text-xl font-bold">Harga</h4>
-                    {room?.harga}k
+                    <h4 className="text-sm sm:text-base md:text-lg lg:text-xl font-semibold text-slate-800">
+                      Harga
+                    </h4>
+                    <p className="text-xs sm:text-sm md:text-base lg:text-lg text-slate-800">
+                      {room?.harga}k
+                    </p>
                   </div>
-                  <button className="py-3 px-14 bg-green-600 rounded-2xl">
+                  <button className="py-3 px-14 bg-green-600 rounded-2xl font-medium text-white">
                     Edit
                   </button>
                 </div>

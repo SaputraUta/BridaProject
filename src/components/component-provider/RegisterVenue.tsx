@@ -152,7 +152,7 @@ const RegisterVenue = () => {
               </div>
               <button
                 type="button"
-                className="self-center py-3 px-10 bg-blue-950 text-white hover:scale-105 rounded-xl text-sm sm:text-base md:text-lg w-full"
+                className="self-center py-3 px-10 bg-blue-950 text-white hover:scale-105 rounded-xl text-sm sm:text-base md:text-lg w-11/12"
                 onClick={addRoomInputs}
               >
                 Add Rooms
@@ -166,7 +166,7 @@ const RegisterVenue = () => {
           </div>
           <button
             type="submit"
-            className="py-3 px-10 text-white bg-co rounded-xl w-3/4 self-center hover:scale-105 text-sm sm:text-base md:text-lg font-semibold"
+            className="py-3 px-10 text-white bg-co rounded-xl w-11/12 self-center hover:scale-105 text-sm sm:text-base md:text-lg font-semibold"
           >
             Submit
           </button>
