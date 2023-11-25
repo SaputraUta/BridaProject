@@ -1,4 +1,7 @@
+import { useState } from "react";
+
 const OrderList = () => {
+  const [isApproved, setIsApproved] = useState(false);
   return (
     <div className="mt-5 flex gap-10 bg-gray-300 justify-between">
       <div className="flex flex-col p-5 gap-5 w-[75%]">
@@ -13,8 +16,19 @@ const OrderList = () => {
         </p>
       </div>
       <div className="flex flex-col p-5 gap-5 w-[20%] justify-center">
-        <button className="bg-blue-800 text-white rounded-xl w-full font-bold py-2 hover:scale-105">Approve Booking</button>
-        <button className="text-blue-800 bg-transparent border-2 py-2 border-blue-800 rounded-xl w-full font-bold hover:scale-105">Decline Booking</button>
+        <button
+          onClick={() => setIsApproved(!isApproved)}
+          className={
+            isApproved
+              ? "bg-green-500 text-white rounded-xl w-full font-bold py-2 hover:scale-105"
+              : "bg-blue-800 text-white rounded-xl w-full font-bold py-2 hover:scale-105"
+          }
+        >
+          {isApproved ? "Approved" : "Approve Booking"}
+        </button>
+        <button className="text-blue-800 bg-transparent border-2 py-2 border-blue-800 rounded-xl w-full font-bold hover:scale-105">
+          Decline Booking
+        </button>
       </div>
     </div>
   );

@@ -5,9 +5,9 @@ import LayoutProvider from "@/layout/layout-provider";
 export default function BookingConfirmation() {
   return (
     <LayoutProvider>
+      <div className="mt-24 mx-5 sm:mt-32 md:mt-36 lg:mt-40 sm:mx-10 md:mx-16 lg:mx-24">
       <NavProvider />
-      <div className="mx-24 mt-20">
-        <h2 className="font-bold text-4xl">Order List and Detail Order</h2>
+        <h2 className="font-bold text-4xl mt-5">Order List and Detail Order</h2>
         <OrderList/>
         <OrderList/>
         <OrderList/>

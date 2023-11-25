@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Link from "next/link";
 
 type Venue = {
@@ -10,22 +9,36 @@ type Venue = {
 
 const VenueCart = ({ venue_id, nama, gambar, Penanggung_jawab }: Venue) => {
   return (
-    <Link href={"/provideruser/"+venue_id} className="p-3 rounded-md hover:cursor-pointer hover:scale-105 border-2">
-      <div className="flex flex-col justify-center items-center">
-        <Image src={gambar} alt="venue" width={301} height={284} />
+    <Link
+      href={"/provideruser/" + venue_id}
+      className="rounded-md hover:cursor-pointer hover:scale-105 border-2"
+    >
+      <div className="flex flex-col justify-center items-center p-1">
+        <img src={gambar} alt="venue" className="w-full" />
       </div>
-      <div className="mt-3">
+      <div className="flex flex-col px-2 pb-2">
         <div className="flex">
-          <Image src="/stars.svg" alt="star" width={20} height={20} />
-          <Image src="/stars.svg" alt="star" width={20} height={20} />
-          <Image src="/stars.svg" alt="star" width={20} height={20} />
-          <Image src="/stars.svg" alt="star" width={20} height={20} />
-          <Image src="/stars.svg" alt="star" width={20} height={20} />
+          <img src="/stars.svg" alt="star" className="w-4 sm:w-6 lg:w-8" />
+          <img src="/stars.svg" alt="star" className="w-4 sm:w-6 lg:w-8" />
+          <img src="/stars.svg" alt="star" className="w-4 sm:w-6 lg:w-8" />
+          <img src="/stars.svg" alt="star" className="w-4 sm:w-6 lg:w-8" />
+          <img src="/stars.svg" alt="star" className="w-4 sm:w-6 lg:w-8" />
         </div>
-        <h3 className="font-bold text-xl mt-2">{nama}</h3>
-        <div className="flex gap-1">
-          <Image src="/contactperson.svg" alt="contact" width={20} height={20} />
-          <p>{Penanggung_jawab}</p>
+        <h3 className="font-bold text-sm sm:text-base md:text-lg lg:text-xl overflow-hidden text-ellipsis whitespace-nowrap">
+          {nama}
+        </h3>
+        <div className="flex gap-1 items-center">
+          <img
+            src="/contactperson.svg"
+            alt="contact"
+            className="w-4 sm:w-6 lg:w-8"
+          />
+          <p
+            className="
+          text-xs sm:text-sm md:text-base lg:text-lg overflow-hidden text-ellipsis whitespace-nowrap"
+          >
+            {Penanggung_jawab}
+          </p>
         </div>
       </div>
     </Link>
