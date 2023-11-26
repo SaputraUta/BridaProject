@@ -10,6 +10,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     {
       username: data.username,
       email: data.email,
+      role: data.role,
     },
     "kinguta"
   );
