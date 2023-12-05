@@ -1,57 +1,33 @@
-import Venue from "./Venue";
-import { useEffect, useState, useRef } from "react";
+/* eslint-disable @next/next/no-img-element */
+import Image from "next/image";
+import Link from "next/link";
+import React from "react";
 
-type KotaType = {
-  id: number;
+interface Props {
   kota: string;
-  Venue: VenueType[];
-};
-
-type VenueType = {
-  venue_id: number;
   nama: string;
   gambar: string;
+}
+
+const Venue = ({ kota, nama, gambar }: Props) => {
+  return (
+    <Link href='/login' className="rounded-md hover:cursor-pointer hover:scale-105 border-2 max-w-[200px]">
+      <div className="flex flex-col justify-center items-center p-1">
+        <img src={gambar} alt="venue" className="w-full" />
+      </div>
+      <div className="flex flex-col px-2 pb-2">
+        <h3 className="font-bold text-sm sm:text-base md:text-lg overflow-hidden text-ellipsis whitespace-nowrap">{nama}</h3>
+        <div className="flex gap-1 items-center">
+          <img
+            src="/location.svg"
+            alt="location"
+          className="w-4 sm:w-4 md:w-5"
+          />
+          <p className="text-xs sm:text-sm md:text-base overflow-hidden text-ellipsis whitespace-nowrap">{kota}</p>
+        </div>
+      </div>
+    </Link>
+  );
 };
 
-export default function VenueCart() {
-  const [data, setData] = useState<KotaType[]>();
-  const [isLoading, setLoading] = useState(true);
-
-  useEffect(() => {
-    fetch("https://mocki.io/v1/98dd4af9-41ae-446f-8801-d8332014bc7f")
-      .then((res) => res.json())
-      .then((data) => {
-        setData(data);
-        setLoading(false);
-      });
-  }, []);
-  if (isLoading) return <p className="text-center">Loading...</p>;
-  if (!data) return <p className="text-center">No profile data</p>;
-
-  const venueMataram = data.find((item) => item.id === 1);
-  const venueLoteng = data.find((item) => item.id === 2);
-
-  return (
-    <div>
-      <h2 className="text-lg sm:text-xl md:text-2xl mt-10 font-bold lg:text-5xl">Popular venue</h2>
-      <div className="grid grid-cols-2 gap-4 sm:gap-8 md:grid-cols-3 md:gap-4 lg:gap-8 mt-2 sm:mt-4"> 
-        {venueMataram?.Venue.map((item) => (
-          <Venue
-            key={item.venue_id}
-            kota={venueMataram.kota}
-            nama={item.nama}
-            gambar={item.gambar}
-          />
-        ))}
-        {venueLoteng?.Venue.map((item) => (
-          <Venue
-            key={item.venue_id}
-            kota={venueLoteng.kota}
-            nama={item.nama}
-            gambar={item.gambar}
-          />
-        ))}
-      </div>
-    </div>
-  );
-}
+export default Venue;

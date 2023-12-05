@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import Link from "next/link";
@@ -36,7 +37,7 @@ const EventNews = () => {
     );
   return (
     <div className="w-full">
-      <h1 className="text-lg sm:text-xl md:text-2xl font-bold lg:text-5xl">
+      <h1 className="text-lg sm:text-xl md:text-2xl mt-10 font-bold lg:text-3xl">
         Event News
       </h1>
       <div className="grid grid-cols-2 gap-4 sm:gap-8 md:grid-cols-3 md:gap-4 lg:gap-8 mt-2 sm:mt-4">
@@ -50,10 +51,10 @@ const EventNews = () => {
               <div className="p-1">
                 <img src={item.imageUrl} alt={item.title} />
                 <div className="p-1">
-                  <h2 className="font-bold text-sm sm:text-base md:text-lg lg:text-xl truncate">
+                  <h2 className="font-bold text-sm sm:text-base md:text-lg truncate">
                     {item.title}
                   </h2>
-                  <p className="truncate max-h-32 text-xs sm:text-sm md:text-base lg:text-lg">
+                  <p className="truncate max-h-32 text-xs sm:text-sm md:text-base">
                     {item.content}
                   </p>
                 </div>

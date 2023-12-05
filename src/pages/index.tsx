@@ -3,7 +3,7 @@ import Layout from "@/layout/layout";
 import dynamic from "next/dynamic";
 
 const DynamicVenueCart = dynamic(
-  () => import("@/components/component-dashboard/VenueCart"),
+  () => import("@/components/component-dashboard/VenueList"),
   {
     loading: () => <p className="text-xl font-bold text-center">Loading...</p>,
     ssr: false,
