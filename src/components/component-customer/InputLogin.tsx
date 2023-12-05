@@ -1,7 +1,7 @@
 interface inputProps {
   type: string;
   placeholder: string;
-  name: string;
+  name?: string;
 }
 
 export default function InputLogin({ type, placeholder, name }: inputProps) {

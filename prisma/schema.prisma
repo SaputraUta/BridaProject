@@ -29,7 +29,6 @@ enum Role{
   Admin
 }
 
-
 model Venue {
   venue_id Int @id  @default(autoincrement())
   nama_venue String
