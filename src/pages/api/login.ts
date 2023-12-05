@@ -4,6 +4,7 @@ import jwt from "jsonwebtoken";
 import argon from "argon2";
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+  console.log(req.body)
   const loginData = req.body;
 
   const userData = await prisma.user.findUnique({
@@ -24,7 +25,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   );
 
   // check password
-  const passwordValidate = await argon.verify(userData.passwordHash, loginData.passwordHash);
+  const passwordValidate = await argon.verify(userData.passwordHash, loginData.password);
   if (!passwordValidate) return res.status(401).json({ message: "Unauthorized" });
 
   res.setHeader("Set-Cookie", `token=${jwtToken}; HttpOnly; path="/"; SameSite=Lax; Secure`);

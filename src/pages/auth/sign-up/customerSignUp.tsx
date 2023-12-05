@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 /* eslint-disable react-hooks/rules-of-hooks */
 import InputLogin from "@/components/component-customer/InputLogin";
 import { FormEvent } from "react";
@@ -27,16 +28,16 @@ export default function userSignUp() {
 
   return (
     <div className="h-screen flex justify-center items-center sm:bg-signin">
-      <div className="bg-white w-full h-5/6 max-w-md sm:rounded-2xl">
+      <div className="bg-white w-full h-3/4 max-w-md sm:rounded-2xl py-2">
         <form
           onSubmit={handleSubmit}
-          className="p-4 flex flex-col gap-4 sm:gap-2 items-center w-full justify-center"
+          className="flex flex-col items-center w-full h-full justify-between"
         >
           <div className="flex flex-col items-center justify-center">
-            <h1 className="font-bold text-2xl sm:text-3xl m-3">Your Profile</h1>
-            <img src="/userlogo.svg" alt="user" className="w-1/3" />
+            <h1 className="font-bold text-2xl my-1">Your Profile</h1>
+            <img src="/userlogo.svg" alt="user" className="w-1/2" />
           </div>
-          <div className="flex flex-col gap-1 w-full items-center justify-center">
+          <div className="flex flex-col w-full items-center justify-center gap-2">
             <InputLogin type="text" name="username" placeholder="Username" />
             <InputLogin type="email" name="email" placeholder="Email" />
             <InputLogin
@@ -44,23 +45,24 @@ export default function userSignUp() {
               name="password"
               placeholder="Password"
             />
-            <InputLogin type="password" placeholder="Password confirmation" />
-            <div className="flex justify-between items-center w-11/12 max-w-xs sm:max-w-xl md:w-5/6">
+          </div>
+          <div className="w-11/12 max-w-xs sm:max-w-xl md:w-5/6 m-2">
+            <div className="flex items-center justify-between my-2">
               <label
                 htmlFor="checked-checkbox"
-                className="font-medium text-xs sm:text-sm md:text-base text-slate-500"
+                className="font-medium text-gray-900 text-xs sm:text-sm md:text-base lg:text-lg"
               >
                 Menyetujui ketentuan layanan EdoRoli
               </label>
               <input
                 type="checkbox"
-                className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600 text-xs sm:text-sm md:text-base lg:text-lg"
               />
             </div>
+            <button className="bg-black p-3 text-white w-11/12 max-w-xs sm:max-w-xl md:w-5/6 text-center rounded-xl hover:scale-105 hover:cursor-pointer mb-1 text-xs sm:text-sm md:text-base lg:text-lg">
+              Daftar
+            </button>
           </div>
-          <button className="bg-black p-3 text-white w-5/6 text-center rounded-xl hover:scale-105 hover:cursor-pointer mt-4">
-            Daftar
-          </button>
         </form>
       </div>
     </div>
