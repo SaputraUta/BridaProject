@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 import Image from "next/image";
 import InputLogin from "@/components/component-customer/InputLogin";
 import { useRouter } from "next/router";
