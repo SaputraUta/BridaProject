@@ -46,7 +46,7 @@ export default function providerSignUp() {
               placeholder="Password"
             />
           </div>
-          <div className="w-11/12 max-w-xs sm:max-w-xl md:w-5/6 m-2 flex flex-col items-center">
+         <div className="w-11/12 max-w-xs sm:max-w-xl md:w-5/6 m-2 flex flex-col items-center"> 
             <div className="flex items-center justify-between my-2 gap-2">
               <label
                 htmlFor="checked-checkbox"
