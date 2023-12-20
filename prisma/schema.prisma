@@ -35,8 +35,7 @@ model Venue {
   gambar_venue String
   alamat_venue String
   penanggung_jawab String
-  city_Id Int @unique
-  city_R  City? @relation(fields: [city_Id], references: [city_id])
+  city_name String
   prov_Id Int
   prov_R  User @relation(fields: [prov_Id], references: [id])
   createdAt DateTime @default(now())
@@ -71,15 +70,6 @@ model EventonVenue{
   Venue Venue @relation(fields: [venue_id], references: [venue_id])
 
   @@id([venue_id, event_id])
-}
-
-model City {
-  city_id Int @id @default(autoincrement())
-  nama_city String
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  //relation
-  venueoncity Venue?
 }
 
 model Room {
