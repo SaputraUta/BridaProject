@@ -37,8 +37,8 @@ async function handlePostMethod(req: NextApiRequest, res: NextApiResponse) {
         alamat_venue: dataFromClient.alamat_venue,
         link_maps: dataFromClient.link_maps,
         penanggung_jawab: dataFromClient.penanggung_jawab,
-        city_Id: dataFromClient.city_Id,
         prov_Id: dataFromClient.prov_Id,
+        city_name: dataFromClient.city_name,
       },
     });
 

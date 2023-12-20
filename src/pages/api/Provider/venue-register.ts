@@ -45,11 +45,12 @@ async function handlePostMethod(req: NextApiRequest, res: NextApiResponse) {
     // const result = await prisma.venue.create({
     //   data: {
     //     nama_venue: dataFromClient.nama_venue,
-    //     gambar_venue: dataFromClient.gambar_venue,
-    //     alamat_venue: dataFromClient.alamat_venue,
-    //     penanggung_jawab: dataFromClient.penanggung_jawab,
-    //     city_Id: dataFromClient.city_Id,
-    //     prov_Id: dataFromClient.prov_Id,
+        // gambar_venue: dataFromClient.gambar_venue,
+        // alamat_venue: dataFromClient.alamat_venue,
+        // link_maps: dataFromClient.link_maps,
+        // penanggung_jawab: dataFromClient.penanggung_jawab,
+        // prov_Id: dataFromClient.prov_Id,
+        // city_name: dataFromClient.city_name,
     //   },
     // });
 

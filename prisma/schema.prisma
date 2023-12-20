@@ -34,6 +34,7 @@ model Venue {
   nama_venue String
   gambar_venue String
   alamat_venue String
+  link_maps String
   penanggung_jawab String
   city_name String
   prov_Id Int
