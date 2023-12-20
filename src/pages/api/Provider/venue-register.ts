@@ -33,15 +33,6 @@ async function handlePostMethod(req: NextApiRequest, res: NextApiResponse) {
   // }
 
   try {
-    // const temp = await prisma.city.create({
-    //   data:{
-    //     venueoncity:{
-    //       create:{
-            
-    //       }
-    //     }
-    //   }
-    // })
     // const result = await prisma.venue.create({
     //   data: {
     //     nama_venue: dataFromClient.nama_venue,
