@@ -72,7 +72,6 @@ async function handlePutMethod(req: NextApiRequest, res: NextApiResponse) {
         nama_venue: dataFromClient.nama_venue,
         gambar_venue: dataFromClient.gambar_venue,
         alamat_venue: dataFromClient.alamat_venue,
-        link_maps: dataFromClient.link_maps,
         penanggung_jawab: dataFromClient.penanggung_jawab,
       },
       where: {
