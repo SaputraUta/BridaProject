@@ -34,12 +34,11 @@ model Venue {
   nama_venue String
   gambar_venue String
   alamat_venue String
-  link_maps String
   penanggung_jawab String
-  city_Id Int
-  city_R   City @relation(fields: [city_Id], references: [city_id])
+  city_Id Int @unique
+  city_R  City? @relation(fields: [city_Id], references: [city_id])
   prov_Id Int
-  prov_R   User @relation(fields: [prov_Id], references: [id])
+  prov_R  User @relation(fields: [prov_Id], references: [id])
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   //relation
@@ -80,7 +79,7 @@ model City {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   //relation
-  venueoncity Venue[]
+  venueoncity Venue?
 }
 
 model Room {

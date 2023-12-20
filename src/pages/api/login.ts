@@ -28,7 +28,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   const passwordValidate = await argon.verify(userData.passwordHash, loginData.password);
   if (!passwordValidate) return res.status(401).json({ message: "Unauthorized" });
 
-  res.setHeader("Set-Cookie", `token=${jwtToken}; HttpOnly; path="/"; SameSite=Lax; Secure`);
+  res.setHeader("Set-Cookie", `token=${jwtToken}; HttpOnly; path=/; SameSite=Lax; Secure`);
   res.status(200).json({
     email: userData.email,
     username: userData.username,

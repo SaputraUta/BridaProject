@@ -24,26 +24,36 @@ async function handleGetMethod(req: NextApiRequest, res: NextApiResponse) {
 
 async function handlePostMethod(req: NextApiRequest, res: NextApiResponse) {
   const dataFromClient = req.body;
+  console.log(req.cookies.token);
 
-  const validation = venue_validation.safeParse(dataFromClient);
-  if (validation.success === false) {
-    return res.status(403).json(validation.error.flatten().fieldErrors);
-  }
+  // const validation = venue_validation.safeParse(dataFromClient);
+  // if (validation.success === false) {
+  //   console.log(validation.error);
+  //   return res.status(403).json(validation.error.flatten().fieldErrors);
+  // }
 
   try {
-    const result = await prisma.venue.create({
-      data: {
-        nama_venue: dataFromClient.nama_venue,
-        gambar_venue: dataFromClient.gambar_venue,
-        alamat_venue: dataFromClient.alamat_venue,
-        link_maps: dataFromClient.link_maps,
-        penanggung_jawab: dataFromClient.penanggung_jawab,
-        city_Id: dataFromClient.city_Id,
-        prov_Id: dataFromClient.prov_Id,
-      },
-    });
+    // const temp = await prisma.city.create({
+    //   data:{
+    //     venueoncity:{
+    //       create:{
+            
+    //       }
+    //     }
+    //   }
+    // })
+    // const result = await prisma.venue.create({
+    //   data: {
+    //     nama_venue: dataFromClient.nama_venue,
+    //     gambar_venue: dataFromClient.gambar_venue,
+    //     alamat_venue: dataFromClient.alamat_venue,
+    //     penanggung_jawab: dataFromClient.penanggung_jawab,
+    //     city_Id: dataFromClient.city_Id,
+    //     prov_Id: dataFromClient.prov_Id,
+    //   },
+    // });
 
-    res.status(200).json(result);
+    // res.status(200).json(result);
   } catch (err) {
     console.log(err);
     res.status(500).json({ message: "Terjadi kesalahan saat menyimpan data" });
@@ -74,7 +84,6 @@ async function handlePutMethod(req: NextApiRequest, res: NextApiResponse) {
         nama_venue: dataFromClient.nama_venue,
         gambar_venue: dataFromClient.gambar_venue,
         alamat_venue: dataFromClient.alamat_venue,
-        link_maps: dataFromClient.link_maps,
         penanggung_jawab: dataFromClient.penanggung_jawab,
       },
       where: {
@@ -85,7 +94,9 @@ async function handlePutMethod(req: NextApiRequest, res: NextApiResponse) {
     res.status(200).json(result);
   } catch (err) {
     console.log(err);
-    res.status(500).json({ message: "Terjadi kesalahan saat memperbarui data" });
+    res
+      .status(500)
+      .json({ message: "Terjadi kesalahan saat memperbarui data" });
   }
 }
 

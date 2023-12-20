@@ -1,8 +1,20 @@
 import { FormEvent, useState } from "react";
+import axios from "axios";
 
 const RegisterVenue = () => {
   const [numberOfRooms, setNumberOfRooms] = useState<number | string>(1);
   const [rooms, setRooms] = useState<JSX.Element[]>([]);
+
+  async function handleFormSubmit(e: FormEvent) {
+    e.preventDefault();
+    const formElement = e.target as HTMLFormElement;
+    const formData = new FormData(formElement);
+    const formDataJSON = Object.fromEntries(formData.entries());
+    const venueJSON = (({ city_Id, nama_venue, alamat_venue, penanggung_jawab, gambar_venue }) => ({ city_Id, nama_venue, alamat_venue, penanggung_jawab, gambar_venue }))(formDataJSON);
+    console.log(venueJSON);
+    const response = await axios.post("http://localhost:3000/api/Provider/venue-register", venueJSON,{headers:{Authorization:`Bearer `}})
+    console.log(response);
+  }
 
   const addRoomInputs = () => {
     const rooms: JSX.Element[] = [];
@@ -10,7 +22,10 @@ const RegisterVenue = () => {
       rooms.push(
         <div key={i} className="flex flex-col gap-5">
           <div className="flex flex-col gap-2">
-            <label htmlFor={`namaRoom${i}`} className="font-bold text-sm sm:text-base md:text-lg">
+            <label
+              htmlFor={`namaRoom${i}`}
+              className="font-bold text-sm sm:text-base md:text-lg"
+            >
               Room name {i + 1}:
             </label>
             <input
@@ -20,7 +35,10 @@ const RegisterVenue = () => {
             />
           </div>
           <div className="flex flex-col gap-2 relative">
-            <label htmlFor={`hargaRoom${i}`} className="font-bold text-sm sm:text-base md:text-lg">
+            <label
+              htmlFor={`hargaRoom${i}`}
+              className="font-bold text-sm sm:text-base md:text-lg"
+            >
               Room {i + 1} price/day:
             </label>
             <p className="absolute top-7 sm:top-9 md:top-10 left-2">Rp.</p>
@@ -31,10 +49,15 @@ const RegisterVenue = () => {
             />
           </div>
           <div className="flex flex-col gap-2 relative">
-            <label htmlFor={`kapasitasRoom${i}`} className="font-bold text-sm sm:text-base md:text-lg">
+            <label
+              htmlFor={`kapasitasRoom${i}`}
+              className="font-bold text-sm sm:text-base md:text-lg"
+            >
               Room {i + 1} capacity:
             </label>
-            <p className="absolute left-[80%] top-7 sm:top-9 md:top-10 sm:left-[60%] lg:left-[70%]">orang</p>
+            <p className="absolute left-[80%] top-7 sm:top-9 md:top-10 sm:left-[60%] lg:left-[70%]">
+              orang
+            </p>
             <input
               type="number"
               name={`kapasitasRoom${i}`}
@@ -42,7 +65,10 @@ const RegisterVenue = () => {
             />
           </div>
           <div className="flex flex-col gap-2">
-            <label htmlFor={`deskripsiRoom${i}`} className="font-bold text-sm sm:text-base md:text-lg">
+            <label
+              htmlFor={`deskripsiRoom${i}`}
+              className="font-bold text-sm sm:text-base md:text-lg"
+            >
               Room {i + 1} description:
             </label>
             <textarea
@@ -52,12 +78,14 @@ const RegisterVenue = () => {
             />
           </div>
           <div className="flex flex-col gap-2">
-            <label htmlFor={`gambarRoom${i}`} className="font-bold text-sm sm:text-base md:text-lg">
+            <label
+              htmlFor={`gambarRoom${i}`}
+              className="font-bold text-sm sm:text-base md:text-lg"
+            >
               Room {i + 1} image:
             </label>
             <input
-              type="file"
-              accept="image/png, image/jpeg"
+              type="text"
               name={`gambarRoom${i}`}
               className="p-1 rounded-lg text-xs sm:text-sm md:text-base sm:w-10/12"
             />
@@ -68,76 +96,88 @@ const RegisterVenue = () => {
     setRooms(rooms);
   };
 
-  const onSubmitHandler = (e: FormEvent) => {
-    e.preventDefault();
-    const formElement = e.target as HTMLFormElement;
-    const formData = new FormData(formElement);
-    const formDataJSON = Object.fromEntries(formData.entries());
-    console.log(formDataJSON);
-  };
-
   return (
     <div className="mt-5 bg-gray-300 border-2 border-black rounded-xl">
       <div className="p-5">
-        <form onSubmit={onSubmitHandler} className="flex flex-col gap-5">
+        <form onSubmit={handleFormSubmit} className="flex flex-col gap-5">
           <div className="flex flex-col gap-5 sm:flex-row sm:gap-10">
             <div className="flex flex-col gap-5 sm:w-[50%]">
               <div className="flex flex-col gap-2">
-                <label htmlFor="kotaVenue" className="font-bold text-sm sm:text-base md:text-lg">
+                <label
+                  htmlFor="city_Id"
+                  className="font-bold text-sm sm:text-base md:text-lg"
+                >
                   Venue city:
                 </label>
-                <select name="kotaVenue" className="p-1 rounded-lg text-xs sm:text-sm md:text-base">
+                <select
+                  name="city_Id"
+                  className="p-1 rounded-lg text-xs sm:text-sm md:text-base"
+                >
                   <option value="">Choose city</option>
-                  <option value="Kota Mataram">Mataram</option>
-                  <option value="Lombok Barat">Lombok Barat</option>
-                  <option value="Lombok Timur">Lombok Timur</option>
-                  <option value="Lombok Tengah">Lombok Tengah</option>
-                  <option value="Lombok Utara">Lombok Utara</option>
+                  <option value="1">Mataram</option>
+                  <option value="2">Lombok Barat</option>
+                  <option value="3">Lombok Timur</option>
+                  <option value="4">Lombok Tengah</option>
+                  <option value="5">Lombok Utara</option>
                 </select>
               </div>
               <div className="flex flex-col gap-2">
-                <label htmlFor="namaVenue" className="font-bold text-sm sm:text-base md:text-lg">
+                <label
+                  htmlFor="nama_venue"
+                  className="font-bold text-sm sm:text-base md:text-lg"
+                >
                   Venue name:
                 </label>
                 <input
                   type="text"
-                  name="venueName"
+                  name="nama_venue"
                   className="p-1 rounded-lg text-xs sm:text-sm md:text-base"
                 />
               </div>
               <div className="flex flex-col gap-2">
-                <label htmlFor="alamatVenue" className="font-bold text-sm sm:text-base md:text-lg">
+                <label
+                  htmlFor="alamat_venue"
+                  className="font-bold text-sm sm:text-base md:text-lg"
+                >
                   Venue address:
                 </label>
                 <input
                   type="text"
-                  name="alamatVenue"
+                  name="alamat_venue"
                   className="p-1 rounded-lg text-xs sm:text-sm md:text-base"
                 />
               </div>
               <div className="flex flex-col gap-2">
-                <label htmlFor="penanggungJawab" className="font-bold text-sm sm:text-base md:text-lg">
+                <label
+                  htmlFor="penanggung_jawab"
+                  className="font-bold text-sm sm:text-base md:text-lg"
+                >
                   Venue coordinator:
                 </label>
                 <input
                   type="text"
-                  name="penanggungJawab"
+                  name="penanggung_jawab"
                   className="p-1 rounded-lg text-xs sm:text-sm md:text-base"
                 />
               </div>
               <div className="flex flex-col gap-2">
-                <label htmlFor="gambarVenue" className="font-bold text-sm sm:text-base md:text-lg">
+                <label
+                  htmlFor="gambar_venue"
+                  className="font-bold text-sm sm:text-base md:text-lg"
+                >
                   Venue image:
                 </label>
                 <input
-                  type="file"
-                  accept="image/png, image/jpeg"
-                  name="gambarVenue"
+                  type="text"
+                  name="gambar_venue"
                   className="p-1 rounded-lg text-xs sm:text-sm md:text-base"
                 />
               </div>
               <div className="flex flex-col gap-2">
-                <label htmlFor="jumlahRoom" className="font-bold text-sm sm:text-base md:text-lg">
+                <label
+                  htmlFor="jumlahRoom"
+                  className="font-bold text-sm sm:text-base md:text-lg"
+                >
                   Number of rooms in venue:
                 </label>
                 <select
