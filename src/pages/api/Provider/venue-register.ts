@@ -26,34 +26,25 @@ async function handlePostMethod(req: NextApiRequest, res: NextApiResponse) {
   const dataFromClient = req.body;
   console.log(req.cookies.token);
 
-  // const validation = venue_validation.safeParse(dataFromClient);
-  // if (validation.success === false) {
-  //   console.log(validation.error);
-  //   return res.status(403).json(validation.error.flatten().fieldErrors);
-  // }
+    const validation = venue_validation.safeParse(dataFromClient);
+    if (validation.success === false) {
+      console.log(validation.error);
+      return res.status(403).json(validation.error.flatten().fieldErrors);
+    }
 
   try {
-    // const temp = await prisma.city.create({
-    //   data:{
-    //     venueoncity:{
-    //       create:{
-            
-    //       }
-    //     }
-    //   }
-    // })
-    // const result = await prisma.venue.create({
-    //   data: {
-    //     nama_venue: dataFromClient.nama_venue,
-        // gambar_venue: dataFromClient.gambar_venue,
-        // alamat_venue: dataFromClient.alamat_venue,
-        // penanggung_jawab: dataFromClient.penanggung_jawab,
-        // prov_Id: dataFromClient.prov_Id,
-        // city_name: dataFromClient.city_name,
-    //   },
-    // });
+      const result = await prisma.venue.create({
+        data: {
+          nama_venue: dataFromClient.nama_venue,
+          gambar_venue: dataFromClient.gambar_venue,
+          alamat_venue: dataFromClient.alamat_venue,
+          penanggung_jawab: dataFromClient.penanggung_jawab,
+          prov_Id: dataFromClient.prov_Id,
+          city_name: dataFromClient.city_name,
+        },
+      });
 
-    // res.status(200).json(result);
+      res.status(200).json(result);
   } catch (err) {
     console.log(err);
     res.status(500).json({ message: "Terjadi kesalahan saat menyimpan data" });

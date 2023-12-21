@@ -11,7 +11,6 @@ async function handlePostMethod(req: NextApiRequest, res: NextApiResponse) {
         total: dataFromClient.total,
         cust_Id: dataFromClient.cust_Id,
         room_Id: dataFromClient.room_Id,
-        notif_Id: dataFromClient.notif_Id,
       },
     });
 
@@ -46,8 +45,8 @@ async function handlePutMethod(req: NextApiRequest, res: NextApiResponse) {
         nama_venue: dataFromClient.nama_venue,
         gambar_venue: dataFromClient.gambar_venue,
         alamat_venue: dataFromClient.alamat_venue,
-        link_maps: dataFromClient.link_maps,
         penanggung_jawab: dataFromClient.penanggung_jawab,
+        city_name: dataFromClient.city_name,
       },
       where: {
         venue_id: dataFromClient.venue_id,

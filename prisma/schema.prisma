@@ -112,8 +112,6 @@ model Transaksi{
    total Int
    room_Id Int
    room_R   Room @relation(fields: [room_Id], references: [room_id])
-   notif_Id Int @unique
-   notif_R   Notification @relation(fields: [notif_Id], references: [id])
    cust_Id Int @unique
    cust_R   User @relation(fields: [cust_Id], references: [id])
    createdAt DateTime @default(now())
@@ -137,13 +135,12 @@ model Kalender{
    //relation
 }
 
-model Notification{
-   id Int @id  @default(autoincrement())
-   tgl_notif DateTime
-   judul_notif String
-   isi_notif String
-   createdAt DateTime @default(now())
-   updatedAt DateTime @updatedAt
-   //relation
-   transaksionnotif Transaksi?
-}
+// model Notification{
+//    id Int @id  @default(autoincrement())
+//    tgl_notif DateTime
+//    judul_notif String
+//    isi_notif String
+//    createdAt DateTime @default(now())
+//    updatedAt DateTime @updatedAt
+//    //relation
+// }
