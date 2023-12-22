@@ -2,6 +2,10 @@ import { NextApiRequest, NextApiResponse } from "next";
 import prisma from "@/lib/prisma";
 import jwt from "jsonwebtoken";
 import venue_validation from "@/validation/venue_validation";
+import { join } from "path";
+import { writeFile } from "fs/promises";
+import fs from "fs/promises";
+import path from "path";
 
 async function handleGetMethod(req: NextApiRequest, res: NextApiResponse) {
   if (typeof req.cookies.token === "undefined") {
@@ -24,27 +28,37 @@ async function handleGetMethod(req: NextApiRequest, res: NextApiResponse) {
 
 async function handlePostMethod(req: NextApiRequest, res: NextApiResponse) {
   const dataFromClient = req.body;
-  console.log(req.cookies.token);
+  if (typeof req.cookies.token === "undefined") {
+    return res.status(401).json({ message: "Unauthorized" });
+  }
 
-    const validation = venue_validation.safeParse(dataFromClient);
-    if (validation.success === false) {
-      console.log(validation.error);
-      return res.status(403).json(validation.error.flatten().fieldErrors);
-    }
+  const user = jwt.verify(req.cookies.token, "kinguta") as { id: number };
+  const file: File = dataFromClient.gambar_venue;
+  const buffer = Buffer.from(await file.arrayBuffer());
+  const filename = Date.now() + file.name.replaceAll(" ", "_");
+  const rootDir = process.cwd();
+  const path = join(rootDir, "/public/uploads/" + filename);
+  await writeFile(path, buffer);
 
-  try { 
-      const result = await prisma.venue.create({
-        data: {
-          nama_venue: dataFromClient.nama_venue,
-          gambar_venue: dataFromClient.gambar_venue,
-          alamat_venue: dataFromClient.alamat_venue,
-          penanggung_jawab: dataFromClient.penanggung_jawab,
-          prov_Id: dataFromClient.prov_Id,
-          city_name: dataFromClient.city_name,
-        },
-      });
+  const validation = venue_validation.safeParse(dataFromClient);
+  if (validation.success === false) {
+    console.log(validation.error);
+    return res.status(403).json(validation.error.flatten().fieldErrors);
+  }
 
-      res.status(200).json(result);
+  try {
+    const result = await prisma.venue.create({
+      data: {
+        nama_venue: dataFromClient.nama_venue,
+        gambar_venue: dataFromClient.gambar_venue,
+        alamat_venue: dataFromClient.alamat_venue,
+        penanggung_jawab: dataFromClient.penanggung_jawab,
+        prov_Id: user.id,
+        city_name: dataFromClient.city_name,
+      },
+    });
+
+    res.status(200).json(result);
   } catch (err) {
     console.log(err);
     res.status(500).json({ message: "Terjadi kesalahan saat menyimpan data" });
