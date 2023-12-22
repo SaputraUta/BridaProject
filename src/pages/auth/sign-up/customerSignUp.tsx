@@ -4,12 +4,16 @@ import InputLogin from "@/components/component-customer/InputLogin";
 import { FormEvent } from "react";
 import { useRouter } from "next/router";
 import axios from "axios";
+import { useState } from "react";
 
 export default function userSignUp() {
+  const [isLoading, setIsLoading] = useState(false);
+  const [isChecked, setIsChecked] = useState(false);
   const router = useRouter();
 
   async function handleSubmit(e: FormEvent) {
     e.preventDefault();
+    setIsLoading(true);
     const formElement = e.target as HTMLFormElement;
     const formData = new FormData(formElement);
     const formDataJSON = Object.fromEntries(formData.entries());
@@ -19,10 +23,11 @@ export default function userSignUp() {
         "http://localhost:3000/api/register",
         formDataJSON
       );
-      console.log(response.data);
+      setIsLoading(false);
       router.push("/login/customerlogin");
     } catch (error) {
       console.error("Error while posting data:", error);
+      setIsLoading(false);
     }
   }
 
@@ -46,20 +51,34 @@ export default function userSignUp() {
               placeholder="Password"
             />
           </div>
+          <p
+            className={`font-semibold text-xs sm:text-sm md:text-base lg:text-lg ${
+              isLoading ? "block" : "hidden"
+            }`}
+          >
+            Registering...
+          </p>
           <div className="w-11/12 max-w-xs sm:max-w-xl md:w-5/6 m-2 flex flex-col items-center">
             <div className="flex items-center justify-between my-2">
               <label
                 htmlFor="checked-checkbox"
-                className="font-medium text-gray-900 text-xs sm:text-sm md:text-base lg:text-lg"
+                className="font-medium text-gray-900 text-xs sm:text-sm md:text-base lg:text-lg pr-1"
               >
                 Menyetujui ketentuan layanan EdoRoli
               </label>
               <input
                 type="checkbox"
+                checked={isChecked}
+                onChange={() => setIsChecked(!isChecked)}
                 className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600 text-xs sm:text-sm md:text-base lg:text-lg"
               />
             </div>
-            <button className="bg-black p-3 text-white w-11/12 max-w-xs sm:max-w-xl md:w-5/6 text-center rounded-xl hover:scale-105 hover:cursor-pointer mb-1 text-xs sm:text-sm md:text-base lg:text-lg">
+            <button
+              disabled={!isChecked}
+              className={`bg-black p-3 text-white w-11/12 max-w-xs sm:max-w-xl md:w-5/6 text-center rounded-xl hover:scale-105 hover:cursor-pointer mb-1 text-xs sm:text-sm md:text-base lg:text-lg ${
+                isChecked ? "opacity-100" : "opacity-50"
+              }`}
+            >
               Daftar
             </button>
           </div>

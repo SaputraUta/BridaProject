@@ -32,8 +32,7 @@ async function handlePostMethod(req: NextApiRequest, res: NextApiResponse) {
       return res.status(403).json(validation.error.flatten().fieldErrors);
     }
 
-  try {
-<<<<<<< HEAD
+  try { 
       const result = await prisma.venue.create({
         data: {
           nama_venue: dataFromClient.nama_venue,
@@ -44,18 +43,6 @@ async function handlePostMethod(req: NextApiRequest, res: NextApiResponse) {
           city_name: dataFromClient.city_name,
         },
       });
-=======
-    // const result = await prisma.venue.create({
-    //   data: {
-    //     nama_venue: dataFromClient.nama_venue,
-        // gambar_venue: dataFromClient.gambar_venue,
-        // alamat_venue: dataFromClient.alamat_venue,
-        // penanggung_jawab: dataFromClient.penanggung_jawab,
-        // prov_Id: dataFromClient.prov_Id,
-        // city_name: dataFromClient.city_name,
-    //   },
-    // });
->>>>>>> 0148affe92c213f0f71a552ae0497f2422c85e11
 
       res.status(200).json(result);
   } catch (err) {

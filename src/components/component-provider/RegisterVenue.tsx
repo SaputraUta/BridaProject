@@ -10,7 +10,7 @@ const RegisterVenue = () => {
     const formElement = e.target as HTMLFormElement;
     const formData = new FormData(formElement);
     const formDataJSON = Object.fromEntries(formData.entries());
-    const venueJSON = (({ city_Id, nama_venue, alamat_venue, penanggung_jawab, gambar_venue }) => ({ city_Id, nama_venue, alamat_venue, penanggung_jawab, gambar_venue }))(formDataJSON);
+    const venueJSON = (({ city_name, nama_venue, alamat_venue, penanggung_jawab, gambar_venue }) => ({ city_name, nama_venue, alamat_venue, penanggung_jawab, gambar_venue }))(formDataJSON);
     console.log(venueJSON);
     const response = await axios.post("http://localhost:3000/api/Provider/venue-register", venueJSON,{headers:{Authorization:`Bearer `}})
     console.log(response);
@@ -104,21 +104,21 @@ const RegisterVenue = () => {
             <div className="flex flex-col gap-5 sm:w-[50%]">
               <div className="flex flex-col gap-2">
                 <label
-                  htmlFor="city_Id"
+                  htmlFor="city_name"
                   className="font-bold text-sm sm:text-base md:text-lg"
                 >
                   Venue city:
                 </label>
                 <select
-                  name="city_Id"
+                  name="city_name"
                   className="p-1 rounded-lg text-xs sm:text-sm md:text-base"
                 >
                   <option value="">Choose city</option>
-                  <option value="1">Mataram</option>
-                  <option value="2">Lombok Barat</option>
-                  <option value="3">Lombok Timur</option>
-                  <option value="4">Lombok Tengah</option>
-                  <option value="5">Lombok Utara</option>
+                  <option value="Mataram">Mataram</option>
+                  <option value="Lombok Barat">Lombok Barat</option>
+                  <option value="Lombok Timur">Lombok Timur</option>
+                  <option value="Lombok Tengah">Lombok Tengah</option>
+                  <option value="Lombok Utara">Lombok Utara</option>
                 </select>
               </div>
               <div className="flex flex-col gap-2">

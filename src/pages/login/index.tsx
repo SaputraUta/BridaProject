@@ -41,7 +41,7 @@ export default function ChooseYourRole() {
           </p>
           <Link href="/login/providerlogin" className="self-start">
             <CustomButton
-              title="I am Customer"
+              title="I am Provider"
               containerStyles="bg-co text-white rounded-xl px-2 py-1 text-xs hover:scale-105 sm:text-sm sm:px-3 md:px-4 md:py-2 md:text-md lg:text-lg"
             />
           </Link>

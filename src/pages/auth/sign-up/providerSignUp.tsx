@@ -1,16 +1,19 @@
 /* eslint-disable @next/next/no-img-element */
 /* eslint-disable react-hooks/rules-of-hooks */
-import Image from "next/image";
 import InputLogin from "@/components/component-customer/InputLogin";
 import { useRouter } from "next/router";
 import { FormEvent } from "react";
 import axios from "axios";
+import { useState } from "react";
 
 export default function providerSignUp() {
+  const [isLoading, setIsLoading] = useState(false);
+  const [isChecked, setIsChecked] = useState(false);
   const router = useRouter();
 
   async function handleSubmit(e: FormEvent) {
     e.preventDefault();
+    setIsLoading(true);
     const formElement = e.target as HTMLFormElement;
     const formData = new FormData(formElement);
     const formDataJSON = Object.fromEntries(formData.entries());
@@ -20,10 +23,11 @@ export default function providerSignUp() {
         "http://localhost:3000/api/register",
         formDataJSON
       );
-      console.log(response.data);
+      setIsLoading(false);
       router.push("/login/providerlogin");
     } catch (error) {
       console.error("Error while posting data:", error);
+      setIsLoading(false);
     }
   }
   return (
@@ -46,7 +50,12 @@ export default function providerSignUp() {
               placeholder="Password"
             />
           </div>
-         <div className="w-11/12 max-w-xs sm:max-w-xl md:w-5/6 m-2 flex flex-col items-center"> 
+          <p
+            className={`font-semibold text-xs sm:text-sm md:text-base lg:text-lg ${
+              isLoading ? "block" : "hidden"
+            }`}
+          >Registering...</p>
+          <div className="w-11/12 max-w-xs sm:max-w-xl md:w-5/6 m-2 flex flex-col items-center">
             <div className="flex items-center justify-between my-2 gap-2">
               <label
                 htmlFor="checked-checkbox"
@@ -56,10 +65,17 @@ export default function providerSignUp() {
               </label>
               <input
                 type="checkbox"
+                checked={isChecked}
+                onChange={() => setIsChecked(!isChecked)}
                 className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600 text-xs sm:text-sm md:text-base lg:text-lg"
               />
             </div>
-            <button className="bg-black p-3 text-white w-11/12 max-w-xs sm:max-w-xl md:w-5/6 text-center rounded-xl hover:scale-105 hover:cursor-pointer mb-1 text-xs sm:text-sm md:text-base lg:text-lg">
+            <button
+              disabled={!isChecked}
+              className={`bg-black p-3 text-white w-11/12 max-w-xs sm:max-w-xl md:w-5/6 text-center rounded-xl hover:scale-105 hover:cursor-pointer mb-1 text-xs sm:text-sm md:text-base lg:text-lg ${
+                isChecked ? "opacity-100" : "opacity-50"
+              }`}
+            >
               Daftar
             </button>
           </div>
