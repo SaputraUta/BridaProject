@@ -4,7 +4,6 @@ import jwt from "jsonwebtoken";
 import argon from "argon2";
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
-  console.log(req.body)
   const loginData = req.body;
 
   const userData = await prisma.user.findUnique({

@@ -5,10 +5,13 @@ import InputLogin from "@/components/component-customer/InputLogin";
 import { FormEvent } from "react";
 import { useRouter } from "next/router";
 import axios from "axios";
+import { useState } from "react";
 
 export default function customerlogin() {
+  const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
   async function handleFormSubmit(e: FormEvent) {
+    setIsLoading(true);
     e.preventDefault();
     const formElement = e.target as HTMLFormElement;
     const formData = new FormData(formElement);
@@ -17,8 +20,8 @@ export default function customerlogin() {
       "http://localhost:3000/api/login",
       formDataJSON
     );
+    setIsLoading(false);
     router.push('/customer')
-    console.log(response.data);
   }
   return (
     <div
@@ -38,6 +41,13 @@ export default function customerlogin() {
           </p>
           <InputLogin type="email" placeholder="Email" name="email" />
           <InputLogin type="Password" placeholder="Password" name="password" />
+          <p
+            className={`font-semibold text-xs sm:text-sm md:text-base lg:text-lg ${
+              isLoading ? "block" : "hidden"
+            }`}
+          >
+            Logging in...
+          </p>
           <button className="bg-slate-800 p-2 md:p-3 text-white font-bold w-11/12 md:w-5/6 text-center rounded-xl mb-2 mt-0 lg:mt-8 hover:scale-105 hover:cursor-pointer">
             Login
           </button>
