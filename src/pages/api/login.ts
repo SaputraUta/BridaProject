@@ -16,6 +16,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
   const jwtToken = jwt.sign(
     {
+      id: userData.id,
       email: userData.email,
       username: userData.username,
       role: userData.role,
