@@ -2,21 +2,38 @@ import { FormEvent, useState } from "react";
 import axios from "axios";
 
 const RegisterVenue = () => {
-  const [file, setFile] = useState<File>();
+  const [isUploading, setIsUploading] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
+  const [successMessage, setSucessMessage] = useState("");
+  // const [selectedFile, setSelectedFile] = useState<File>();
+  // const [city_name, setCityName] = useState("");
+  // const [nama_venue, setNamaVenue] = useState("");
+  // const [alamat_venue, setAlamatVenue] = useState("");
+  // const [penanggung_jawab, setPenanggungJawab] = useState("");
 
   async function handleFormSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    console.log(file);
+    setIsUploading(true);
     const formElement = e.target as HTMLFormElement;
     const formData = new FormData(formElement);
     const formDataJSON = Object.fromEntries(formData.entries());
-    const response = await axios.post(
-      "http://localhost:3000/api/Provider/venue-register",
-      formDataJSON
-    );
-    console.log(response);
+    try {
+      const response = await axios.post(
+        "http://localhost:3000/api/Provider/venue-register",
+        formDataJSON
+      );
+      formElement.reset();
+      if (response.status === 200) setSucessMessage("Data berhasil disimpan");
+      else if (response.status === 403)
+        setErrorMessage("Validation error. Please check your inputs.");
+      else if (response.status === 500)
+        setErrorMessage("Server error. Please try again later.");
+    } catch (e) {
+      console.error(e);
+    } finally {
+      setIsUploading(false);
+    }
   }
-
   return (
     <div className="mt-5 bg-gray-300 border-2 border-black rounded-xl">
       <div className="p-5">
@@ -32,6 +49,9 @@ const RegisterVenue = () => {
                 </label>
                 <select
                   name="city_name"
+                  // onChange={(e) => {
+                  //   setCityName(e.target.value);
+                  // }}
                   className="p-1 rounded-lg text-xs sm:text-sm md:text-base"
                 >
                   <option value="">Choose city</option>
@@ -52,6 +72,9 @@ const RegisterVenue = () => {
                 <input
                   type="text"
                   name="nama_venue"
+                  // onChange={(e) => {
+                  //   setNamaVenue(e.target.value);
+                  // }}
                   className="p-1 rounded-lg text-xs sm:text-sm md:text-base"
                 />
               </div>
@@ -65,6 +88,9 @@ const RegisterVenue = () => {
                 <input
                   type="text"
                   name="alamat_venue"
+                  // onChange={(e) => {
+                  //   setAlamatVenue(e.target.value);
+                  // }}
                   className="p-1 rounded-lg text-xs sm:text-sm md:text-base"
                 />
               </div>
@@ -78,30 +104,57 @@ const RegisterVenue = () => {
                 <input
                   type="text"
                   name="penanggung_jawab"
+                  // onChange={(e) => {
+                  //   setPenanggungJawab(e.target.value);
+                  // }}
                   className="p-1 rounded-lg text-xs sm:text-sm md:text-base"
                 />
               </div>
               <div className="flex flex-col gap-2">
-                <label className="cursor-pointer bg-blue-950 text-white p-2 rounded-md hover:bg-blue-900 font-semibold text-xs sm:text-sm md:text-base">
-                  Select venue image
-                  <input
-                    type="file"
-                    name="gambar_venue"
-                    accept="image/*"
-                    onChange={(e) => {
-                      setFile(e.target.files?.[0]);
-                    }}
-                    className="hidden"
-                  />
+                <label className="font-bold text-sm sm:text-base md:text-lg">
+                  Gambar venue
                 </label>
-                {file && (
-                  <p className="text-xs sm:text-sm md:text-base">
-                    Selected file: {file.name}
+                <input
+                  type="text"
+                  name="gambar_venue"
+                  className="p-1 rounded-lg text-xs sm:text-sm md:text-base"
+                  // accept="image/*"
+                  // onChange={({ target }) => {
+                  //   if (target.files) {
+                  //     const file = target.files[0];
+                  //     setSelectedFile(file);
+                  //   }
+                  // }}
+                  // className="hidden"
+                />
+                {/* {selectedFile && (
+                  <p className="text-xs sm:text-sm md:text-base lg:text-lg">
+                    {selectedFile.name}
                   </p>
-                )}
+                )} */}
               </div>
             </div>
           </div>
+          {isUploading && (
+            <div className="flex items-center justify-center">
+              <div className="w-3 h-3 sm:w-4 sm:h-4 md:w-6 md:h-6 border-t-2 border-r-2 border-blue-950 border-solid rounded-full animate-spin" />
+              <span className="px-2">
+                <p className="text-xs sm:text-sm md:text-base text-slate-800">
+                  Registering
+                </p>
+              </span>
+            </div>
+          )}
+          {errorMessage && (
+            <p className="sm:text-sm md:text-base text-red-500 text-center p-1">
+              {errorMessage}
+            </p>
+          )}
+          {successMessage && (
+            <p className="sm:text-sm md:text-base text-green-500 text-center p-1">
+              {successMessage}
+            </p>
+          )}
           <button
             type="submit"
             className="py-3 px-10 text-white bg-co rounded-xl w-11/12 self-center hover:scale-105 text-sm sm:text-base md:text-lg font-semibold"
