@@ -57,7 +57,7 @@ const VenueDetails = () => {
     }
   }, [router, data]);
 
-  if (isLoading) return <p className="text-center">Loading...</p>;
+  if (isLoading) return <div className="flex items-center justify-center h-screen"><p className="text-center">Loading venue data...</p></div>;
   if (!data) return <p className="text-center">No profile data</p>;
 
   const handleRoomClick = (room: RoomType) => {

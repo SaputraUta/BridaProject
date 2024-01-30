@@ -7,7 +7,7 @@ import dynamic from "next/dynamic";
 const DynamicPopularSearch = dynamic(
   () => import("@/components/component-customer/PopularSearch"),
   {
-    loading: () => <p className="text-xl font-bold text-center">Loading...</p>,
+    loading: () => <p className="text-xl font-bold text-center">Loading popular venue...</p>,
     ssr: false,
   }
 );
@@ -15,7 +15,7 @@ const DynamicPopularSearch = dynamic(
 const DynamicEventNews = dynamic(
   () => import("@/components/component-customer/EventNews"),
   {
-    loading: () => <p className="text-xl font-bold text-center">Loading...</p>,
+    loading: () => <p className="text-xl font-bold text-center">Loading event news...</p>,
     ssr: false,
   }
 );

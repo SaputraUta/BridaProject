@@ -22,7 +22,7 @@ const RoomModal = ({ roomData, isOpen, onClose }: ModalProps) => {
   }
 
   return (
-    <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-70 z-50 max-w-7xl">
+    <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-70 z-50">
       <div className="flex items-center justify-center flex-col md:flex-row md:gap-9 bg-red-50 p-1 rounded-xl w-3/4 h-fit relative">
         <img
           src="/close.svg"

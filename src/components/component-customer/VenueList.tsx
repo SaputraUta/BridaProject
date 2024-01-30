@@ -60,7 +60,7 @@ const VenueList = () => {
 
   return (
     <>
-        <div className="mt-5 grid grid-cols-2 md:grid-cols-4 gap-5">
+        <div className="mt-5 grid grid-cols-3 md:grid-cols-5 gap-x-10 gap-y-16">
           {updatedFilteredData?.map((kota) =>
             kota.Venue.map((venue) => (
               <Venue

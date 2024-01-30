@@ -36,7 +36,7 @@ const PaymentModal = ({ isOpen, onClose, roomData }: ModalProps) => {
     return null;
   }
   return (
-    <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-70 z-50 max-w-2xl sm:max-w-3xl md:max-w-6xl lg:max-w-7xl">
+    <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-70 z-50">
       {isLoading ? (
         <div className="flex flex-col items-center w-3/4 h-fit bg-white rounded-xl gap-5 p-8">
           <p>Loading...</p>
