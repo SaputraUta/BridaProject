@@ -37,7 +37,6 @@ const VenueList = () => {
       setLoading(true);
       const response = await axios.get("http://localhost:3000/api/customer/venues");
       setData(response.data);
-      console.log(response.data);
       setLoading(false);
     }catch(error: any){
       setLoading(false);
