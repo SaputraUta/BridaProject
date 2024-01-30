@@ -1,7 +1,6 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import prisma from "@/lib/prisma";
 import argon2 from "argon2";
-import { getUserFromToken } from "./getUserFromToken";
 
 export default async function handler(
   req: NextApiRequest,

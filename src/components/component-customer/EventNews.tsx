@@ -23,16 +23,11 @@ const EventNews = () => {
         setIsLoading(false);
       });
   }, []);
+  if (isLoading) return <p className="text-center">Loading news...</p>;
   if (!newsData)
     return (
       <div className="flex justify-center items-center">
         <p className="font-bold text-lg">No data found</p>
-      </div>
-    );
-  if (isLoading)
-    return (
-      <div className="flex justify-center items-center">
-        <p className="font-bold text-lg">Loading</p>
       </div>
     );
   return (

@@ -20,7 +20,7 @@ const Navbar = () => {
     };
   });
   return (
-    <header className="fixed top-0 max-w-2xl w-full bg-blue-950 z-10 sm:max-w-3xl md:max-w-5xl lg:max-w-7xl">
+    <header className="fixed top-0 w-full bg-blue-950 z-10">
       <nav className="mx-4 flex justify-between items-center py-4 sm:mx-10 md:mx-16 lg:mx-24">
         <Link href="/" className="flex items-center gap-4">
           <img src="/logo.svg" alt="edoroli" className="w-10 h-10 sm:h-16" />
