@@ -3,16 +3,19 @@
 import InputLogin from "@/components/component-customer/InputLogin";
 import { FormEvent } from "react";
 import { useRouter } from "next/router";
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 import { useState } from "react";
+import Link from "next/link";
 
 export default function userSignUp() {
   const [isLoading, setIsLoading] = useState(false);
   const [isChecked, setIsChecked] = useState(false);
+  const [error, setError] = useState("");
   const router = useRouter();
 
   async function handleSubmit(e: FormEvent) {
     e.preventDefault();
+    setError("");
     setIsLoading(true);
     const formElement = e.target as HTMLFormElement;
     const formData = new FormData(formElement);
@@ -24,10 +27,12 @@ export default function userSignUp() {
         formDataJSON
       );
       setIsLoading(false);
-      router.push("/login/customerlogin");
-    } catch (error) {
-      console.error("Error while posting data:", error);
+      router.push("/login/customerlogin?success=true");
+    } catch (error: any) {
       setIsLoading(false);
+      if (error.response) {
+        setError(error.response.data.message);
+      }
     }
   }
 
@@ -58,6 +63,12 @@ export default function userSignUp() {
           >
             Registering...
           </p>
+
+          {error && (
+            <p className="font-semibold text-xs sm:text-sm md:text-base lg:text-lg text-center text-red-500">
+              {error}
+            </p>
+          )}
           <div className="w-11/12 max-w-xs sm:max-w-xl md:w-5/6 m-2 flex flex-col items-center">
             <div className="flex items-center justify-between my-2">
               <label
@@ -81,6 +92,12 @@ export default function userSignUp() {
             >
               Daftar
             </button>
+            <p className="text-center text-gray-900">
+              Already have an account?{" "}
+              <Link href="/login/customerlogin" className="underline">
+                Login here
+              </Link>
+            </p>
           </div>
         </form>
       </div>

@@ -10,6 +10,7 @@ import { useState } from "react";
 export default function customerlogin() {
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
+  const isRegisterSuccess = router.query.success === "true";
   async function handleFormSubmit(e: FormEvent) {
     setIsLoading(true);
     e.preventDefault();
@@ -21,7 +22,7 @@ export default function customerlogin() {
       formDataJSON
     );
     setIsLoading(false);
-    router.push('/customer')
+    router.push("/customer");
   }
   return (
     <div
@@ -33,6 +34,7 @@ export default function customerlogin() {
           onSubmit={handleFormSubmit}
           className="flex flex-col items-center justify-center p-5"
         >
+          {isRegisterSuccess && <p className="text-green-500 font-semibold text-xs sm:text-sm md:text-base lg:text-lg text-center mb-5">User registered!</p>}
           <h1 className="font-bold text-xl text-slate-800 sm:text-2xl md:text-3xl lg:text-4xl mb-2">
             Hallo, User
           </h1>
