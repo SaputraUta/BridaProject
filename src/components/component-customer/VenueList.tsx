@@ -5,12 +5,13 @@ import axios from "axios";
 
 type VenueType = {
   venue_id: number;
-  nama: string;
-  gambar: string;
-  alamat: string;
-  link_maps: string;
-  Penanggung_jawab: string;
+  nama_venue: string;
+  gambar_venue: string;
+  alamat_venue: string;
+  penanggung_jawab: string;
   room: RoomType[];
+  city_name: string;
+  prov_Id: number;
 };
 
 export type RoomType = {
@@ -22,25 +23,28 @@ export type RoomType = {
   deskripsi_room: string;
 };
 
-type KotaType = {
-  id: number;
-  kota: string;
-  Venue: VenueType[];
-};
-
 const VenueList = () => {
   const router = useRouter();
   const { search } = router.query;
   const searchQuery = (search as string) || "";
-  const [data, setData] = useState<KotaType[]>();
-  const [isLoading, setLoading] = useState(true);
+  const [data, setData] = useState<VenueType[]>([]);
+  const [isLoading, setLoading] = useState(false);
+  const [error, setError] = useState("");
 
   async function ambilData() {
-    const response = await axios.get(
-      "https://mocki.io/v1/98dd4af9-41ae-446f-8801-d8332014bc7f"
-    );
-    setData(response.data);
-    setLoading(false);
+    try{
+      setError("");
+      setLoading(true);
+      const response = await axios.get("http://localhost:3000/api/customer/venues");
+      setData(response.data);
+      console.log(response.data);
+      setLoading(false);
+    }catch(error: any){
+      setLoading(false);
+      if (error.response){
+        setError(error.response.message);
+      }
+    }
   }
 
   useEffect(() => {
@@ -50,28 +54,22 @@ const VenueList = () => {
   if (isLoading) return <p className="text-center">Loading...</p>;
   if (!data) return <p className="text-center">No profile data</p>;
 
-  const updatedFilteredData = data.map((kota) => {
-    const updatedKota = { ...kota };
-    updatedKota.Venue = updatedKota.Venue.filter((venue) =>
-      venue.nama.toLowerCase().includes(searchQuery.toLowerCase())
-    );
-    return updatedKota;
-  });
+  const filteredData = data.filter((venue) =>
+  venue.nama_venue.toLowerCase().includes(searchQuery.toLowerCase())
+);
 
   return (
-    <>
-        <div className="mt-5 grid grid-cols-3 md:grid-cols-5 gap-x-10 gap-y-16">
-          {updatedFilteredData?.map((kota) =>
-            kota.Venue.map((venue) => (
+    <> 
+    {error && <p className="text-center text-gray-900 text-xs sm:text-sm md:text-base lg:text-lg font-bold">{error}</p>}
+        <div className="mt-5 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-x-10 gap-y-16">
+          {filteredData?.map((venue) =>
               <Venue
                 key={venue.venue_id}
-                id={kota.id}
                 venue_id={venue.venue_id}
-                imageUrl={venue.gambar}
-                nama={venue.nama}
-                kota={kota.kota}
+                imageUrl={venue.gambar_venue}
+                nama={venue.nama_venue}
+                kota={venue.city_name}
               />
-            ))
           )}
         </div>
     </>
