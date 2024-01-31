@@ -2,11 +2,15 @@ import { NextApiRequest, NextApiResponse } from "next";
 import prisma from "@/lib/prisma";
 import jwt from "jsonwebtoken";
 import venue_validation from "@/validation/venue_validation";
-// import { join } from "path";
-// import { writeFile } from "fs/promises";
-// import fs from "fs/promises";
-// import path from "path";
-// import formidable from "formidable";
+import multiparty from "multiparty";
+import fs from "fs-extra";
+import path from "path";
+
+export const config = {
+  api: {
+    bodyParser: false,
+  },
+};
 
 async function handleGetMethod(req: NextApiRequest, res: NextApiResponse) {
   if (typeof req.cookies.token === "undefined") {
@@ -28,47 +32,78 @@ async function handleGetMethod(req: NextApiRequest, res: NextApiResponse) {
 }
 
 async function handlePostMethod(req: NextApiRequest, res: NextApiResponse) {
-  console.log(req.body);
-  const dataFromClient = req.body;
+  const form = new multiparty.Form();
+  const data: {
+    fields: {
+      city_name?: string[];
+      nama_venue?: string[];
+      alamat_venue?: string[];
+      penanggung_jawab?: string[];
+    };
+    files: {
+      gambar_venue?: Array<{
+        fieldName: string;
+        originalFilename: string;
+        path: string;
+        headers: object;
+        size: number;
+      }>;
+    };
+  } = await new Promise((resolve, reject) => {
+    form.parse(req, function (err, fields, files) {
+      if (err) reject({ err });
+      resolve({ fields, files });
+    });
+  });
+  const { fields, files } = data;
+  const file = files.gambar_venue && files.gambar_venue[0];
+  const city_name = fields.city_name && fields.city_name[0];
+  const nama_venue = fields.nama_venue && fields.nama_venue[0];
+  const alamat_venue = fields.alamat_venue && fields.alamat_venue[0];
+  const penanggung_jawab =
+    fields.penanggung_jawab && fields.penanggung_jawab[0];
+  const dataFromClient = {
+    city_name,
+    nama_venue,
+    alamat_venue,
+    penanggung_jawab,
+  };
+  if (!file) {
+    return res.status(400).json({
+      message: "No image attached",
+    });
+  }
+
   if (typeof req.cookies.token === "undefined") {
     return res.status(401).json({ message: "Unauthorized" });
   }
 
   const user = jwt.verify(req.cookies.token, "kinguta") as { id: number };
-  // // const form = formidable({
-  // //   uploadDir: path.join(process.cwd(), "public", "file"),
-  // //   filename: (_, __, part, ___) => {
-  // //     return `${part.originalFilename}`;
-  // //   },
-  // // });
-  // // form.parse(dataFromClient.gambar_venue, async (err) => {
-  // //   if (err) {
-  // //     res.status(500).json({ error: "Terjadi kesalahan" });
-  // //     return;
-  // //   }
-  // // });
-  // const file = dataFromClient.gambar_venue;
-  // const buffer = Buffer.from(await file.arrayBuffer());
-  // const filename = Date.now() + file.name.replaceAll(" ", "_");
-  // const rootDir = process.cwd();
-  // const path = join(rootDir, "/public/uploads/" + filename);
-  // await writeFile(path, buffer);
-
   const validation = venue_validation.safeParse(dataFromClient);
+
   if (validation.success === false) {
     console.log(validation.error);
     return res.status(403).json(validation.error.flatten().fieldErrors);
   }
 
   try {
+    const timestamp = new Date().toISOString().replace(/[-:.TZ]/g, "");
+    const uniqueFilename = `${timestamp}_${file.originalFilename}`;
+
+    const publicDirectory = path.join(process.cwd(), "public");
+    const uploadsDirectory = path.join(publicDirectory, "uploads");
+    await fs.ensureDir(uploadsDirectory);
+
+    const filePath = `${uploadsDirectory}/${uniqueFilename}`;
+    await fs.copyFile(file.path, filePath);
     const result = await prisma.venue.create({
       data: {
-        nama_venue: dataFromClient.nama_venue,
-        gambar_venue: dataFromClient.gambar_venue,
-        alamat_venue: dataFromClient.alamat_venue,
-        penanggung_jawab: dataFromClient.penanggung_jawab,
+        nama_venue: nama_venue!,
+        gambar_venue: filePath,
+        alamat_venue: alamat_venue!,
+        penanggung_jawab: penanggung_jawab!,
         prov_Id: user.id,
-        city_name: dataFromClient.city_name,
+        city_name: city_name!,
       },
     });
     res.status(200).json(result);

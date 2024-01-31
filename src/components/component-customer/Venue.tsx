@@ -8,13 +8,16 @@ type Props = {
 };
 
 const Venue = ({venue_id, imageUrl, nama, kota }: Props) => {
+  const basePath = "/home/saputra/edoroli/BridaProject/public";
+  const relativePath = imageUrl.replace(basePath, "");
+  console.log(relativePath);
   return (
     <Link
       href={"/customer/venue/" + venue_id}
       className="rounded-md hover:cursor-pointer hover:scale-105 border-2 max-w-[200px] sm:max-w-none"
     >
       <div className="flex flex-col justify-center items-center p-1">
-        <img src={imageUrl} alt="venue" className="w-full" />
+        <img src={relativePath} alt="venue" className="w-full" />
       </div>
       <div className="flex flex-col px-2 pb-2">
         <div className="flex">

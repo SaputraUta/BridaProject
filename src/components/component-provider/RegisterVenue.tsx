@@ -5,22 +5,16 @@ const RegisterVenue = () => {
   const [isUploading, setIsUploading] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
   const [successMessage, setSucessMessage] = useState("");
-  // const [selectedFile, setSelectedFile] = useState<File>();
-  // const [city_name, setCityName] = useState("");
-  // const [nama_venue, setNamaVenue] = useState("");
-  // const [alamat_venue, setAlamatVenue] = useState("");
-  // const [penanggung_jawab, setPenanggungJawab] = useState("");
 
   async function handleFormSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
     setIsUploading(true);
     const formElement = e.target as HTMLFormElement;
     const formData = new FormData(formElement);
-    const formDataJSON = Object.fromEntries(formData.entries());
     try {
       const response = await axios.post(
         "http://localhost:3000/api/Provider/venue-register",
-        formDataJSON
+        formData
       );
       formElement.reset();
       if (response.status === 200) setSucessMessage("Data berhasil disimpan");
@@ -37,7 +31,11 @@ const RegisterVenue = () => {
   return (
     <div className="mt-5 bg-gray-300 border-2 border-black rounded-xl">
       <div className="p-5">
-        <form onSubmit={handleFormSubmit} className="flex flex-col gap-5">
+        <form
+          onSubmit={handleFormSubmit}
+          className="flex flex-col gap-5"
+          encType="multipart/form-data"
+        >
           <div className="flex flex-col gap-5">
             <div className="flex flex-col gap-5">
               <div className="flex flex-col gap-2">
@@ -115,16 +113,9 @@ const RegisterVenue = () => {
                   Gambar venue
                 </label>
                 <input
-                  type="text"
+                  type="file"
                   name="gambar_venue"
                   className="p-1 rounded-lg text-xs sm:text-sm md:text-base"
-                  // accept="image/*"
-                  // onChange={({ target }) => {
-                  //   if (target.files) {
-                  //     const file = target.files[0];
-                  //     setSelectedFile(file);
-                  //   }
-                  // }}
                   // className="hidden"
                 />
                 {/* {selectedFile && (

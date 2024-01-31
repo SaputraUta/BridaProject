@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { RoomType } from "@/pages/customer/venue/[...segments]";
+import { RoomType } from "@/pages/customer/venue/[venue_id]";
 
 interface ModalProps {
   roomData: RoomType | undefined;
