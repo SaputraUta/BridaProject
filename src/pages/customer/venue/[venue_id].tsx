@@ -38,12 +38,12 @@ const VenueDetails = () => {
   useEffect(() => {
     venue_id = router.query.venue_id as string;
   }, [router]);
-  
+
   useEffect(() => {
     const fetchData = async () => {
       try {
         setLoading(true);
- 
+
         console.log(venue_id);
 
         // Check if venue_id is undefined or empty
@@ -166,7 +166,7 @@ const VenueDetails = () => {
                 placeholder="Date"
                 className="p-1 w-3/4 text-sm sm:text-base md:text-lg rounded-lg"
               />
-              {/* <select
+              <select
                 name="room"
                 className="p-1 w-3/4 text-sm sm:text-base md:text-lg rounded-lg"
                 onChange={(e) => {
@@ -176,28 +176,36 @@ const VenueDetails = () => {
                   );
                   setSelectedRoom(room);
                 }}
-              > */}
-                {/* <option value="">Choose a room</option>
-                {venueData?.roomonvenue.map((room) => (
-                  <option value={room.room_id} key={room.room_id}>
-                    {room.nama_room}
-                  </option>
-                ))}
-              </select> */}
+              >
+                {venueData?.roomonvenue ? (
+                  <>
+                    {" "}
+                    <option value="">Choose a room</option>
+                    {venueData.roomonvenue.map((room) => (
+                      <option value={room.room_id} key={room.room_id}>
+                        {room.nama_room}
+                      </option>
+                    ))}{" "}
+                  </>
+                ) : (
+                  <option value="">This venue does not yet have a room</option>
+                )}
+              </select>
               <button
                 type="submit"
-                className="bg-blue-900 w-3/4 rounded-lg hover:scale-105 mt-4 sm:mt-28 md:mt-20"
+                disabled={!venueData.roomonvenue}
+                className="bg-blue-900 w-3/4 rounded-lg hover:scale-105 mt-4 sm:mt-28 md:mt-20 disabled:bg-blue-500 disabled:hover:scale-100"
               >
                 <h4 className="p-2 font-medium text-sm sm:text-base md:text-lg text-white">
                   Book
                 </h4>
               </button>
             </form>
-            {/* <PaymentModal
+            <PaymentModal
               onClose={closePayment}
               isOpen={isPaymentOpen}
               roomData={selectedRoom}
-            /> */}
+            />
             <div className="mb-4 sm:mb-16 flex flex-col items-center mt-5 sm:mt-0 md:mt-4 ">
               <button className="bg-blue-900 w-3/4 rounded-lg hover:scale-105">
                 <h4 className="p-2 font-medium text-sm sm:text-base md:text-lg text-white">
@@ -235,25 +243,31 @@ const VenueDetails = () => {
           <h4 className="font-medium text-sm sm:text-base md:text-lg lg:text-xl p-3">
             Rooms
           </h4>
-          {/* <div className="grid gap-4 sm:gap-10 sm:grid-cols-4 p-3">
-            {venueData?.roomonvenue.map((item) => (
-              <div
-                className="hover:scale-105 hover:cursor-pointer"
-                key={item.room_id}
-                onClick={() => handleRoomClick(item)}
-              >
-                <img src={item.gambar} alt={item.nama_room} />
-                <h4 className="text-sm sm:text-base md:text-lg lg:text-xl text-center mt-2">
-                  {item.nama_room}
-                </h4>
-              </div>
-            ))}
-          </div> */}
-          {/* <RoomModal
+          {venueData.roomonvenue && venueData.roomonvenue.length > 0 ? (
+            <div className="grid gap-4 sm:gap-10 sm:grid-cols-4 p-3">
+              {venueData.roomonvenue.map((item) => (
+                <div
+                  className="hover:scale-105 hover:cursor-pointer"
+                  key={item.room_id}
+                  onClick={() => handleRoomClick(item)}
+                >
+                  <img src={item.gambar} alt={item.nama_room} />
+                  <h4 className="text-sm sm:text-base md:text-lg lg:text-xl text-center mt-2">
+                    {item.nama_room}
+                  </h4>
+                </div>
+              ))}
+            </div>
+          ) : (
+            <p className="my-5 text-xs sm:text-sm md:text-base lg:text-lg">
+              This venue does not yet have a room
+            </p>
+          )}
+          <RoomModal
             roomData={selectedRoom}
             isOpen={isModalOpen}
             onClose={closeModal}
-          /> */}
+          />
         </div>
       </div>
     </LayoutCustomer>

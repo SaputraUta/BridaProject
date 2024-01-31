@@ -27,7 +27,7 @@ const SearchBar = () => {
           e.preventDefault();
           handleSearch(inputValue);
         }}
-        className="mt-5 border-2 border-solid rounded-md border-blue-950  sm:max-w-2xl md:max-w-4xl lg:max-w-6xl"
+        className="mt-5 border-2 border-solid rounded-md border-blue-950  sm:max-w-2xl md:max-w-6xl lg:max-w-7xl"
       >
         <div className="flex justify-center items-center flex-wrap sm:justify-between sm:items-center p-2">
           <div className="flex gap-1 h-8 w-11/12 sm:w-fit bg-gray-200 rounded-lg relative m-1">
