@@ -96,6 +96,9 @@ const VenueDetails = () => {
     setIsPaymentOpen(!isPaymentOpen);
   };
 
+  const basePath = "/home/saputra/edoroli/BridaProject/public";
+  const relativePath = venueData?.gambar_venue.replace(basePath, "");
+
   return (
     <LayoutCustomer>
       <div className="mt-28 mx-5 sm:mt-32 md:mt-36 sm:mx-10 md:mx-16 lg:mx-24 flex flex-col gap-y-5">
@@ -103,7 +106,7 @@ const VenueDetails = () => {
           <div className="object-cover flex justify-center border-2 rounded-xl">
             {venueData?.gambar_venue ? (
               <img
-                src={venueData?.gambar_venue}
+                src={relativePath}
                 alt={venueData?.nama_venue}
                 className="w-full h-full"
               />

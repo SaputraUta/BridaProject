@@ -3,21 +3,17 @@ import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import LayoutProvider from "@/layout/layout-provider";
 import NavProvider from "@/components/component-provider/NavProvider";
+import axios from "axios";
 
-type ProviderType = {
-  id: number;
-  Vendor: string;
-  Venue: Venue[];
-};
-
-type Venue = {
+type VenueType = {
   venue_id: number;
-  nama: string;
-  gambar: string;
-  alamat: string;
-  link_maps: string;
-  Penanggung_jawab: string;
-  room: room[];
+  nama_venue: string;
+  gambar_venue: string;
+  alamat_venue: string;
+  penanggung_jawab: string;
+  roomonvenue: room[];
+  city_name: string;
+  prov_Id: number;
 };
 
 type room = {
@@ -30,36 +26,65 @@ type room = {
 };
 
 const index = () => {
-  const [data, setData] = useState<ProviderType>();
-  const [venue, setVenue] = useState<Venue>();
+  const [venue, setVenue] = useState<VenueType>();
   const [isLoading, setIsLoading] = useState(true);
   const [room, setRoom] = useState<room>();
   const router = useRouter();
+  const [error, setError] = useState("");
+
+  let venue_id = "";
 
   useEffect(() => {
-    if (router.isReady) {
-      fetch("https://mocki.io/v1/0cc72633-3502-4b02-b09e-9270eae992ae")
-        .then((res) => res.json())
-        .then((data) => {
-          setData(data);
-          setIsLoading(false);
-        });
-      const venue_id = router.query.venue_id as string;
-      const getData = data?.Venue.find(
-        (item) => item.venue_id === parseInt(venue_id)
-      );
-      setVenue(getData);
-    }
-  }, [router, data]);
+    venue_id = router.query.venue_id as string;
+  }, [router]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        setIsLoading(true);
+
+        console.log(venue_id);
+
+        // Check if venue_id is undefined or empty
+        if (venue_id) {
+          const response = await axios.get(
+            `http://localhost:3000/api/customer/venue/detail?venue_id=${venue_id}`
+          );
+          setVenue(response.data);
+        }
+        setIsLoading(false);
+      } catch (error: any) {
+        setIsLoading(false);
+        if (error.response) {
+          setError(error.response.data.message);
+        }
+      }
+    };
+
+    fetchData();
+  }, [router]);
 
   const handleRoomChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const selectedRoomId = parseInt(e.target.value);
-    const room = venue?.room.find((room) => room.room_id === selectedRoomId);
+    const room = venue?.roomonvenue.find((room) => room.room_id === selectedRoomId);
     setRoom(room);
   };
 
-  if (isLoading) return <p className="text-center">Loading...</p>;
-  if (!data) return <p className="text-center">Data not found...</p>;
+  if (isLoading)
+    return (
+      <div className="flex items-center justify-center h-screen">
+        <p className="text-center">Loading venue data...</p>
+      </div>
+    );
+  if (!venue)
+    return (
+      <div className="flex items-center justify-center h-screen">
+        <p className="text-center">Data not found</p>
+      </div>
+    );
+
+    const basePath = "/home/saputra/edoroli/BridaProject/public";
+    const relativePath = venue?.gambar_venue.replace(basePath, "");
 
   return (
     <LayoutProvider>
@@ -69,19 +94,19 @@ const index = () => {
           <div className="flex flex-col md:flex-row gap-5 mt-5">
             <div className="border-2 border-black rounded-xl bg-gray-200 w-full md:w-1/2">
               <h3 className="text-base sm:text-lg md:text-xl lg:text-2xl font-bold text-center text-slate-800">
-                {venue.nama}
+                {venue.nama_venue}
               </h3>
               <div className="p-5 flex flex-col sm:flex-row gap-5 sm:gap-10">
                 <div className="flex flex-col gap-2 sm:gap-5">
                   <div className="flex justify-center sm:block">
-                    <img src={venue.gambar} alt={venue.nama} />
+                    <img src={relativePath} alt={venue.nama_venue} />
                   </div>
                   <div>
                     <h4 className="text-sm sm:text-base md:text-lg lg:text-xl font-bold text-slate-800">
                       Nama
                     </h4>
                     <p className="text-xs sm:text-sm md:text-base lg:text-lg text-slate-800">
-                      {venue.nama}
+                      {venue.nama_venue}
                     </p>
                   </div>
                   <div>
@@ -89,7 +114,7 @@ const index = () => {
                       Alamat
                     </h4>
                     <p className="text-xs sm:text-sm md:text-base lg:text-lg text-slate-800">
-                      {venue.alamat}
+                      {venue.alamat_venue}
                     </p>
                   </div>
                   <div>
@@ -97,7 +122,7 @@ const index = () => {
                       Penanggung Jawab
                     </h4>
                     <p className="text-xs sm:text-sm md:text-base lg:text-lg text-slate-800">
-                      {venue.Penanggung_jawab}
+                      {venue.penanggung_jawab}
                     </p>
                   </div>
                 </div>
@@ -123,7 +148,7 @@ const index = () => {
                   onChange={handleRoomChange}
                 >
                   <option value="">Select Room</option>
-                  {venue.room.map((room) => (
+                  {venue.roomonvenue?.map((room) => (
                     <option value={room.room_id} key={room.room_id}>
                       {room.nama_room}
                     </option>

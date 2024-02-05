@@ -8,13 +8,16 @@ type Venue = {
 };
 
 const VenueCart = ({ venue_id, nama, gambar, Penanggung_jawab }: Venue) => {
+  const basePath = "/home/saputra/edoroli/BridaProject/public";
+  const relativePath = gambar.replace(basePath, "");
+  console.log(relativePath);
   return (
     <Link
       href={"/provideruser/" + venue_id}
       className="rounded-md hover:cursor-pointer hover:scale-105 border-2"
     >
       <div className="flex flex-col justify-center items-center p-1">
-        <img src={gambar} alt="venue" className="w-full" />
+        <img src={relativePath} alt="venue" className="w-full" />
       </div>
       <div className="flex flex-col px-2 pb-2">
         <div className="flex">

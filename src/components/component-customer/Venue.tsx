@@ -10,7 +10,6 @@ type Props = {
 const Venue = ({venue_id, imageUrl, nama, kota }: Props) => {
   const basePath = "/home/saputra/edoroli/BridaProject/public";
   const relativePath = imageUrl.replace(basePath, "");
-  console.log(relativePath);
   return (
     <Link
       href={"/customer/venue/" + venue_id}
