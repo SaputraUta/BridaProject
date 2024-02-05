@@ -20,10 +20,10 @@ type VenueType = {
 type room = {
   room_id: number;
   nama_room: string;
-  gambar: string;
-  harga: number;
+  gambar_room: string;
+  harga_room: number;
   kapasitas: string;
-  deskripsi_room: string;
+  desc_room: string;
 };
 
 const index = () => {
@@ -48,6 +48,7 @@ const index = () => {
             `http://localhost:3000/api/customer/venue/detail?venue_id=${venue_id}`
           );
           setVenue(response.data);
+          console.log(response);
         }
         setIsLoading(false);
       } catch (error: any) {
@@ -159,7 +160,7 @@ const index = () => {
                 <div className="flex flex-col gap-4 w-full p-5">
                   <div className="flex justify-center">
                     <img
-                      src={room?.gambar}
+                      src={room?.gambar_room}
                       alt={room?.nama_room}
                       width={250}
                       height={250}
@@ -178,7 +179,7 @@ const index = () => {
                       Deskripsi
                     </h4>
                     <p className="text-xs sm:text-sm md:text-base lg:text-lg text-slate-800">
-                      {room.deskripsi_room}
+                      {room.desc_room}
                     </p>
                   </div>
                   <div>
@@ -194,7 +195,7 @@ const index = () => {
                       Harga
                     </h4>
                     <p className="text-xs sm:text-sm md:text-base lg:text-lg text-slate-800">
-                      {room?.harga}k
+                      {room?.harga_room}k
                     </p>
                   </div>
                   <button className="py-3 px-14 bg-green-600 rounded-2xl font-medium text-white">

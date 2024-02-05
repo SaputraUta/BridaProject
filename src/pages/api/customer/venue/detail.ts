@@ -17,9 +17,13 @@ async function handleGetMethod(req: NextApiRequest, res: NextApiResponse) {
     console.log("venue_id:", req.query.venue_id);
     console.log("idData:", idData);
     const response = await prisma.venue.findUnique({
-    where: {
-      venue_id : idData,
-    }});
+      where: {
+        venue_id: idData,
+      },
+      include: {
+        roomonvenue: true,
+      },
+    }); 
     if (!response) {
       return res.status(404).json({ message: "Not Found" });
     }
