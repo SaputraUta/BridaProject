@@ -8,9 +8,8 @@ const room_validation = z
   .object({
     room_id: z.string(),
     nama_room: z.string().min(2, "Nama Venue yang Anda masukkan tidak boleh kurang dari 2 karakter"),
-    gambar_room: z.string().regex(path, "Gambar room harus sesuai denga pathnya"),
-    harga_room: z.string().regex(harga, "harga yang anda masukkan harus dalam format rupiah 'RP...' "),
-    kapasitas: z.string().regex(angka, "Harus dalam bentuk angka"),
+    harga_room: z.string().min(2, "Masukkan harga yang benar"),
+    kapasitas: z.string().min(2, "Masukkan kapaitas yang benar"),
     })
   .partial({ 
     room_id: true,

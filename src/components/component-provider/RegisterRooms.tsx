@@ -1,10 +1,13 @@
 import { FormEvent, useState } from "react";
 import axios from "axios";
+import { useRouter } from "next/router";
 
-const RegisterVenue = () => {
+const RegisterRoom = () => {
   const [isUploading, setIsUploading] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
   const [successMessage, setSucessMessage] = useState("");
+  const router = useRouter();
+  const venue_id = router.query.venue_id as string;
 
   async function handleFormSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -13,7 +16,7 @@ const RegisterVenue = () => {
     const formData = new FormData(formElement);
     try {
       const response = await axios.post(
-        "http://localhost:3000/api/provider/venue-register",
+        `http://localhost:3000/api/provider/rooms?venue_id=${venue_id}`,
         formData
       );
       formElement.reset();
@@ -40,89 +43,66 @@ const RegisterVenue = () => {
             <div className="flex flex-col gap-5">
               <div className="flex flex-col gap-2">
                 <label
-                  htmlFor="city_name"
+                  htmlFor="nama_room"
                   className="font-bold text-sm sm:text-base md:text-lg"
                 >
-                  Venue city:
-                </label>
-                <select
-                  name="city_name"
-                  // onChange={(e) => {
-                  //   setCityName(e.target.value);
-                  // }}
-                  className="p-1 rounded-lg text-xs sm:text-sm md:text-base"
-                >
-                  <option value="">Choose city</option>
-                  <option value="Mataram">Mataram</option>
-                  <option value="Lombok Barat">Lombok Barat</option>
-                  <option value="Lombok Timur">Lombok Timur</option>
-                  <option value="Lombok Tengah">Lombok Tengah</option>
-                  <option value="Lombok Utara">Lombok Utara</option>
-                </select>
-              </div>
-              <div className="flex flex-col gap-2">
-                <label
-                  htmlFor="nama_venue"
-                  className="font-bold text-sm sm:text-base md:text-lg"
-                >
-                  Venue name:
+                  Room name:
                 </label>
                 <input
                   type="text"
-                  name="nama_venue"
-                  // onChange={(e) => {
-                  //   setNamaVenue(e.target.value);
-                  // }}
+                  name="nama_room"
                   className="p-1 rounded-lg text-xs sm:text-sm md:text-base"
                 />
               </div>
               <div className="flex flex-col gap-2">
                 <label
-                  htmlFor="alamat_venue"
+                  htmlFor="kapasitas"
                   className="font-bold text-sm sm:text-base md:text-lg"
                 >
-                  Venue address:
+                  Room capacity:
                 </label>
                 <input
                   type="text"
-                  name="alamat_venue"
-                  // onChange={(e) => {
-                  //   setAlamatVenue(e.target.value);
-                  // }}
+                  name="kapasitas"
                   className="p-1 rounded-lg text-xs sm:text-sm md:text-base"
                 />
               </div>
               <div className="flex flex-col gap-2">
                 <label
-                  htmlFor="penanggung_jawab"
+                  htmlFor="harga_room"
                   className="font-bold text-sm sm:text-base md:text-lg"
                 >
-                  Venue coordinator:
+                  Room price/day:
                 </label>
                 <input
                   type="text"
-                  name="penanggung_jawab"
-                  // onChange={(e) => {
-                  //   setPenanggungJawab(e.target.value);
-                  // }}
+                  name="harga_room"
                   className="p-1 rounded-lg text-xs sm:text-sm md:text-base"
                 />
               </div>
               <div className="flex flex-col gap-2">
                 <label className="font-bold text-sm sm:text-base md:text-lg">
-                  Gambar venue
+                  Room image
                 </label>
                 <input
                   type="file"
-                  name="gambar_venue"
+                  name="gambar_room"
                   className="p-1 rounded-lg text-xs sm:text-sm md:text-base"
                   // className="hidden"
                 />
-                {/* {selectedFile && (
-                  <p className="text-xs sm:text-sm md:text-base lg:text-lg">
-                    {selectedFile.name}
-                  </p>
-                )} */}
+              </div>
+              <div className="flex flex-col gap-2">
+                <label
+                  htmlFor="desc_room"
+                  className="font-bold text-sm sm:text-base md:text-lg"
+                >
+                  Room descripion:
+                </label>
+                <input
+                  name="desc_room"
+                  type="text"
+                  className="p-1 rounded-lg text-xs sm:text-sm md:text-base"
+                />
               </div>
             </div>
           </div>
@@ -158,4 +138,4 @@ const RegisterVenue = () => {
   );
 };
 
-export default RegisterVenue;
+export default RegisterRoom;

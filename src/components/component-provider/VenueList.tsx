@@ -63,7 +63,7 @@ const VenueList = () => {
         <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-bold text-slate-800">Hallo, {user.username}!</h1>
       </div>
       <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-slate-800 mt-5">Your venue</h2>
-      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-5 md:gap-x-5 md:gap-y-16">
+      <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 sm:gap-8 md:grid-cols-4 lg:grid-cols-5">
         {data.map((venue) => (
           <VenueCart
             key={venue.venue_id}
@@ -71,6 +71,7 @@ const VenueList = () => {
             nama={venue.nama_venue}
             gambar={venue.gambar_venue}
             Penanggung_jawab={venue.penanggung_jawab}
+            kota={venue.city_name}
           />
         ))}
       </div>

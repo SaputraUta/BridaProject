@@ -89,17 +89,17 @@ async function handlePostMethod(req: NextApiRequest, res: NextApiResponse) {
   try {
     const timestamp = new Date().toISOString().replace(/[-:.TZ]/g, "");
     const uniqueFilename = `${timestamp}_${file.originalFilename}`;
-
-    const publicDirectory = path.join(process.cwd(), "public");
-    const uploadsDirectory = path.join(publicDirectory, "uploads");
+    const uploadsDirectory = path.join(process.cwd(),"public", "uploads"); // Use process.cwd() to get the current working directory
     await fs.ensureDir(uploadsDirectory);
+    const databasePath = "/uploads/"+uniqueFilename;
+    console.log(uploadsDirectory);
 
-    const filePath = `${uploadsDirectory}/${uniqueFilename}`;
+    const filePath = path.join(uploadsDirectory, uniqueFilename); // Use path.join() to create the correct file path
     await fs.copyFile(file.path, filePath);
     const result = await prisma.venue.create({
       data: {
         nama_venue: nama_venue!,
-        gambar_venue: filePath,
+        gambar_venue: databasePath,
         alamat_venue: alamat_venue!,
         penanggung_jawab: penanggung_jawab!,
         prov_Id: user.id,

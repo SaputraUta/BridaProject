@@ -4,6 +4,7 @@ import { useRouter } from "next/router";
 import LayoutProvider from "@/layout/layout-provider";
 import NavProvider from "@/components/component-provider/NavProvider";
 import axios from "axios";
+import Link from "next/link";
 
 type VenueType = {
   venue_id: number;
@@ -41,11 +42,7 @@ const index = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        setIsLoading(true);
-
-        console.log(venue_id);
-
-        // Check if venue_id is undefined or empty
+        setIsLoading(true)
         if (venue_id) {
           const response = await axios.get(
             `http://localhost:3000/api/customer/venue/detail?venue_id=${venue_id}`
@@ -138,6 +135,9 @@ const index = () => {
                 <button className="py-3 px-14 bg-green-600 rounded-xl sm:rounded-2xl font-medium text-white w-full text-xs sm:text-sm md:text-base lg:text-lg">
                   Edit
                 </button>
+                <Link href={"/provideruser/addroom/"+venue.venue_id} className="block text-center py-3 px-14 bg-blue-600 rounded-xl sm:rounded-2xl font-medium text-white w-full text-xs sm:text-sm md:text-base lg:text-lg mt-5">
+                  Add room
+                </Link>
               </div>
             </div>
             <div className="border-2 border-black rounded-xl w-full md:w-1/2 bg-gray-200">

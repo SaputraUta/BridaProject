@@ -8,9 +8,9 @@ type Props = {
 
 export default function LayoutProvider(prop: Props) {
   return (
-    <div>
+    <div className="flex flex-col min-h-screen">
       <HeaderProvider />
-      {prop.children}
+      <div className="flex-grow">{prop.children}</div>
       <Footer />
     </div>
   );
