@@ -3,7 +3,7 @@
 import Link from "next/link";
 import InputLogin from "@/components/component-customer/InputLogin";
 import { useRouter } from "next/router";
-import { FormEvent } from "react";
+import { FormEvent, useEffect } from "react";
 import axios from "axios";
 import { useState } from "react";
 
@@ -13,12 +13,20 @@ export default function userSignUp() {
   const [isSuccess, setIsSuccess] = useState("");
   const router = useRouter();
   let isRegisterSuccess = router.query.success === "true";
+  const [registerMessage, setRegisterMessage] = useState(isRegisterSuccess);
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setRegisterMessage(false);
+    }, 5000);
+
+    return () => clearTimeout(timer);
+  }, [isRegisterSuccess]);
+
   async function handleFormSubmit(e: FormEvent) {
     e.preventDefault();
     setIsLoading(true);
     setError("");
     setIsSuccess("");
-    isRegisterSuccess = false;
     const formElement = e.target as HTMLFormElement;
     const formData = new FormData(formElement);
     const formDataJSON = Object.fromEntries(formData.entries());
@@ -49,7 +57,7 @@ export default function userSignUp() {
           onSubmit={handleFormSubmit}
           className="flex flex-col items-center justify-center p-5"
         >
-          {isRegisterSuccess && (
+          {registerMessage && (
             <p className="text-green-500 font-semibold text-xs sm:text-sm md:text-base lg:text-lg text-center mb-5">
               User registered!
             </p>

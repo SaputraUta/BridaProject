@@ -9,10 +9,12 @@ import { useState } from "react";
 export default function providerSignUp() {
   const [isLoading, setIsLoading] = useState(false);
   const [isChecked, setIsChecked] = useState(false);
+  const [error, setError] = useState("");
   const router = useRouter();
 
   async function handleSubmit(e: FormEvent) {
     e.preventDefault();
+    setError("");
     setIsLoading(true);
     const formElement = e.target as HTMLFormElement;
     const formData = new FormData(formElement);
@@ -24,10 +26,12 @@ export default function providerSignUp() {
         formDataJSON
       );
       setIsLoading(false);
-      router.push("/login/providerlogin");
-    } catch (error) {
-      console.error("Error while posting data:", error);
+      router.push("/login/providerlogin?success=true");
+    } catch (error: any) {
       setIsLoading(false);
+      if (error.response) {
+        setError(error.response.data.message);
+      }
     }
   }
   return (
@@ -54,7 +58,14 @@ export default function providerSignUp() {
             className={`font-semibold text-xs sm:text-sm md:text-base lg:text-lg ${
               isLoading ? "block" : "hidden"
             }`}
-          >Registering...</p>
+          >
+            Registering...
+          </p>
+          {error && (
+            <p className="font-semibold text-xs sm:text-sm md:text-base text-center text-red-500">
+              {error}
+            </p>
+          )}
           <div className="w-11/12 max-w-xs sm:max-w-xl md:w-5/6 m-2 flex flex-col items-center">
             <div className="flex items-center justify-between my-2 gap-2">
               <label

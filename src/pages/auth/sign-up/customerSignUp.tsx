@@ -65,7 +65,7 @@ export default function userSignUp() {
           </p>
 
           {error && (
-            <p className="font-semibold text-xs sm:text-sm md:text-base lg:text-lg text-center text-red-500">
+            <p className="font-semibold text-xs sm:text-sm md:text-base text-center text-red-500">
               {error}
             </p>
           )}

@@ -15,7 +15,7 @@ export default async function handler(
     });
     if (isUserExist) {
       return res.status(400).json({
-        message: "This email is already registered. Please choose another one",
+        message: "A user with this email is already exist. Please choose another one",
       });
     }
     const hashPassword = await argon2.hash(data.password);
