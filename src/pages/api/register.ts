@@ -37,7 +37,7 @@ export default async function handler(
   } catch (err) {
     console.log(err);
     res.status(500).json({
-      message: "Terjadi kesalahan saat menyimpan data",
+      message: "Something went wrong on the server, please try again later",
     });
   }
 }

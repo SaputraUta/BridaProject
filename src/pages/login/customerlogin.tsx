@@ -9,20 +9,35 @@ import { useState } from "react";
 
 export default function customerlogin() {
   const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState("");
+  const [isSuccess, setIsSuccess] = useState("");
   const router = useRouter();
-  const isRegisterSuccess = router.query.success === "true";
+  let isRegisterSuccess = router.query.success === "true";
   async function handleFormSubmit(e: FormEvent) {
-    setIsLoading(true);
     e.preventDefault();
+    setIsLoading(true);
+    setError("");
+    setIsSuccess("");
+    isRegisterSuccess = false;
     const formElement = e.target as HTMLFormElement;
     const formData = new FormData(formElement);
     const formDataJSON = Object.fromEntries(formData.entries());
-    const response = await axios.post(
-      "http://localhost:3000/api/login",
-      formDataJSON
-    );
-    setIsLoading(false);
-    router.push("/customer");
+    try {
+      const response = await axios.post(
+        "http://localhost:3000/api/login",
+        formDataJSON
+      );
+      setIsSuccess(
+        "Login succes, please wait while we are redirecting you to dashboard!"
+      );
+      setIsLoading(false);
+      router.push("/customer");
+    } catch (error: any) {
+      setIsLoading(false);
+      if (error.response) {
+        setError(error.response.data.message);
+      }
+    }
   }
   return (
     <div
@@ -34,7 +49,21 @@ export default function customerlogin() {
           onSubmit={handleFormSubmit}
           className="flex flex-col items-center justify-center p-5"
         >
-          {isRegisterSuccess && <p className="text-green-500 font-semibold text-xs sm:text-sm md:text-base lg:text-lg text-center mb-5">User registered!</p>}
+          {isRegisterSuccess && (
+            <p className="text-green-500 font-semibold text-xs sm:text-sm md:text-base lg:text-lg text-center mb-5">
+              User registered!
+            </p>
+          )}
+          {isSuccess && (
+            <p className="text-green-500 font-semibold text-xs sm:text-sm md:text-base lg:text-lg text-center mb-5">
+              {isSuccess}
+            </p>
+          )}
+          {error && (
+            <p className="text-red-500 font-semibold text-xs sm:text-sm md:text-base lg:text-lg text-center mb-5">
+              {error}
+            </p>
+          )}
           <h1 className="font-bold text-xl text-slate-800 sm:text-2xl md:text-3xl lg:text-4xl mb-2">
             Hallo, User
           </h1>

@@ -3,36 +3,54 @@ import prisma from "@/lib/prisma";
 import jwt from "jsonwebtoken";
 import argon from "argon2";
 
-export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+export default async function handler(
+  req: NextApiRequest,
+  res: NextApiResponse
+) {
   const loginData = req.body;
+  try {
+    const userData = await prisma.user.findUnique({
+      where: {
+        email: loginData.email,
+      },
+    });
+    if (!userData)
+      return res
+        .status(404)
+        .json({ message: "Email or password are incorrect." });
 
-  const userData = await prisma.user.findUnique({
-    where: {
-      email: loginData.email,
-    },
-  });
+    const jwtToken = jwt.sign(
+      {
+        id: userData.id,
+        email: userData.email,
+        username: userData.username,
+        role: userData.role,
+      },
+      "kinguta"
+    );
 
-  if (!userData) return res.status(404).json({ message: "User Not Found" });
+    // check password
+    const passwordValidate = await argon.verify(
+      userData.passwordHash,
+      loginData.password
+    );
+    if (!passwordValidate)
+      return res.status(401).json({ message: "Email or password are incorrect." });
 
-  const jwtToken = jwt.sign(
-    {
-      id: userData.id,
+    res.setHeader(
+      "Set-Cookie",
+      `token=${jwtToken}; HttpOnly; path=/; SameSite=Lax; Secure`
+    );
+    res.status(200).json({
       email: userData.email,
       username: userData.username,
       role: userData.role,
-    },
-    "kinguta"
-  );
-
-  // check password
-  const passwordValidate = await argon.verify(userData.passwordHash, loginData.password);
-  if (!passwordValidate) return res.status(401).json({ message: "Unauthorized" });
-
-  res.setHeader("Set-Cookie", `token=${jwtToken}; HttpOnly; path=/; SameSite=Lax; Secure`);
-  res.status(200).json({
-    email: userData.email,
-    username: userData.username,
-    role: userData.role,
-    token: jwtToken,
-  });
+      token: jwtToken,
+    });
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({
+      message: "Something went wrong on the server, please try again later",
+    });
+  }
 }
