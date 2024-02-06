@@ -1,12 +1,14 @@
 import Link from "next/link";
 import Image from "next/image";
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, useContext } from "react";
 import LogoutModal from "./LogoutModal";
+import UserContext from "@/context/userContext";
 
 const HeaderCustomer = () => {
   const menuRef = useRef<HTMLDivElement>(null);
   const [menu, setMenu] = useState(false);
   const [logout, setLogout] = useState(false);
+  const user = useContext(UserContext);
 
   useEffect(() => {
     let handler = (e: MouseEvent) => {
@@ -30,7 +32,7 @@ const HeaderCustomer = () => {
             </Link>
             <h2 className="text-white font-bold text-2xl">EdoRoli</h2>
           </div>
-          <div className="flex items-center gap-12 relative" ref={menuRef}>
+          <div className="flex items-center gap-2 relative" ref={menuRef}>
             <div className="bg-white w-12 sm:w-16 h-12 sm:h-16 flex items-center justify-center rounded-full">
               <img
                 onClick={() => setMenu(!menu)}
