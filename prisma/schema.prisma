@@ -54,7 +54,7 @@ model Event {
   sop String
   alur_perizinan String
   kondisional String
-  template_surat String
+  template_surat String?
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   //relation
