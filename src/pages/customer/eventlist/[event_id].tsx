@@ -1,53 +1,67 @@
 import LayoutCustomer from "@/layout/layout-customer";
+import axios from "axios";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 
-type EventType = {
+interface EventType {
   event_id: number;
-  imageUrl: string;
-  judul: string;
-  deskripsi: string;
-  sop_perizinan: string;
+  category_event: string;
+  gambar_event: string;
+  desc_event: string;
+  sop: string;
   alur_perizinan: string;
-  template_surat: string;
+  template_surat?: string;
   kondisional: string;
-};
+}
 
 const EventDetail = () => {
-  const [data, setData] = useState<EventType[]>();
   const [isLoading, setLoading] = useState(true);
   const [eventData, setEventData] = useState<EventType>();
+  const [error, setError] = useState("");
   const router = useRouter();
+  let event_id = "";
 
   useEffect(() => {
-    if (router.isReady) {
-      fetch("https://mocki.io/v1/0190c1d0-aa5b-40aa-b649-0f3c869a9905")
-        .then((res) => res.json())
-        .then((data) => {
-          setData(data);
-          setLoading(false);
-        });
-      const event_id = router.query.event_id as string;
-      const getData = data?.find(
-        (item) => item.event_id === parseInt(event_id)
-      );
-      setEventData(getData);
+    event_id = router.query.event_id as string;
+  }, [router]);
+
+  const fetchData = async () => {
+    try {
+      setLoading(true);
+      console.log(event_id);
+      if (event_id) {
+        const response = await axios.get(
+          `http://localhost:3000/api/customer/event-detail?event_id=${event_id}`
+        );
+        setEventData(response.data);
+        console.log(eventData);
+      }
+      setLoading(false);
+    } catch (error: any) {
+      setLoading(false);
+      if (error.response) {
+        setError(error.response.data.message);
+      }
     }
-  }, [router, data]);
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, [router]);
 
   if (isLoading) return <p className="text-center">Loading...</p>;
-  if (!data) return <p className="text-center">No profile data</p>;
+  if (!eventData) return <p className="text-center">No profile data</p>;
 
   return (
     <LayoutCustomer>
       <div className="mt-32 sm:mt-36 mx-5 sm:mx-10 md:mx-16 lg:mx-24  ">
         <div className="flex flex-col sm:items-center sm:flex-row gap-3 sm:border-b-2">
-          {eventData?.imageUrl ? (
+          {eventData?.gambar_event ? (
             <div className="w-full sm:w-2/5 border-b-2 sm:border-b-0">
               <Image
-                src={eventData.imageUrl}
-                alt={eventData.judul}
+                src={eventData.gambar_event}
+                alt={eventData.category_event}
                 width={400}
                 height={400}
                 className="my-4 mx-auto"
@@ -61,14 +75,10 @@ const EventDetail = () => {
 
           <div className="p-4 rounded-xl sm:w-[60%]">
             <h1 className="font-bold text-xl sm:text-2xl md:text-3xl lg:text-4xl">
-              {eventData?.judul}
+              {eventData?.category_event}
             </h1>
             <p className="mt-2 text-xs sm:text-sm md:text-base">
-              Lorem ipsum dolor sit amet consectetur. Aliquam in consequat sed
-              tempus elementum. Fringilla massa vulputate quis mauris proin
-              ullamcorper ultricies sem. Sagittis rutrum tellus risus eu erat.
-              Orci quis ut ullamcorper et morbi vestibulum leo cursus vel. Lorem
-              et est augue ut montes congue urna tortor.
+              {eventData.desc_event}
             </p>
           </div>
         </div>
@@ -77,17 +87,7 @@ const EventDetail = () => {
             SOP (Standar Operasi Prosedur)
           </h3>
           <p className="mt-2 text-xs sm:text-sm md:text-base">
-            Lorem ipsum dolor sit amet consectetur. Aliquam in consequat sed
-            tempus elementum. Fringilla massa vulputate quis mauris proin
-            ullamcorper ultricies sem. Sagittis rutrum tellus risus eu erat.
-            Orci quis ut ullamcorper et morbi vestibulum leo cursus vel. Lorem
-            et est augue ut montes congue urna tortor. Mauris ut neque tortor
-            semper egestas aliquet viverra quis. Vel consectetur quis non odio
-            leo sit pellentesque adipiscing. Adipiscing malesuada non nibh quam.
-            Egestas ornare consectetur habitant faucibus egestas vitae. Viverra
-            nascetur vel vestibulum sit malesuada tempor orci. Ut vel sit enim
-            urna urna posuere arcu. Nec fermentum lacus gravida ut. Adipiscing
-            nulla porta feugiat augue pharetra ac proin interdum dignissim.
+            {eventData.sop}
           </p>
         </div>
         <div className="mt-10 p-4 border-b-2">
@@ -95,24 +95,14 @@ const EventDetail = () => {
             Alur Perizinan
           </h3>
           <p className="mt-2 text-xs sm:text-sm md:text-base">
-            Lorem ipsum dolor sit amet consectetur. Aliquam in consequat sed
-            tempus elementum. Fringilla massa vulputate quis mauris proin
-            ullamcorper ultricies sem. Sagittis rutrum tellus risus eu erat.
-            Orci quis ut ullamcorper et morbi vestibulum leo cursus vel. Lorem
-            et est augue ut montes congue urna tortor. Mauris ut neque tortor
-            semper egestas aliquet viverra quis. Vel consectetur quis non odio
-            leo sit pellentesque adipiscing. Adipiscing malesuada non nibh quam.
-            Egestas ornare consectetur habitant faucibus egestas vitae. Viverra
-            nascetur vel vestibulum sit malesuada tempor orci. Ut vel sit enim
-            urna urna posuere arcu. Nec fermentum lacus gravida ut. Adipiscing
-            nulla porta feugiat augue pharetra ac proin interdum dignissim.
+            {eventData.alur_perizinan}
           </p>
         </div>
         <div className="mt-10 border-b-2 p-4">
           <h3 className="mt-2 font-bold text-base sm:text-lg md:text-xl lg:text-2xl">
             Template Surat
           </h3>
-          {eventData?.template_surat}
+          {eventData.template_surat ? eventData.template_surat : "COMING SOON"}
         </div>
       </div>
     </LayoutCustomer>

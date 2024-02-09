@@ -1,17 +1,10 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import prisma from "@/lib/prisma";
-import jwt from "jsonwebtoken";
 
 async function handleGetMethod(req: NextApiRequest, res: NextApiResponse) {
   if (typeof req.cookies.token === "undefined") {
     return res.status(401).json({ message: "Unauthorized" });
   }
-
-  jwt.verify(req.cookies.token, "kinguta", (err) => {
-    if (err) {
-      return res.status(401).json({ message: "Unauthorized" });
-    }
-  });
   try {
     const idData = Number(req.query.event_id);
     const response = await prisma.event.findUnique({

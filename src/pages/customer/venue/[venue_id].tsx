@@ -39,29 +39,26 @@ const VenueDetails = () => {
     venue_id = router.query.venue_id as string;
   }, [router]);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        setLoading(true);
-
-        console.log(venue_id);
-
-        // Check if venue_id is undefined or empty
-        if (venue_id) {
-          const response = await axios.get(
-            `http://localhost:3000/api/customer/venue/detail?venue_id=${venue_id}`
-          );
-          setVenueData(response.data);
-        }
-        setLoading(false);
-      } catch (error: any) {
-        setLoading(false);
-        if (error.response) {
-          setError(error.response.data.message);
-        }
+  const fetchData = async () => {
+    try {
+      setLoading(true);
+      console.log(venue_id);
+      if (venue_id) {
+        const response = await axios.get(
+          `http://localhost:3000/api/customer/venue/detail?venue_id=${venue_id}`
+        );
+        setVenueData(response.data);
       }
-    };
+      setLoading(false);
+    } catch (error: any) {
+      setLoading(false);
+      if (error.response) {
+        setError(error.response.data.message);
+      }
+    }
+  };
 
+  useEffect(() => {
     fetchData();
   }, [router]);
 
