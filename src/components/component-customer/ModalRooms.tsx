@@ -32,7 +32,7 @@ const RoomModal = ({ roomData, isOpen, onClose }: ModalProps) => {
         />
         <div className="w-3/4 md:w-1/3 mt-5 flex items-center justify-center">
           <img
-            src={roomData.gambar}
+            src={roomData.gambar_room}
             alt={roomData.nama_room}
             className="object-cover md:h-full"
           />
@@ -42,11 +42,7 @@ const RoomModal = ({ roomData, isOpen, onClose }: ModalProps) => {
           <div className="my-1 md:my-3">
             <h3 className="font-bold text-sm sm:text-base md:text-lg lg:text-xl">Deskripsi:</h3>
             <p className="text-xs md:text-base xl:text-xl">
-              {roomData.deskripsi_room} Lorem ipsum dolor sit amet consectetur.
-              Aenean magna at volutpat facilisi elementum in dui diam rhoncus.
-              Enim neque ultrices velit consectetur. Morbi et tellus quis
-              accumsan metus vel risus sit fermentum. Enim ultricies risus sit
-              ac id libero.
+              {roomData.desc_room}
             </p>
           </div>
           <div>
@@ -56,7 +52,7 @@ const RoomModal = ({ roomData, isOpen, onClose }: ModalProps) => {
           </div>
           <div className="bg-co2 w-fit self-start md:self-end">
             <h2 className="font-bold text-xs md:text-base xl:text-xl">
-              Harga: {roomData.harga}k/hari
+              Harga: {roomData.harga_room}k/hari
             </h2>
           </div>
         </div>

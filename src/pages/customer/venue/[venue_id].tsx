@@ -1,9 +1,10 @@
 import LayoutCustomer from "@/layout/layout-customer";
-import { FormEvent, useEffect, useState } from "react";
+import { FormEvent, useContext, useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import RoomModal from "@/components/component-customer/ModalRooms";
 import PaymentModal from "@/components/component-customer/PaymentModal";
 import axios from "axios";
+import UserContext from "@/context/userContext";
 
 type VenueType = {
   venue_id: number;
@@ -19,10 +20,10 @@ type VenueType = {
 export type RoomType = {
   room_id: number;
   nama_room: string;
-  gambar: string;
-  harga: number;
+  gambar_room: string;
+  harga_room: number;
   kapasitas: number;
-  deskripsi_room: string;
+  desc_room: string;
 };
 
 const VenueDetails = () => {
@@ -31,12 +32,18 @@ const VenueDetails = () => {
   const [isLoading, setLoading] = useState(true);
   const [selectedRoom, setSelectedRoom] = useState<RoomType>();
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [isPaymentOpen, setIsPaymentOpen] = useState(false);
+  const [transactionLoading, setTransactionLoading] = useState(false);
+  // const [isPaymentOpen, setIsPaymentOpen] = useState(false);
   const [error, setError] = useState("");
+  const user = useContext(UserContext);
+  const [transactionMessage, setTransactionMessage] = useState("");
+  const [selectedDate, setSelectedDate] = useState("");
+
   let venue_id = "";
 
   useEffect(() => {
     venue_id = router.query.venue_id as string;
+    fetchData();
   }, [router]);
 
   const fetchData = async () => {
@@ -58,10 +65,6 @@ const VenueDetails = () => {
     }
   };
 
-  useEffect(() => {
-    fetchData();
-  }, [router]);
-
   if (isLoading)
     return (
       <div className="flex items-center justify-center h-screen">
@@ -80,17 +83,56 @@ const VenueDetails = () => {
     setIsModalOpen(!isModalOpen);
   };
 
-  const handlePaymentClick = (e: FormEvent) => {
-    e.preventDefault();
-    selectedRoom ? setIsPaymentOpen(!isPaymentOpen) : null;
-  };
+  // const handlePaymentClick = (e: FormEvent) => {
+  //   e.preventDefault();
+  //   selectedRoom ? setIsPaymentOpen(!isPaymentOpen) : null;
+  // };
 
   const closeModal = () => {
     setIsModalOpen(!isModalOpen);
   };
 
-  const closePayment = () => {
-    setIsPaymentOpen(!isPaymentOpen);
+  // const closePayment = () => {
+  //   setIsPaymentOpen(!isPaymentOpen);
+  // };
+
+  const handlePostTransaction = async (e: FormEvent) => {
+    e.preventDefault();
+    setTransactionMessage("");
+    if (selectedRoom) {
+      setTransactionLoading(true);
+      const tgl_booking = new Date(selectedDate).toISOString();
+      const formElement = e.target as HTMLFormElement;
+      const formData = new FormData(formElement);
+      formData.set("tgl_booking", tgl_booking);
+      formData.set("nama_room", selectedRoom.nama_room);
+      const room_id = selectedRoom.room_id.toString();
+      formData.set("room_Id", room_id);
+      formData.set("nama_venue", venueData.nama_venue);
+      const venue_id = venueData.venue_id.toString();
+      formData.set("venue_id", venue_id);
+      const prov_Id = venueData.prov_Id.toString();
+      formData.set("prov_Id", prov_Id);
+      const cust_Id = user.id.toString();
+      formData.set("cust_Id", cust_Id);
+      const formDataJSON = Object.fromEntries(formData.entries());
+      console.log(formDataJSON);
+      try {
+        const response = await axios.post(
+          "http://localhost:3000/api/customer/transaction",
+          formDataJSON
+        );
+        setTransactionLoading(false);
+        formElement.reset();
+        setTransactionMessage("Transaction Success!");
+      } catch (error: any) {
+        setTransactionLoading(false);
+        formElement.reset();
+        if (error.response) {
+          setError(error.response.data.message);
+        }
+      }
+    }
   };
 
   const basePath = "/home/saputra/edoroli/BridaProject/public";
@@ -159,15 +201,19 @@ const VenueDetails = () => {
           <div className="bg-gray-200 sm:m-2 rounded-lg flex flex-col justify-between sm:w-full md:w-1/2">
             <form
               className="sm:mt-16 mt-5 flex flex-col gap-4 sm:gap-6 items-center"
-              onSubmit={handlePaymentClick}
+              onSubmit={handlePostTransaction}
             >
               <input
                 type="date"
                 placeholder="Date"
+                name="tgl_booking"
                 className="p-1 w-3/4 text-sm sm:text-base md:text-lg rounded-lg"
+                onChange={(e) => {
+                  setSelectedDate(e.target.value);
+                }}
               />
               <select
-                name="room"
+                name="nama_room"
                 className="p-1 w-3/4 text-sm sm:text-base md:text-lg rounded-lg"
                 onChange={(e) => {
                   const selectedRoomId = parseInt(e.target.value);
@@ -191,6 +237,16 @@ const VenueDetails = () => {
                   <option value="">This venue does not yet have a room</option>
                 )}
               </select>
+              {transactionLoading && (
+                <p className="text-xs sm:text-sm md:text-base text-center font-medium">
+                  Booking the rooms...
+                </p>
+              )}
+              {transactionMessage && (
+                <p className="text-xs sm:text-sm md:text-base text-center font-medium">
+                  {transactionMessage}
+                </p>
+              )}
               <button
                 type="submit"
                 disabled={!venueData.roomonvenue}
@@ -201,11 +257,11 @@ const VenueDetails = () => {
                 </h4>
               </button>
             </form>
-            <PaymentModal
+            {/* <PaymentModal
               onClose={closePayment}
               isOpen={isPaymentOpen}
               roomData={selectedRoom}
-            />
+            /> */}
             <div className="mb-4 sm:mb-16 flex flex-col items-center mt-5 sm:mt-0 md:mt-4 ">
               <button className="bg-blue-900 w-3/4 rounded-lg hover:scale-105">
                 <h4 className="p-2 font-medium text-sm sm:text-base md:text-lg text-white">
@@ -251,7 +307,7 @@ const VenueDetails = () => {
                   key={item.room_id}
                   onClick={() => handleRoomClick(item)}
                 >
-                  <img src={item.gambar} alt={item.nama_room} />
+                  <img src={item.gambar_room} alt={item.nama_room} />
                   <h4 className="text-sm sm:text-base md:text-lg lg:text-xl text-center mt-2">
                     {item.nama_room}
                   </h4>

@@ -19,7 +19,10 @@ model User {
   updatedAt DateTime @updatedAt
   //Relation
   newsonadmin News[]
-  transactiononcust Transaksi[]
+  // Relation with Transaksi as provider
+  providerTransactions Transaksi[] @relation(name: "VenueOwner")
+  // Relation with Transaksi as customer
+  customerTransactions Transaksi[] @relation(name: "CustomerTransaction")
   venueonprov Venue[]
 }
 
@@ -104,24 +107,20 @@ model News {
   
 }
 
-model Transaksi{
-   id Int @id  @default(autoincrement())
-   status Boolean @default(false)
-   tgl_transaksi DateTime @default(now())
-   metode Metode
-   total Int
+model Transaksi {
+   id Int @id @default(autoincrement())
+   tgl_booking DateTime
+   nama_room String
+   nama_venue String
    room_Id Int
+   venue_id Int
+   prov_Id Int
+   prov_R  User @relation(name: "VenueOwner", fields: [prov_Id], references: [id])
    room_R   Room @relation(fields: [room_Id], references: [room_id])
-   cust_Id Int @unique
-   cust_R   User @relation(fields: [cust_Id], references: [id])
+   cust_Id Int
+   cust_R   User @relation(name: "CustomerTransaction", fields: [cust_Id], references: [id])
    createdAt DateTime @default(now())
    updatedAt DateTime @updatedAt
-}
-
-enum Metode{
-  Bank1
-  Bank2
-  Bank3
 }
 
 model Kalender{
