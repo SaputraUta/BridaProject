@@ -3,135 +3,135 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
-  url  	= env("DATABASE_URL")
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
   directUrl = env("DIRECT_URL")
 }
 
 model User {
-  id Int @id  @default(autoincrement())
+  id Int @id @default(autoincrement())
 
-  email        String @unique
-  username String 
-  passwordHash String
-  role Role
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  email                String      @unique
+  username             String
+  passwordHash         String
+  role                 Role
+  createdAt            DateTime    @default(now())
+  updatedAt            DateTime    @updatedAt
   //Relation
-  newsonadmin News[]
+  newsonadmin          News[]
   // Relation with Transaksi as provider
   providerTransactions Transaksi[] @relation(name: "VenueOwner")
   // Relation with Transaksi as customer
   customerTransactions Transaksi[] @relation(name: "CustomerTransaction")
-  venueonprov Venue[]
+  venueonprov          Venue[]
 }
 
-enum Role{
+enum Role {
   Customer
   Provider
   Admin
 }
 
 model Venue {
-  venue_id Int @id  @default(autoincrement())
-  nama_venue String
-  gambar_venue String
-  alamat_venue String
+  venue_id         Int            @id @default(autoincrement())
+  nama_venue       String
+  gambar_venue     String
+  alamat_venue     String
   penanggung_jawab String
-  city_name String
-  prov_Id Int
-  prov_R  User @relation(fields: [prov_Id], references: [id])
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  city_name        String
+  prov_Id          Int
+  prov_R           User           @relation(fields: [prov_Id], references: [id])
+  createdAt        DateTime       @default(now())
+  updatedAt        DateTime       @updatedAt
   //relation
-  Event EventonVenue[]
-  roomonvenue Room[]
-  kalenderonvenue Kalender?
+  Event            EventonVenue[]
+  roomonvenue      Room[]
+  kalenderonvenue  Kalender?
 }
 
 model Event {
-  event_id Int @id @default(autoincrement())
+  event_id       Int            @id @default(autoincrement())
   category_event String
-  gambar_event String
-  desc_event String
-  sop String
+  gambar_event   String
+  desc_event     String
+  sop            String
   alur_perizinan String
-  kondisional String
+  kondisional    String
   template_surat String?
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  createdAt      DateTime       @default(now())
+  updatedAt      DateTime       @updatedAt
   //relation
-  newsonevent News[]
-  Venue EventonVenue[]
+  newsonevent    News[]
+  Venue          EventonVenue[]
 }
 
-model EventonVenue{
+model EventonVenue {
   event_id Int
   venue_id Int
   //relation
-  Event Event @relation(fields: [event_id], references: [event_id])
-  Venue Venue @relation(fields: [venue_id], references: [venue_id])
+  Event    Event @relation(fields: [event_id], references: [event_id])
+  Venue    Venue @relation(fields: [venue_id], references: [venue_id])
 
   @@id([venue_id, event_id])
 }
 
 model Room {
-  room_id Int @id @default(autoincrement())
-  nama_room String
-  gambar_room String
-  harga_room Int
-  kapasitas String
-  status Boolean @default(false)
-  desc_room String
-  venue_Id Int
-  venue_R   Venue @relation(fields: [venue_Id], references: [venue_id])
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  room_id         Int         @id @default(autoincrement())
+  nama_room       String
+  gambar_room     String
+  harga_room      Int
+  kapasitas       String
+  status          Boolean     @default(false)
+  desc_room       String
+  venue_Id        Int
+  venue_R         Venue       @relation(fields: [venue_Id], references: [venue_id])
+  createdAt       DateTime    @default(now())
+  updatedAt       DateTime    @updatedAt
   //relation
   transkasionroom Transaksi[]
 }
 
 model News {
-  id Int @id  @default(autoincrement())
-  judul_news String
+  id          Int      @id @default(autoincrement())
+  judul_news  String
   gambar_news String
-  isi_berita String
-  tgl_berita DateTime @default(now())
-  admin_Id Int
-  admin_R   User @relation(fields: [admin_Id], references: [id])
-  event_Id Int
-  event_R   Event @relation(fields: [event_Id], references: [event_id])
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  isi_berita  String
+  tgl_berita  DateTime @default(now())
+  admin_Id    Int
+  admin_R     User     @relation(fields: [admin_Id], references: [id])
+  event_Id    Int
+  event_R     Event    @relation(fields: [event_Id], references: [event_id])
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
   //relation
-  
 }
 
 model Transaksi {
-   id Int @id @default(autoincrement())
-   tgl_booking DateTime
-   nama_room String
-   nama_venue String
-   room_Id Int
-   venue_id Int
-   prov_Id Int
-   prov_R  User @relation(name: "VenueOwner", fields: [prov_Id], references: [id])
-   room_R   Room @relation(fields: [room_Id], references: [room_id])
-   cust_Id Int
-   cust_R   User @relation(name: "CustomerTransaction", fields: [cust_Id], references: [id])
-   createdAt DateTime @default(now())
-   updatedAt DateTime @updatedAt
+  id          Int      @id @default(autoincrement())
+  tgl_booking DateTime
+  nama_room   String
+  nama_venue  String
+  room_Id     Int
+  venue_id    Int
+  prov_Id     Int
+  is_approved Boolean  @default(false)
+  prov_R      User     @relation(name: "VenueOwner", fields: [prov_Id], references: [id])
+  room_R      Room     @relation(fields: [room_Id], references: [room_id])
+  cust_Id     Int
+  cust_R      User     @relation(name: "CustomerTransaction", fields: [cust_Id], references: [id])
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
 }
 
-model Kalender{
-   id Int @id  @default(autoincrement())
-   tgl_berita DateTime
-   deskripsi_tanggal String
-   venue_Id  Int @unique
-   venue_R   Venue @relation(fields: [venue_Id], references: [venue_id])
-   createdAt DateTime @default(now())
-   updatedAt DateTime @updatedAt
-   //relation
+model Kalender {
+  id                Int      @id @default(autoincrement())
+  tgl_berita        DateTime
+  deskripsi_tanggal String
+  venue_Id          Int      @unique
+  venue_R           Venue    @relation(fields: [venue_Id], references: [venue_id])
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+  //relation
 }
 
 // model Notification{
