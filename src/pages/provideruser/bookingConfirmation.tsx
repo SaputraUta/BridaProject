@@ -37,6 +37,21 @@ export default function BookingConfirmation() {
     }
   }
 
+  async function handleBooking(id: number) {
+    const response = await axios.patch(
+      `http://localhost:3000/api/provider/transaction?id=${id}`
+    );
+    setTransactions(
+      transactions?.map((transaction) => {
+        if (transaction.id === response.data.id) {
+          return { ...transaction, is_approved: response.data.is_approved };
+        } else {
+          return transaction;
+        }
+      })
+    );
+  }
+
   useEffect(() => {
     fetchData();
   }, []);
@@ -58,7 +73,7 @@ export default function BookingConfirmation() {
               )}
               {transactions?.map((transaction) => (
                 <OrderList
-                key={transaction.id}
+                  key={transaction.id}
                   id={transaction.id}
                   tgl_booking={transaction.tgl_booking}
                   nama_room={transaction.nama_room}
@@ -68,6 +83,7 @@ export default function BookingConfirmation() {
                   prov_Id={transaction.prov_Id}
                   cust_Id={transaction.cust_Id}
                   is_approved={transaction.is_approved}
+                  handleBooking={handleBooking}
                 />
               ))}
             </div>

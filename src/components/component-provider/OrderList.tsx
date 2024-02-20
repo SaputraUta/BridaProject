@@ -11,6 +11,7 @@ interface transaction {
   prov_Id: number;
   cust_Id: number;
   is_approved: boolean;
+  handleBooking: (id: number) => void;
 }
 
 const OrderList = ({
@@ -23,6 +24,7 @@ const OrderList = ({
   prov_Id,
   cust_Id,
   is_approved,
+  handleBooking,
 }: transaction) => {
   const [isLoading, setIsLoading] = useState(false);
   const [message, setMessage] = useState("");
@@ -33,14 +35,12 @@ const OrderList = ({
     setMessage("");
     setErrorMessage("");
     try {
-      const response = await axios.patch(
-        `http://localhost:3000/api/provider/transaction?id=${id}`
-      );
+      handleBooking(id);
       setIsLoading(false);
-      setMessage(response.data.message);
+      setMessage("Booking approved");
     } catch (err: any) {
       setIsLoading(false);
-      setErrorMessage(err.response.data.message);
+      setErrorMessage("Something went wrong, please try again later");
     }
   }
 

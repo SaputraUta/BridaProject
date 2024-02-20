@@ -47,9 +47,7 @@ async function handlePatchMethod(req: NextApiRequest, res: NextApiResponse) {
       where: { id: Number(id) },
       data: { is_approved: true },
     });
-    res.status(200).json({
-      message: "Booking di approve",
-    });
+    res.status(200).json(updatedTransaction);
   } catch (err) {
     console.log(err);
     res.status(500).json({
