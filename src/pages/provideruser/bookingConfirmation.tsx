@@ -22,7 +22,6 @@ export default function BookingConfirmation() {
   const [transactions, setTransactions] = useState<transaction[]>();
 
   async function fetchData() {
-    console.log("REQ");
     setIsLoading(true);
     setMessage("");
     try {
