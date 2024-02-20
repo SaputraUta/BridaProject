@@ -1,3 +1,4 @@
+import axios from "axios";
 import { useState } from "react";
 
 interface transaction {
@@ -23,10 +24,26 @@ const OrderList = ({
   cust_Id,
   is_approved,
 }: transaction) => {
+  const [isLoading, setIsLoading] = useState(false);
+  const [message, setMessage] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
 
-  const approveBooking = async () => {
-    
+  async function approveBooking(id: number) {
+    setIsLoading(true);
+    setMessage("");
+    setErrorMessage("");
+    try {
+      const response = await axios.patch(
+        `http://localhost:3000/api/provider/transaction?id=${id}`
+      );
+      setIsLoading(false);
+      setMessage(response.data.message);
+    } catch (err: any) {
+      setIsLoading(false);
+      setErrorMessage(err.response.data.message);
+    }
   }
+
   return (
     <div key={id} className="flex justify-between items-center">
       <div>
@@ -46,14 +63,37 @@ const OrderList = ({
         </p>
       </div>
       {is_approved && (
-        <button className="font-semibold text-xs sm:text-sm md:text-base lg:text-lg text-green-500">
+        <p className="font-semibold text-xs sm:text-sm md:text-base lg:text-lg text-green-500">
           Approved
-        </button>
+        </p>
       )}
       {!is_approved && (
-        <button onClick={()=>approveBooking} className="font-semibold text-xs sm:text-sm md:text-base lg:text-lg text-slate-100 py-2 px-5 bg-blue-500 rounded-md hover:scale-105">
-          Approve
-        </button>
+        <div className="flex flex-col items-center">
+          {!message && (
+            <button
+              onClick={() => approveBooking(id)}
+              disabled={isLoading}
+              className="font-semibold text-xs sm:text-sm md:text-base lg:text-lg text-slate-100 py-2 px-5 bg-blue-500 rounded-md hover:scale-105"
+            >
+              Approve
+            </button>
+          )}
+          {isLoading && (
+            <p className="text-xs sm:text-sm md:text-base text-slate-900 text-centerr">
+              Approving...
+            </p>
+          )}
+          {message && (
+            <p className="text-xs sm:text-sm md:text-base text-green-500 text-centerr">
+              {message}
+            </p>
+          )}
+          {errorMessage && (
+            <p className="text-xs sm:text-sm md:text-base text-red-500 text-centerr">
+              {errorMessage}
+            </p>
+          )}
+        </div>
       )}
     </div>
   );

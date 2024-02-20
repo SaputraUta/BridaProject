@@ -114,6 +114,7 @@ model Transaksi {
   room_Id     Int
   venue_id    Int
   prov_Id     Int
+  is_rejected Boolean @default(false)
   is_approved Boolean  @default(false)
   prov_R      User     @relation(name: "VenueOwner", fields: [prov_Id], references: [id])
   room_R      Room     @relation(fields: [room_Id], references: [room_id])

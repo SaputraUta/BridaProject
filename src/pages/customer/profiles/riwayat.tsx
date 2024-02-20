@@ -79,8 +79,8 @@ export default function riwayat() {
                       {transaction.nama_room}
                     </p>
                   </div>
-                    {transaction.is_approved && <button className="font-semibold text-xs sm:text-sm md:text-base lg:text-lg text-green-500">Approved</button>}
-                    {!transaction.is_approved && <button className="font-semibold text-xs sm:text-sm md:text-base lg:text-lg text-yellow-500">Waiting for approvment</button>}
+                    {transaction.is_approved && <p className="font-semibold text-xs sm:text-sm md:text-base lg:text-lg text-green-500">Approved</p>}
+                    {!transaction.is_approved && <p className="font-semibold text-xs sm:text-sm md:text-base lg:text-lg text-yellow-500">Waiting for approvment</p>}
                 </div>
               ))}
             </div>

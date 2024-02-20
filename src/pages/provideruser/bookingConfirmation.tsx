@@ -58,6 +58,7 @@ export default function BookingConfirmation() {
               )}
               {transactions?.map((transaction) => (
                 <OrderList
+                key={transaction.id}
                   id={transaction.id}
                   tgl_booking={transaction.tgl_booking}
                   nama_room={transaction.nama_room}
