@@ -11,7 +11,9 @@ interface transaction {
   prov_Id: number;
   cust_Id: number;
   is_approved: boolean;
+  is_rejected: boolean;
   handleBooking: (id: number) => void;
+  rejectBooking: (id: number) => void;
 }
 
 const OrderList = ({
@@ -24,11 +26,14 @@ const OrderList = ({
   prov_Id,
   cust_Id,
   is_approved,
+  is_rejected,
   handleBooking,
+  rejectBooking,
 }: transaction) => {
   const [isLoading, setIsLoading] = useState(false);
   const [message, setMessage] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
+  const [rejectMessage, setRejectMessage] = useState("");
 
   async function approveBooking(id: number) {
     setIsLoading(true);
@@ -38,6 +43,20 @@ const OrderList = ({
       handleBooking(id);
       setIsLoading(false);
       setMessage("Booking approved");
+    } catch (err: any) {
+      setIsLoading(false);
+      setErrorMessage("Something went wrong, please try again later");
+    }
+  }
+
+  async function handleRejectBooking(id: number) {
+    setIsLoading(true);
+    setMessage("");
+    setErrorMessage("");
+    try {
+      rejectBooking(id);
+      setIsLoading(false);
+      setRejectMessage("Booking rejected");
     } catch (err: any) {
       setIsLoading(false);
       setErrorMessage("Something went wrong, please try again later");
@@ -67,16 +86,30 @@ const OrderList = ({
           Approved
         </p>
       )}
-      {!is_approved && (
+      {is_rejected && (
+        <p className="font-semibold text-xs sm:text-sm md:text-base lg:text-lg text-red-500">
+          Rejected
+        </p>
+      )}
+      {!is_approved && !is_rejected && (
         <div className="flex flex-col items-center">
-          {!message && (
-            <button
-              onClick={() => approveBooking(id)}
-              disabled={isLoading}
-              className="font-semibold text-xs sm:text-sm md:text-base lg:text-lg text-slate-100 py-2 px-5 bg-blue-500 rounded-md hover:scale-105"
-            >
-              Approve
-            </button>
+          {!message && !isLoading && !rejectMessage && !errorMessage && (
+            <div className="flex flex-col items-center gap-2">
+              <button
+                onClick={() => approveBooking(id)}
+                disabled={isLoading}
+                className="font-semibold text-xs sm:text-sm md:text-base lg:text-lg text-slate-100 py-2 px-5 bg-blue-500 rounded-md hover:scale-105 w-full"
+              >
+                Approve
+              </button>
+              <button
+                onClick={() => handleRejectBooking(id)}
+                disabled={isLoading}
+                className="font-semibold text-xs sm:text-sm md:text-base lg:text-lg text-slate-100 py-2 px-5 bg-red-500 rounded-md hover:scale-105 w-full"
+              >
+                Reject
+              </button>
+            </div>
           )}
           {isLoading && (
             <p className="text-xs sm:text-sm md:text-base text-slate-900 text-centerr">
@@ -86,6 +119,11 @@ const OrderList = ({
           {message && (
             <p className="text-xs sm:text-sm md:text-base text-green-500 text-centerr">
               {message}
+            </p>
+          )}
+          {rejectMessage && (
+            <p className="text-xs sm:text-sm md:text-base text-red-500 text-centerr">
+              {rejectMessage}
             </p>
           )}
           {errorMessage && (

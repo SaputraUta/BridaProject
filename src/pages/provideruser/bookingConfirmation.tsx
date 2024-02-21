@@ -14,6 +14,7 @@ interface transaction {
   prov_Id: number;
   cust_Id: number;
   is_approved: boolean;
+  is_rejected: boolean;
 }
 
 export default function BookingConfirmation() {
@@ -51,6 +52,21 @@ export default function BookingConfirmation() {
     );
   }
 
+  async function rejectBooking(id: number) {
+    const response = await axios.delete(
+      `http://localhost:3000/api/provider/transaction?id=${id}`
+    );
+    setTransactions(
+      transactions?.map((transaction) => {
+        if (transaction.id === response.data.id) {
+          return { ...transaction, is_rejected: response.data.is_rejected };
+        } else {
+          return transaction;
+        }
+      })
+    );
+  }
+
   useEffect(() => {
     fetchData();
   }, []);
@@ -70,21 +86,24 @@ export default function BookingConfirmation() {
                   Loading transaction data...
                 </p>
               )}
-              {transactions?.map((transaction) => (
-                <OrderList
-                  key={transaction.id}
-                  id={transaction.id}
-                  tgl_booking={transaction.tgl_booking}
-                  nama_room={transaction.nama_room}
-                  nama_venue={transaction.nama_venue}
-                  room_Id={transaction.room_Id}
-                  venue_id={transaction.venue_id}
-                  prov_Id={transaction.prov_Id}
-                  cust_Id={transaction.cust_Id}
-                  is_approved={transaction.is_approved}
-                  handleBooking={handleBooking}
-                />
-              ))}
+              {!isLoading &&
+                transactions?.map((transaction) => (
+                  <OrderList
+                    key={transaction.id}
+                    id={transaction.id}
+                    tgl_booking={transaction.tgl_booking}
+                    nama_room={transaction.nama_room}
+                    nama_venue={transaction.nama_venue}
+                    room_Id={transaction.room_Id}
+                    venue_id={transaction.venue_id}
+                    prov_Id={transaction.prov_Id}
+                    cust_Id={transaction.cust_Id}
+                    is_approved={transaction.is_approved}
+                    is_rejected={transaction.is_rejected}
+                    handleBooking={handleBooking}
+                    rejectBooking={rejectBooking}
+                  />
+                ))}
             </div>
           </div>
         </div>

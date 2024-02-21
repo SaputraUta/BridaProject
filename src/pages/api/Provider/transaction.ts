@@ -3,7 +3,6 @@ import prisma from "@/lib/prisma";
 import jwt from "jsonwebtoken";
 
 async function handleGetMethod(req: NextApiRequest, res: NextApiResponse) {
-  console.log("REQUEST");
   if (typeof req.cookies.token === "undefined") {
     return res.status(401).json({
       message: "Unauthorized",
@@ -34,7 +33,6 @@ async function handleGetMethod(req: NextApiRequest, res: NextApiResponse) {
 }
 
 async function handlePatchMethod(req: NextApiRequest, res: NextApiResponse) {
-  console.log("req");
   const id = req.query.id;
   if (typeof req.cookies.token === "undefined") {
     return res.status(401).json({
@@ -56,11 +54,37 @@ async function handlePatchMethod(req: NextApiRequest, res: NextApiResponse) {
   }
 }
 
+async function handleDeleteMethod(req: NextApiRequest, res: NextApiResponse) {
+  console.log("req");
+  const id = req.query.id;
+  if (typeof req.cookies.token === "undefined") {
+    return res.status(401).json({
+      message: "Unauthorized",
+    });
+  }
+
+  try {
+    const rejectedTransaction = await prisma.transaksi.update({
+      where: { id: Number(id) },
+      data: { is_rejected: true },
+    });
+    res.status(200).json(rejectedTransaction);
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({
+      message: "Terjadi kesalahan pada server, coba lagi nanti",
+    });
+  }
+}
+
 export default function handler(req: NextApiRequest, res: NextApiResponse) {
   if (req.method === "GET") {
     handleGetMethod(req, res);
   }
   if (req.method === "PATCH") {
     handlePatchMethod(req, res);
+  }
+  if (req.method === "DELETE") {
+    handleDeleteMethod(req, res);
   }
 }

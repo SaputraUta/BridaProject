@@ -60,9 +60,9 @@ const VenueList = () => {
   return (
     <>
       <div className="relative mt-5">
-        <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-bold text-slate-800">Hallo, {user.username}!</h1>
+        <h1 className="font-bold text-slate-800 text-xl sm:text-2xl md:text-3xl lg:text-5xl">Hallo, {user.username}!</h1>
       </div>
-      <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-slate-800 mt-5">Your venue</h2>
+      <h2 className="font-bold text-slate-800 text-lg sm:text-xl md:text-2xl lg:text-3xl mt-5">Your venue</h2>
       <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 sm:gap-8 md:grid-cols-4 lg:grid-cols-5">
         {data.map((venue) => (
           <VenueCart
