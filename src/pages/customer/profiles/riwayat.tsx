@@ -13,6 +13,7 @@ interface transaction {
   prov_Id: number;
   cust_Id: number;
   is_approved: boolean;
+  is_rejected: boolean;
 }
 
 export default function riwayat() {
@@ -55,6 +56,11 @@ export default function riwayat() {
                   Loading transaction data...
                 </p>
               )}
+              {message && (
+                <p className="text-slate-900 text-center font-medium text-xs sm:text-sm md:text-base lg:text-lg">
+                  {message}
+                </p>
+              )}
               {transactions?.map((transaction) => (
                 <div
                   key={transaction.id}
@@ -79,8 +85,21 @@ export default function riwayat() {
                       {transaction.nama_room}
                     </p>
                   </div>
-                    {transaction.is_approved && <p className="font-semibold text-xs sm:text-sm md:text-base lg:text-lg text-green-500">Approved</p>}
-                    {!transaction.is_approved && <p className="font-semibold text-xs sm:text-sm md:text-base lg:text-lg text-yellow-500">Waiting for approvment</p>}
+                  {transaction.is_approved && !transaction.is_rejected && (
+                    <p className="font-semibold text-xs sm:text-sm md:text-base lg:text-lg text-green-500">
+                      Approved
+                    </p>
+                  )}
+                  {!transaction.is_approved && !transaction.is_rejected &&(
+                    <p className="font-semibold text-xs sm:text-sm md:text-base lg:text-lg text-yellow-500">
+                      Waiting for approvment
+                    </p>
+                  )}
+                  {!transaction.is_approved && transaction.is_rejected &&(
+                    <p className="font-semibold text-xs sm:text-sm md:text-base lg:text-lg text-red-500">
+                      Transaction rejected
+                    </p>
+                  )}
                 </div>
               ))}
             </div>
