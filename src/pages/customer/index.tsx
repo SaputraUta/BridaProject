@@ -81,8 +81,7 @@ export default function index() {
             Hello {user.username}, find best venue for your event!
           </h1>
           <NavUser />
-          <SearchBar />
-          <DynamicPopularSearch />
+          {/* <DynamicPopularSearch /> */}
           <ReservationStep />
           <div className="mt-5"></div>
           <DynamicEventNews />

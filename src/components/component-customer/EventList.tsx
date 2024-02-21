@@ -38,8 +38,8 @@ const EventList = () => {
   useEffect(() => {
     getEvent();
   }, []);
-  if (isLoading) return <p className="text-center">Loading...</p>;
-  if (!data) return <p className="text-center">No profile data</p>;
+  if (isLoading) return <p className="text-center mt-5 text-slate-900 font-medium text-sm sm:text-base md:text-lg">Loading...</p>;
+  if (!data) return <p className="text-center mt-5 text-slate-900 font-medium text-sm sm:text-base md:text-lg">No profile data</p>;
 
   return (
     <div className="mt-5">

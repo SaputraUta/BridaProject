@@ -2,7 +2,7 @@
 export default function ReservationStep() {
   return (
     <div className="mt-5">
-      <h1 className="font-bold text-lg sm:text-xl md:text-2xl lg:text-5xl">Tata cara reservasi venue</h1>
+      <h1 className="text-lg sm:text-xl md:text-2xl font-bold lg:text-3xl text-slate-900">Tata cara reservasi venue</h1>
       <div className="p-2 flex flex-col sm:grid sm:grid-cols-2 bg-co2 border border-black rounded-xl items-center justify-center gap-5 mt-5 max-w-md sm:max-w-none">
         <div className="flex flex-col items-center md:flex-row gap-2 md:gap-5 bg-red-50 p-5 rounded-xl w-full h-full">
           <img src="/allstay1.svg" alt="langkah1" className="w-3/4" />

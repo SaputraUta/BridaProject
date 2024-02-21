@@ -9,7 +9,7 @@ type Props = {
 
 const EventCart = ({ imageUrl, judul, deskripsi, event_id }: Props) => {
   return (
-    <div className="rounded-lg border-2 border-black w-11/12">
+    <div className="rounded-lg border-2 border-black w-full">
       <div className="flex gap-2 m-3 w-full">
         <img src={imageUrl} alt={judul} className="w-2/5" />
         <div className="flex flex-col gap-1">

@@ -32,7 +32,7 @@ const EventNews = () => {
     );
   return (
     <div className="w-full">
-      <h1 className="text-lg sm:text-xl md:text-2xl mt-10 font-bold lg:text-3xl">
+      <h1 className="text-lg sm:text-xl md:text-2xl mt-10 font-bold lg:text-3xl text-slate-900">
         Event News
       </h1>
       <div className="grid grid-cols-2 gap-4 sm:gap-8 md:grid-cols-3 md:gap-4 lg:gap-8 mt-2 sm:mt-4">

@@ -50,8 +50,8 @@ const EventDetail = () => {
     fetchData();
   }, [router]);
 
-  if (isLoading) return <p className="text-center">Loading...</p>;
-  if (!eventData) return <p className="text-center">No profile data</p>;
+  if (isLoading) return <p className="h-screen flex justify-center items-center text-slate-900 font-medium text-sm sm:text-base md:text-lg">Loading...</p>;
+  if (!eventData) return <p className="h-screen flex justify-center items-center text-slate-900 font-medium text-sm sm:text-base md:text-lg">No event data</p>;
 
   return (
     <LayoutCustomer>
@@ -83,7 +83,7 @@ const EventDetail = () => {
           </div>
         </div>
         <div className="mt-5 border-b-2 p-4">
-          <h3 className="font-bold text-xl sm:text-2xl md:text-3xl lg:text-4xl">
+          <h3 className="font-bold text-slate-800 text-lg sm:text-xl md:text-2xl lg:text-3xl">
             SOP (Standar Operasi Prosedur)
           </h3>
           <p className="mt-2 text-xs sm:text-sm md:text-base">
@@ -91,7 +91,7 @@ const EventDetail = () => {
           </p>
         </div>
         <div className="mt-10 p-4 border-b-2">
-          <h3 className="font-bold text-xl sm:text-2xl md:text-3xl lg:text-4xl">
+          <h3 className="font-bold text-slate-800 text-lg sm:text-xl md:text-2xl lg:text-3xl">
             Alur Perizinan
           </h3>
           <p className="mt-2 text-xs sm:text-sm md:text-base">
@@ -99,7 +99,7 @@ const EventDetail = () => {
           </p>
         </div>
         <div className="mt-10 border-b-2 p-4">
-          <h3 className="mt-2 font-bold text-base sm:text-lg md:text-xl lg:text-2xl">
+          <h3 className="mt-2 font-bold text-slate-800 text-lg sm:text-xl md:text-2xl lg:text-3xl">
             Template Surat
           </h3>
           {eventData.template_surat ? eventData.template_surat : "COMING SOON"}
