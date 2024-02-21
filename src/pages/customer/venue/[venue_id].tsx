@@ -141,23 +141,45 @@ const VenueDetails = () => {
   return (
     <LayoutCustomer>
       <div className="mt-28 mx-5 sm:mt-32 md:mt-36 sm:mx-10 md:mx-16 lg:mx-24 flex flex-col gap-y-5">
-        <div className="flex gap-1 items-center">
-          <div className="object-cover flex justify-center border-2 rounded-xl">
+        <div className="flex flex-col sm:flex-row sm:gap-1 gap-5 items-center h-full">
+          <div className="flex justify-center rounded-xl max-h-72 max-w-[288px] lg:max-h-80 lg:max-w-[320px] overflow-hidden">
             {venueData?.gambar_venue ? (
               <img
                 src={relativePath}
                 alt={venueData?.nama_venue}
-                className="w-full h-full"
+                className="object-cover object-center w-full h-full"
               />
             ) : (
               <p>Gambar tidak ditemukan</p>
             )}
           </div>
-          <div className="w-full flex items-center justify-center">
-            <iframe
-              src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d15780.624019204048!2d116.088064!3d-8.580995!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dcdc07d856569bf%3A0xda2c83c75a587419!2sGelanggang%20Pemuda%20Mataram!5e0!3m2!1sid!2sid!4v1698386010077!5m2!1sid!2sid"
-              className="w-full sm:h-48 md:h-52 lg:h-56"
-            />
+          <div className="border-2 flex flex-col gap-2 sm:gap-5 rounded-xl bg-gray-50 flex-1 h-72 max-h-72 overflow-y-scroll">
+            <h3 className="font-medium text-sm sm:text-base md:text-lg lg:text-2xl m-4 mb-0">
+              Detail Informasi
+            </h3>
+            <p className="m-4 mt-0 text-xs sm:text-sm md:text-base">
+              Lorem Ipsum is simply dummy text of the printing and typesetting
+              industry. Lorem Ipsum has been the industry's standard dummy text
+              ever since the 1500s, when an unknown printer took a galley of
+              type and scrambled it to make a type specimen book. It has
+              survived not only five centuries, but also the leap into
+              electronic typesetting, remaining essentially unchanged. It was
+              popularised in the 1960s with the release of Letraset sheets
+              containing Lorem Ipsum passages, and more recently with desktop
+              publishing software like Aldus PageMaker including versions of
+              Lorem Ipsum.
+              survived not only five centuries, but also the leap into
+              electronic typesetting, remaining essentially unchanged. It was
+              popularised in the 1960s with the release of Letraset sheets
+              containing Lorem Ipsum passages, and more recently with desktop
+              publishing software like Aldus PageMaker including versions of
+              Lorem Ipsum. survived not only five centuries, but also the leap into
+              electronic typesetting, remaining essentially unchanged. It was
+              popularised in the 1960s with the release of Letraset sheets
+              containing Lorem Ipsum passages, and more recently with desktop
+              publishing software like Aldus PageMaker including versions of
+              Lorem Ipsum.
+            </p>
           </div>
         </div>
         <div className="flex flex-col sm:flex-row gap-4 border-2 rounded-lg h-fititems-center bg-gray-50">
@@ -271,30 +293,7 @@ const VenueDetails = () => {
             </div>
           </div>
         </div>
-        <div className="flex flex-col sm:flex-row gap-4">
-          <div className="border-2 flex flex-col gap-2 sm:gap-5 rounded-xl bg-gray-50">
-            <h3 className="font-medium text-sm sm:text-base md:text-lg lg:text-2xl m-4 mb-0">
-              Detail Informasi
-            </h3>
-            <p className="m-4 mt-0 text-xs sm:text-sm md:text-base">
-              Lorem Ipsum is simply dummy text of the printing and typesetting
-              industry. Lorem Ipsum has been the industry's standard dummy text
-              ever since the 1500s, when an unknown printer took a galley of
-              type and scrambled it to make a type specimen book. It has
-              survived not only five centuries, but also the leap into
-              electronic typesetting, remaining essentially unchanged. It was
-              popularised in the 1960s with the release of Letraset sheets
-              containing Lorem Ipsum passages, and more recently with desktop
-              publishing software like Aldus PageMaker including versions of
-              Lorem Ipsum.
-            </p>
-          </div>
-          <img
-            src="/calendar.jpg"
-            alt="calendar"
-            className="sm:w-1/3 h-fit max-w-md max-h-56 sm:max-w-none sm:max-h-none"
-          />
-        </div>
+
         <div className="w-full items-center flex flex-col mt-2 sm:mt-8 border-2 rounded-lg bg-gray-50">
           <h4 className="font-medium text-sm sm:text-base md:text-lg lg:text-xl p-3">
             Rooms
