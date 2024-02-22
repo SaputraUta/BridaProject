@@ -12,8 +12,11 @@ export default function LogoutModal({ isOpen, onClose }: LogoutModal) {
   const router = useRouter();
   async function handleLogout(e: React.MouseEvent<HTMLButtonElement>) {
     e.preventDefault();
-    const response = await fetch("https://edoroli.vercel.app/api/logout");
-    router.push("/login/customerlogin");
+    try {
+      const response = await axios.get("https://edoroli.vercel.app/api/logout");
+    } catch (err: any) {
+      console.log(err);
+    }
   }
   useEffect(() => {
     if (isOpen) {
@@ -31,7 +34,10 @@ export default function LogoutModal({ isOpen, onClose }: LogoutModal) {
               Apakah anda yakin ingin Logout?
             </h3>
             <div className="flex gap-5">
-              <button onClick={handleLogout} className="bg-green-600 text-white rounded-2xl w-20 flex justify-center items-center">
+              <button
+                onClick={handleLogout}
+                className="bg-green-600 text-white rounded-2xl w-20 flex justify-center items-center"
+              >
                 <p className="py-3 px-5 text-center text-sm sm:text-base md:text-lg">
                   Ya
                 </p>

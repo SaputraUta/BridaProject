@@ -36,7 +36,7 @@ const VenueList = () => {
       setErrorMessage("");
       setIsLoading(true);
       try {
-        const response = await axios.get(`https://edoroli.vercel.app/api/provider/venues?provId=${user.id}`)
+        const response = await axios.get(`https://edoroli.vercel.app/api/Provider/venues?provId=${user.id}`)
         setData(response.data)
         console.log(response.data);
         setIsLoading(false);
