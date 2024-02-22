@@ -9,13 +9,13 @@ interface LogoutModal {
 }
 
 export default function LogoutModal({ isOpen, onClose }: LogoutModal) {
-  const router = useRouter();
   async function handleLogout(e: React.MouseEvent<HTMLButtonElement>) {
     e.preventDefault();
     try {
       const response = await axios.get("https://edoroli.vercel.app/api/logout");
+      console.log(response.data.message);
     } catch (err: any) {
-      console.log(err);
+      console.log(err.response.data.message);
     }
   }
   useEffect(() => {

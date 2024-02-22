@@ -38,7 +38,6 @@ const VenueList = () => {
       try {
         const response = await axios.get(`https://edoroli.vercel.app/api/Provider/venues?provId=${user.id}`)
         setData(response.data)
-        console.log(response.data);
         setIsLoading(false);
       } catch (error: any) {
         if (error.response.status === 401) {
