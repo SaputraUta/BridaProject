@@ -2,7 +2,6 @@ import LayoutCustomer from "@/layout/layout-customer";
 import { FormEvent, useContext, useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import RoomModal from "@/components/component-customer/ModalRooms";
-import PaymentModal from "@/components/component-customer/PaymentModal";
 import axios from "axios";
 import UserContext from "@/context/userContext";
 
