@@ -9,7 +9,6 @@ type Venue = {
 };
 
 const VenueCart = ({ venue_id, nama, gambar, Penanggung_jawab, kota }: Venue) => {
-  console.log(gambar);
   return (
     <Link
       href={"/provideruser/venuedetail/" + venue_id}
