@@ -26,7 +26,7 @@ type room = {
   desc_room: string;
 };
 
-const index = () => {
+const Index = () => {
   const [venue, setVenue] = useState<VenueType>();
   const [isLoading, setIsLoading] = useState(true);
   const [room, setRoom] = useState<room>();
@@ -213,4 +213,4 @@ const index = () => {
   );
 };
 
-export default index;
+export default Index;

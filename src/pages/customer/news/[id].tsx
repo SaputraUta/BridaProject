@@ -11,7 +11,7 @@ interface NewsItem {
   imageUrl: string;
 }
 
-export default function news() {
+export default function News() {
   const router = useRouter();
   const [data, setData] = useState<NewsItem[]>();
   const [isLoading, setLoading] = useState(true);
@@ -55,7 +55,7 @@ export default function news() {
               <h2 className="text-4xl font-bold">{newsData?.title}</h2>
               <h4 className="text-lg opacity-50">Monday 27 February 2024</h4>
               {newsData ? (
-                <img src={newsData.imageUrl} />
+                <img src={newsData.imageUrl} alt={newsData.title} />
               ) : (
                 <p className="font-bold text-lg text-center">
                   {" "}

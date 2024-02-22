@@ -2,7 +2,7 @@ export default function AboutUs() {
   return (
     <div className="sm:max-w-xl md:max-w-4xl lg:max-w-7xl">
       <h2 className="font-bold text-2xl sm:text-3xl md:text-4xl lg:text-5xl">About Us</h2>
-      <p className="text-xs sm:text-sm md:text-base mt-2">We're here to help you find your venue and event since 2023.</p>
+      <p className="text-xs sm:text-sm md:text-base mt-2">We&aposre here to help you find your venue and event since 2023.</p>
       <div className="grid md:grid-cols-2 gap-5 mt-5 md:mt-12">
         <div className="bg-gray-100">
           <div className="p-4 md:p-8">

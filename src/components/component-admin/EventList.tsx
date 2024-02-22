@@ -29,7 +29,7 @@ const EventList = () => {
   return (
     <div className="grid grid-cols-3 gap-3 mt-5">
       {data.map((event) => (
-        <EventCart imageUrl={event.imageUrl} judul={event.judul} />
+        <EventCart key={event.event_id} imageUrl={event.imageUrl} judul={event.judul} />
       ))}
     </div>
   );

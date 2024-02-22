@@ -16,7 +16,7 @@ interface transaction {
   is_rejected: boolean;
 }
 
-export default function riwayat() {
+export default function Riwayat() {
   const [isLoading, setIsLoading] = useState(false);
   const [message, setMessage] = useState("");
   const [transactions, setTransactions] = useState<transaction[]>();

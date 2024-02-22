@@ -13,7 +13,7 @@ interface User {
   role: string;
 }
 
-export default function index() {
+export default function Index() {
   const [user, setUser] = useState<User>();
   const [isLoading, setIsLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
