@@ -27,7 +27,7 @@ export default function BookingConfirmation() {
     setMessage("");
     try {
       const response = await axios.get(
-        "http://localhost:3000/api/provider/transaction"
+        "https://edoroli.vercel.app/api/provider/transaction"
       );
       setIsLoading(false);
       setTransactions(response.data);
@@ -39,7 +39,7 @@ export default function BookingConfirmation() {
 
   async function handleBooking(id: number) {
     const response = await axios.patch(
-      `http://localhost:3000/api/provider/transaction?id=${id}`
+      `https://edoroli.vercel.app/api/provider/transaction?id=${id}`
     );
     setTransactions(
       transactions?.map((transaction) => {
@@ -54,7 +54,7 @@ export default function BookingConfirmation() {
 
   async function rejectBooking(id: number) {
     const response = await axios.delete(
-      `http://localhost:3000/api/provider/transaction?id=${id}`
+      `https://edoroli.vercel.app/api/provider/transaction?id=${id}`
     );
     setTransactions(
       transactions?.map((transaction) => {

@@ -21,7 +21,7 @@ const DynamicEventNews = dynamic(
 export default function index() {
   return (
     <Layout>
-      <div className="mt-24 mx-5 sm:mt-32 md:mt-36 lg:mt-40 sm:mx-10 md:mx-16 lg:mx-24">
+      <div className="mt-36 mx-5 sm:mt-44 md:mt-48 lg:mt-56 sm:mx-10 md:mx-16 lg:mx-24">
         <LandingHero />
         {/* <DynamicVenueCart />
         <div className="mt-10"></div>

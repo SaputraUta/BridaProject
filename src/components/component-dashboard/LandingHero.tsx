@@ -4,7 +4,6 @@ import Link from "next/link";
 
 const LandingHero = () => {
   return (
-    <div>
       <div className="flex justify-between w-full">
         <div className="flex flex-col gap-1 sm:gap-2 md:gap-3 lg:gap-4 w-[65%] md:w-[60%]">
           <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-bold text-blue-950">
@@ -32,7 +31,6 @@ const LandingHero = () => {
           />
         </div>
       </div>
-    </div>
   );
 };
 

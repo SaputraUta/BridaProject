@@ -27,7 +27,7 @@ export default function Riwayat() {
     setMessage("");
     try {
       const response = await axios.get(
-        "http://localhost:3000/api/customer/transaction"
+        "https://edoroli.vercel.app/api/customer/transaction"
       );
       setIsLoading(false);
       setTransactions(response.data);

@@ -45,7 +45,7 @@ const Index = () => {
         setIsLoading(true)
         if (venue_id) {
           const response = await axios.get(
-            `http://localhost:3000/api/customer/venue/detail?venue_id=${venue_id}`
+            `https://edoroli.vercel.app/api/customer/venue/detail?venue_id=${venue_id}`
           );
           setVenue(response.data);
           console.log(response);

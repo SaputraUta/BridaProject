@@ -22,7 +22,7 @@ export default function providerSignUp() {
     formDataJSON.role = "Provider";
     try {
       const response = await axios.post(
-        "http://localhost:3000/api/register",
+        "https://edoroli.vercel.app/api/register",
         formDataJSON
       );
       setIsLoading(false);

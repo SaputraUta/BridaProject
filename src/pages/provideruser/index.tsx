@@ -30,7 +30,7 @@ export default function Index() {
     const fetchUserData = async () => {
       setIsLoading(true);
       try {
-        const response = await axios.get("http://localhost:3000/api/me");
+        const response = await axios.get("https://edoroli.vercel.app/api/me");
         setUser(response.data.user);
         setIsLoading(false);
       } catch (error: any) {

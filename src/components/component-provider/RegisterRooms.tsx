@@ -16,7 +16,7 @@ const RegisterRoom = () => {
     const formData = new FormData(formElement);
     try {
       const response = await axios.post(
-        `http://localhost:3000/api/provider/rooms?venue_id=${venue_id}`,
+        `https://edoroli.vercel.app/api/provider/rooms?venue_id=${venue_id}`,
         formData
       );
       formElement.reset();

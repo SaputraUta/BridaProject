@@ -23,7 +23,7 @@ const EventList = () => {
       setError("");
       setLoading(true);
       const response = await axios.get(
-        "http://localhost:3000/api/customer/event"
+        "https://edoroli.vercel.app/api/customer/event"
       );
       setData(response.data);
       setLoading(false);

@@ -32,7 +32,7 @@ const EventDetail = () => {
       console.log(event_id);
       if (event_id) {
         const response = await axios.get(
-          `http://localhost:3000/api/customer/event-detail?event_id=${event_id}`
+          `https://edoroli.vercel.app/api/customer/event-detail?event_id=${event_id}`
         );
         setEventData(response.data);
         console.log(eventData);

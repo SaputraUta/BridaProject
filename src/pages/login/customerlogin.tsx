@@ -32,7 +32,7 @@ export default function customerlogin() {
     const formDataJSON = Object.fromEntries(formData.entries());
     try {
       const response = await axios.post(
-        "http://localhost:3000/api/login",
+        "https://edoroli.vercel.app/api/login",
         formDataJSON
       );
       setIsSuccess(

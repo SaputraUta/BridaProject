@@ -23,7 +23,7 @@ export default function userSignUp() {
     formDataJSON.role = "Customer";
     try {
       const response = await axios.post(
-        "http://localhost:3000/api/register",
+        "https://edoroli.vercel.app/api/register",
         formDataJSON
       );
       setIsLoading(false);

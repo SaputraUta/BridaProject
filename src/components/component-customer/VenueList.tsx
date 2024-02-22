@@ -35,7 +35,7 @@ const VenueList = () => {
     try{
       setError("");
       setLoading(true);
-      const response = await axios.get("http://localhost:3000/api/customer/venues");
+      const response = await axios.get("https://edoroli.vercel.app/api/customer/venues");
       setData(response.data);
       setLoading(false);
     }catch(error: any){

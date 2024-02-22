@@ -11,7 +11,7 @@ export default function LogoutModal({ isOpen, onClose }: LogoutModal) {
   const router = useRouter();
   async function handleLogout(e: React.MouseEvent<HTMLButtonElement>) {
     e.preventDefault();
-    const response = await fetch("http://localhost:3000/api/logout");
+    const response = await fetch("https://edoroli.vercel.app/api/logout");
     router.push("/login/providerlogin");
   }
   useEffect(() => {

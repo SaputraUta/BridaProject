@@ -51,7 +51,7 @@ const VenueDetails = () => {
       console.log(venue_id);
       if (venue_id) {
         const response = await axios.get(
-          `http://localhost:3000/api/customer/venue/detail?venue_id=${venue_id}`
+          `https://edoroli.vercel.app/api/customer/venue/detail?venue_id=${venue_id}`
         );
         setVenueData(response.data);
       }
@@ -118,7 +118,7 @@ const VenueDetails = () => {
       console.log(formDataJSON);
       try {
         const response = await axios.post(
-          "http://localhost:3000/api/customer/transaction",
+          "https://edoroli.vercel.app/api/customer/transaction",
           formDataJSON
         );
         setTransactionLoading(false);
