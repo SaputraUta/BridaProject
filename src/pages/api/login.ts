@@ -39,7 +39,7 @@ export default async function handler(
 
     res.setHeader(
       "Set-Cookie",
-      `token=${jwtToken}; HttpOnly; path=/; SameSite=Lax; Secure`
+      `token=${jwtToken}; HttpOnly; path=/; SameSite=None; Secure`
     );
     res.status(200).json({
       email: userData.email,
