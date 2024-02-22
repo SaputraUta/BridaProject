@@ -1,4 +1,5 @@
 import { NextApiRequest, NextApiResponse } from "next";
+import { serialize } from "cookie";
 
 export default async function handler(
   req: NextApiRequest,
@@ -6,10 +7,15 @@ export default async function handler(
 ) {
   console.log("Handling logout request...");
   try {
-    res.setHeader(
-      "Set-Cookie",
-      "token=; HttpOnly; path=/; Max-Age=-1; SameSite=None; Secure"
-    );
+    const logoutCookie = serialize("token", "", {
+      httpOnly: true,
+      path: "/",
+      maxAge: -1,
+      sameSite: "lax",
+      secure: process.env.NODE_ENV === "production",
+    });
+
+    res.setHeader("Set-Cookie", logoutCookie);
 
     res.status(200).json({
       message: "Logout berhasil",
