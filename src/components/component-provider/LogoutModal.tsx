@@ -1,5 +1,4 @@
 import axios from "axios";
-import Link from "next/link";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
 
@@ -11,10 +10,13 @@ interface LogoutModal {
 export default function LogoutModal({ isOpen, onClose }: LogoutModal) {
   const router = useRouter();
   async function handleLogout(e: React.MouseEvent<HTMLButtonElement>) {
-    console.log("req");
-    const response = await axios.get("https://edoroli.vercel.app/api/logout");
-    console.log(response.data.message);
-    router.push("/login");
+    try {
+      const response = await axios.get("https://edoroli.vercel.app/api/logout");
+      console.log(response.data.message);
+      router.push("/login");
+    } catch (err: any) {
+      console.log(err.response.data.message);
+    }
   }
   useEffect(() => {
     if (isOpen) {
