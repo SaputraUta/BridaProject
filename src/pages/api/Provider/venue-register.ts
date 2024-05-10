@@ -39,6 +39,7 @@ async function handleGetMethod(req: NextApiRequest, res: NextApiResponse) {
 }
 
 async function handlePostMethod(req: NextApiRequest, res: NextApiResponse) {
+  console.log("POST");
   const form = new multiparty.Form();
   const data: {
     fields: {
