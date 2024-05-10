@@ -8,7 +8,7 @@ export default async function handler(
   try {
     res.setHeader(
       "Set-Cookie",
-      `token=; HttpOnly; path=/; max-age=-1; SameSite=Lax; Secure`
+      `token=; HttpOnly; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT; SameSite=Lax; Secure`
     );
 
     res.status(200).json({
