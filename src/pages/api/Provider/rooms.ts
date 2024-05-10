@@ -5,6 +5,13 @@ import room_validation from "@/validation/room_validation";
 import multiparty from "multiparty";
 import fs from "fs-extra";
 import path from "path";
+import { v2 as cloudinary } from "cloudinary";
+
+cloudinary.config({
+  cloud_name: "dn5t3qq4v",
+  api_key: "389818122558318",
+  api_secret: "eOsz0o-sWWPufYTOrXjEt4LJ3RI",
+})
 
 export const config = {
   api: {
@@ -67,7 +74,6 @@ async function handlePostMethod(req: NextApiRequest, res: NextApiResponse) {
     kapasitas,
     desc_room,
   };
-  console.log(dataFromClient);
   if (!file) {
     return res.status(400).json({
       message: "No image attached",
@@ -88,19 +94,15 @@ async function handlePostMethod(req: NextApiRequest, res: NextApiResponse) {
   console.log(venue_id);
 
   try {
-    const timestamp = new Date().toISOString().replace(/[-:.TZ]/g, "");
-    const uniqueFilename = `${timestamp}_${file.originalFilename}`;
-    const uploadsDirectory = path.join(process.cwd(),"public", "uploads"); // Use process.cwd() to get the current working directory
-    await fs.ensureDir(uploadsDirectory);
-    const databasePath = "/uploads/"+uniqueFilename;
-    console.log(uploadsDirectory);
+    const cloudinaryUpload = await cloudinary.uploader.upload(file.path);
+    const cloudinaryUrl = cloudinaryUpload.secure_url;
 
-    const filePath = path.join(uploadsDirectory, uniqueFilename); // Use path.join() to create the correct file path
-    await fs.copyFile(file.path, filePath);
+    await fs.unlink(file.path);
+
     const result = await prisma.room.create({
       data: {
         nama_room: nama_room!,
-        gambar_room: databasePath,
+        gambar_room: cloudinaryUrl,
         harga_room: Number(harga_room)!,
         kapasitas: kapasitas!,
         venue_Id: venue_id,

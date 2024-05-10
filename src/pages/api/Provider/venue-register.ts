@@ -4,7 +4,6 @@ import jwt from "jsonwebtoken";
 import venue_validation from "@/validation/venue_validation";
 import multiparty from "multiparty";
 import fs from "fs-extra";
-import path from "path";
 import { v2 as cloudinary } from "cloudinary";
 
 cloudinary.config({
@@ -39,7 +38,6 @@ async function handleGetMethod(req: NextApiRequest, res: NextApiResponse) {
 }
 
 async function handlePostMethod(req: NextApiRequest, res: NextApiResponse) {
-  console.log("POST");
   const form = new multiparty.Form();
   const data: {
     fields: {
@@ -97,7 +95,6 @@ async function handlePostMethod(req: NextApiRequest, res: NextApiResponse) {
   try {
     const cloudinaryUpload = await cloudinary.uploader.upload(file.path);
     const cloudinaryUrl = cloudinaryUpload.secure_url;
-    console.log(cloudinaryUrl);
 
     await fs.unlink(file.path);
 
