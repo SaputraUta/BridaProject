@@ -94,13 +94,13 @@ async function handlePostMethod(req: NextApiRequest, res: NextApiResponse) {
   }
 
   try {
-   
+    console.log("try");
     const cloudinaryUpload = await cloudinary.uploader.upload(file.path);
     const cloudinaryUrl = cloudinaryUpload.secure_url;
     console.log(cloudinaryUrl);
 
     await fs.unlink(file.path);
-    
+
     const result = await prisma.venue.create({
       data: {
         nama_venue: nama_venue!,
@@ -113,6 +113,7 @@ async function handlePostMethod(req: NextApiRequest, res: NextApiResponse) {
     });
     res.status(200).json(result);
   } catch (err) {
+    console.log("error");
     console.log(err);
     res.status(500).json({ message: "Terjadi kesalahan saat menyimpan data" });
   }
