@@ -5,11 +5,10 @@ export default async function handler(
   res: NextApiResponse
 ) {
   console.log("Handling logout request...");
-  const jwtToken = req.cookies.token;
   try {
     res.setHeader(
       "Set-Cookie",
-      `token=${jwtToken}; HttpOnly; path=/; max-age=-1; SameSite=Lax; Secure`
+      `token=; HttpOnly; path=/; max-age=-1; SameSite=Lax; Secure`
     );
 
     res.status(200).json({
