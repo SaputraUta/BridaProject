@@ -8,9 +8,9 @@ import path from "path";
 import { v2 as cloudinary } from "cloudinary";
 
 cloudinary.config({
-  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
-  api_key: process.env.CLOUDINARY_API_KEY,
-  api_secret: process.env.CLOUDINARY_API_SECRET,
+  cloud_name: "dn5t3qq4v",
+  api_key: "389818122558318",
+  api_secret: "eOsz0o-sWWPufYTOrXjEt4LJ3RI",
 })
 
 export const config = {
@@ -95,7 +95,6 @@ async function handlePostMethod(req: NextApiRequest, res: NextApiResponse) {
   }
 
   try {
-    console.log("try");
     const cloudinaryUpload = await cloudinary.uploader.upload(file.path);
     const cloudinaryUrl = cloudinaryUpload.secure_url;
     console.log(cloudinaryUrl);
@@ -114,7 +113,6 @@ async function handlePostMethod(req: NextApiRequest, res: NextApiResponse) {
     });
     res.status(200).json(result);
   } catch (err) {
-    console.log("error");
     console.log(err);
     res.status(500).json({ message: "Terjadi kesalahan saat menyimpan data" });
   }
@@ -130,7 +128,6 @@ async function handleDeleteMethod(req: NextApiRequest, res: NextApiResponse) {
     });
     res.status(200).json(response);
   } catch (err) {
-    console.log(err);
     res.status(500).json({ message: "Terjadi kesalahan saat mengambil data" });
   }
 }
